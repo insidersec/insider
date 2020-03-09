@@ -36,7 +36,7 @@ Usage of insider:
 
 ### Contribution
 
-- Your contributions and suggestions are heartily ♥ welcome. [**See here the contribution guidelines.**](/.github/CONTRIBUTING.md) Please, report bugs via [**issues page.**](/issues) See here the [**security policy.**](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕) 
+- Your contributions and suggestions are heartily ♥ welcome. [**See here the contribution guidelines.**](/.github/CONTRIBUTING.md) Please, report bugs via [**issues page.**](https://github.com/insidersec/insider/issues) See here the [**security policy.**](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕) 
 
 
 ### License
