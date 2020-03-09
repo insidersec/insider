@@ -33,3 +33,12 @@ Usage of insider:
   -tech string
     	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
 ```
+
+### Contribution
+
+- Your contributions and suggestions are heartily ♥ welcome. [**See here the contribution guidelines.**](/.github/CONTRIBUTING.md) Please, report bugs via [**issues page.**](/issues) See here the [**security policy.**](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕) 
+
+
+### License
+
+- This work is licensed under [**LGPL-3.0.**](/LICENSE.md)
