@@ -7,7 +7,6 @@ import (
 	"github.com/insidersec/insider/models"
 )
 
-// IsLibraryUsed self-explained
 func IsLibraryUsed(libraries []models.Library, item string) bool {
 	for _, library := range libraries {
 		if library.Name == item {
@@ -18,7 +17,6 @@ func IsLibraryUsed(libraries []models.Library, item string) bool {
 	return false
 }
 
-// IsUsed self-explained
 func IsUsed(collection []string, item string) bool {
 	for _, itemInCollection := range collection {
 		if itemInCollection == item {
@@ -29,7 +27,6 @@ func IsUsed(collection []string, item string) bool {
 	return false
 }
 
-// GetUnpackedAppSize self-explained
 func GetUnpackedAppSize(path string) (int, error) {
 	var size int64
 

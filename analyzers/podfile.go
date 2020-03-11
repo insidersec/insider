@@ -17,7 +17,6 @@ func init() {
 	podfileFilter = regexp.MustCompile(`(?i)(?:\.Podfile|Podfile)`)
 }
 
-// ExtractLibsFromPodfile selfexplained
 func ExtractLibsFromPodfile(file lexer.InputFile) (libraries []models.Library, err error) {
 	findings, err := ExtractLibsFromFile(file.Content, extractLibraryFromPodfile)
 
@@ -51,7 +50,6 @@ func isPodfile(filename string) bool {
 	return false
 }
 
-// ExtractLibsFromPodfiles selfexplained
 func ExtractLibsFromPodfiles(dirname string) (libraries []models.Library, err error) {
 	files, err := visitor.FindFiles(dirname, false, isPodfile)
 

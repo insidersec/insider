@@ -19,7 +19,6 @@ func init() {
 	cartfileFilter = regexp.MustCompile(`(?i)cartfile`)
 }
 
-// ExtractLibsFromCartfile selfexplained.
 func ExtractLibsFromCartfile(file lexer.InputFile) (libraries []models.Library, err error) {
 	findings, err := ExtractLibsFromFile(file.Content, extractLibraryFromCartfile)
 
@@ -63,7 +62,6 @@ func isCartfileResolved(filename string) bool {
 	return false
 }
 
-// ExtractLibsFromCartfiles selfexplained
 func ExtractLibsFromCartfiles(dirname string) (libraries []models.Library, err error) {
 	files, err := visitor.FindFiles(dirname, false, isCartfileResolved)
 

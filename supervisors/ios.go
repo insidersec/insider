@@ -8,7 +8,6 @@ import (
 	"github.com/insidersec/insider/models"
 )
 
-// RunIOSCodeAnalysis self-explained
 func RunIOSCodeAnalysis(codeInfo SourceCodeInfo) error {
 	log.Println("Starting iOS Source code analysis")
 

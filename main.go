@@ -43,7 +43,6 @@ func main() {
 	flag.Parse()
 
 	if !noBanner {
-		// Prints the ASCII art of the Insider banner :D
 		printBanner()
 	}
 
@@ -138,19 +137,19 @@ func main() {
 		helpText := ", please choose android, ios, csharp or javascript"
 
 		if strings.Contains(tech, "c") || strings.Contains(tech, "C") {
-			helpText = ", did you mean csharp ?"
+			helpText = ", did you mean csharp?"
 		}
 
 		if strings.Contains(tech, "js") || strings.Contains(tech, "j") {
-			helpText = ", did you mean javascript ?"
+			helpText = ", did you mean javascript?"
 		}
 
 		if strings.Contains(tech, "swift") {
-			helpText = ", did you mean ios ?"
+			helpText = ", did you mean ios?"
 		}
 
 		if strings.Contains(tech, "kotlin") {
-			helpText = ", did you mean android ?"
+			helpText = ", did you mean android?"
 		}
 
 		log.Fatalf("Invalid technology%s", helpText)
