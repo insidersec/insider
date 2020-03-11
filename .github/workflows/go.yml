@@ -11,6 +11,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Run a multi-line script
       run: |
+        mkdir /go/bin
         export PATH=$PATH:/go/bin
         curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
         dep ensure
