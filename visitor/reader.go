@@ -117,48 +117,48 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 		}
 
 		switch tech {
-		case "android":
-			if androidExtensionFilter.MatchString(path) {
-				return nil
-			}
+			case "android":
+				if androidExtensionFilter.MatchString(path) {
+					return nil
+				}
 
-			if androidManifestFilter(path) {
+				if androidManifestFilter(path) {
+					files = append(files, path)
+					return nil
+				}
+
 				files = append(files, path)
-				return nil
-			}
+				break
+			case "ios":
+				if iosExtraFilter.MatchString(path) {
+					return nil
+				}
 
-			files = append(files, path)
-			break
-		case "ios":
-			if iosExtraFilter.MatchString(path) {
-				return nil
-			}
+				if iosExtensionFilter.MatchString(path) {
+					files = append(files, path)
+					return nil
+				}
 
-			if iosExtensionFilter.MatchString(path) {
+				break
+			case "csharp":
+				if csharpExtensionFilter.MatchString(path) {
+					return nil
+				}
+
 				files = append(files, path)
-				return nil
-			}
+				break
+			case "javascript":
+				if jsExtensionFilter.MatchString(path) {
+					files = append(files, path)
+				}
 
-			break
-		case "csharp":
-			if csharpExtensionFilter.MatchString(path) {
-				return nil
-			}
-
-			files = append(files, path)
-			break
-		case "javascript":
-			if jsExtensionFilter.MatchString(path) {
+				break
+			default:
 				files = append(files, path)
+				break
 			}
 
-			break
-		default:
-			files = append(files, path)
-			break
-		}
-
-		return nil
+			return nil
 	})
 
 	if err != nil {
