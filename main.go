@@ -110,7 +110,6 @@ func main() {
 
 		log.Println("Finished analysis for Android app")
 
-		break
 	case "ios":
 		log.Println("Starting analysis for iOS app")
 
@@ -118,7 +117,6 @@ func main() {
 
 		log.Println("Finished analysis for iOS app")
 
-		break
 	case "csharp":
 		log.Println("Starting analysis for C# app")
 
@@ -126,14 +124,12 @@ func main() {
 
 		log.Println("Finished analysis for C# application")
 
-		break
 	case "javascript":
 		log.Println("Starting analysis for JavaScript app")
 
 		err = supervisors.RunJSSourceCodeAnalysis(codeInfo)
 
 		log.Println("Finished JavaScript analysis")
-		break
 	default:
 		helpText := ", please choose android, ios, csharp or javascript"
 
@@ -162,5 +158,4 @@ func main() {
 	}
 
 	os.Exit(0)
-	return
 }

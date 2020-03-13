@@ -20,6 +20,10 @@ func TestExtractLibsFromPodfile(t *testing.T) {
 
 	libraries, err := ExtractLibsFromPodfile(testFile)
 
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	if len(libraries) <= 0 {
 		t.Fatal("Should have found libraries.")
 	}

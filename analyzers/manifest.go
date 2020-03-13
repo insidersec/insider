@@ -11,19 +11,14 @@ import (
 )
 
 var xmlFilesFilter *regexp.Regexp
-var gradleVersions *regexp.Regexp
 var haveMainActivity *regexp.Regexp
 var gradleFilesFilter *regexp.Regexp
-
-var substituteQuotationMarks *regexp.Regexp
 
 var extractGradleVersionName *regexp.Regexp
 var extractGradleVersionNumber *regexp.Regexp
 var extractGradleTargetSDKVersion *regexp.Regexp
 var extractGradleMinimumSDKVersion *regexp.Regexp
 var extractGradleMaximumSDKVersion *regexp.Regexp
-
-var evaluateGradleVariable string
 
 const (
 	// UnknownStatus is the default status for a Manifest permission
@@ -80,7 +75,7 @@ type Manifest struct {
 	Application ApplicationInfo `xml:"application"`
 
 	// Info section
-	VersionName            string `xml:versionName,attr`
+	VersionName            string `xml:"versionName,attr"`
 	VersionCode            string `xml:"versionCode,attr"`
 	CompiledSDKVersion     string `xml:"compileSdkVersion,attr"`
 	CompiledSDKVersionCode string `xml:"compileSdkVersionCodename,attr"`
@@ -90,10 +85,6 @@ func init() {
 	xmlFilesFilter = regexp.MustCompile(`AndroidManifest\.xml`)
 	gradleFilesFilter = regexp.MustCompile(`dependencies\w*\.gradle`)
 
-	gradleVersions = regexp.MustCompile(`(\w*)\s+=\s+(['"].+['"]|\d+)`)
-
-	substituteQuotationMarks = regexp.MustCompile(`['|"]`)
-
 	haveMainActivity = regexp.MustCompile(`android.intent.action.MAIN`)
 
 	extractGradleVersionName = regexp.MustCompile(`versionName\s+(?:=|)(\d*\.\d*\.\d*)`)
@@ -102,7 +93,6 @@ func init() {
 	extractGradleTargetSDKVersion = regexp.MustCompile(`targetSdkVersion\s+(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`)
 	extractGradleMaximumSDKVersion = regexp.MustCompile(`maxSdkVersion\s+(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`)
 
-	evaluateGradleVariable = `%s\s*=\s*(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`
 }
 
 func isMainPackage(content string) bool {

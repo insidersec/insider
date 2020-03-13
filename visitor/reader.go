@@ -128,7 +128,6 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 			}
 
 			files = append(files, path)
-			break
 		case "ios":
 			if iosExtraFilter.MatchString(path) {
 				return nil
@@ -139,23 +138,19 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 				return nil
 			}
 
-			break
 		case "csharp":
 			if csharpExtensionFilter.MatchString(path) {
 				return nil
 			}
 
 			files = append(files, path)
-			break
 		case "javascript":
 			if jsExtensionFilter.MatchString(path) {
 				files = append(files, path)
 			}
 
-			break
 		default:
 			files = append(files, path)
-			break
 		}
 
 		return nil
