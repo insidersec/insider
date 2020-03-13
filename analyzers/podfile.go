@@ -44,11 +44,7 @@ func ExtractLibsFromPodfile(file lexer.InputFile) (libraries []models.Library, e
 }
 
 func isPodfile(filename string) bool {
-	if podfileFilter.MatchString(filename) {
-		return true
-	}
-
-	return false
+	return podfileFilter.MatchString(filename)
 }
 
 // ExtractLibsFromPodfiles selfexplained

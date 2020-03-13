@@ -48,19 +48,11 @@ func ExtractLibsFromCartfile(file lexer.InputFile) (libraries []models.Library, 
 }
 
 func isCartfile(filename string) bool {
-	if cartfileFilter.MatchString(filename) {
-		return true
-	}
-
-	return false
+	return cartfileFilter.MatchString(filename)
 }
 
 func isCartfileResolved(filename string) bool {
-	if cartfileResolverFilter.MatchString(filename) {
-		return true
-	}
-
-	return false
+	return cartfileResolverFilter.MatchString(filename)
 }
 
 // ExtractLibsFromCartfiles selfexplained

@@ -116,7 +116,10 @@ func exportJSONReport(bReport []byte) error {
 	// - the third is a prefix to each line in the input buffer
 	// - the fourth is the actual character to be used in identation
 	//    here we're using space for compatibility
-	json.Indent(&outputBuffer, bReport, "", " ")
+	if err := json.Indent(&outputBuffer, bReport, "", " "); err != nil {
+		log.Println("Problems writing the report to the JSON file.")
+		return err
+	}
 
 	bytesWritten, err := jsonFile.Write(outputBuffer.Bytes())
 

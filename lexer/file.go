@@ -8,7 +8,6 @@ import (
 	"github.com/insidersec/insider/models"
 )
 
-var sampleTemplate string
 var scopeFinder *regexp.Regexp
 var newlineFinder *regexp.Regexp
 

@@ -65,9 +65,7 @@ func ExtractLibrariesFromFiles(dirname string) (libraries []models.Library, err 
 		return libraries, err
 	}
 
-	for _, library := range podfileLibraries {
-		libraries = append(libraries, library)
-	}
+	libraries = append(libraries, podfileLibraries...)
 
 	cartfileLibraries, err := analyzers.ExtractLibsFromCartfiles(dirname)
 
@@ -75,9 +73,7 @@ func ExtractLibrariesFromFiles(dirname string) (libraries []models.Library, err 
 		return libraries, err
 	}
 
-	for _, library := range cartfileLibraries {
-		libraries = append(libraries, library)
-	}
+	libraries = append(libraries, cartfileLibraries...)
 
 	return
 }
