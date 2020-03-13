@@ -1,14 +1,14 @@
 package analyzers
 
 import (
+	"path/filepath"
 	"testing"
 
 	"github.com/insidersec/insider/models"
-	"github.com/insidersec/insider/visitor"
 )
 
 func TestManifestAnalysis(t *testing.T) {
-	dirname := visitor.SolvePathToTestFolder("AndroidManifest.xml")
+	dirname := filepath.FromSlash("testdata/AndroidManifest.xml")
 	report := models.AndroidReport{}
 
 	err := AnalyzeAndroidManifest(dirname, &report)

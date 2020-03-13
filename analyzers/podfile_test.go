@@ -2,14 +2,15 @@ package analyzers
 
 import (
 	"io/ioutil"
+	"path/filepath"
 	"testing"
 
 	"github.com/insidersec/insider/lexer"
-	"github.com/insidersec/insider/visitor"
 )
 
 func TestExtractLibsFromPodfile(t *testing.T) {
-	testFileLocation := visitor.SolvePathToTestFolder("example.podfile")
+	testFileLocation := filepath.FromSlash("testdata/example.podfile")
+
 	fileContent, err := ioutil.ReadFile(testFileLocation)
 
 	if err != nil {
