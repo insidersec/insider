@@ -1,7 +1,11 @@
-# Insider Application Security
+<p align="center">
+  <img src="https://insidersec.io/wp-content/uploads/2020/03/insider-novo-logo.png">
+</p>
 
 Insider is the [OSS](https://opensource.org/) CLI project from the [Insider Application Security](https://insidersec.io) Security Team for the community.
 This project have a simplified version of the proprietary Static Application Security Testing engine developed internally by us :smile:, to make source code analysis to find vulnerabilities right in the source code, focused on a agile and easy to implement software inside your DevOps pipeline.
+
+
 
 ## Installation
 We have precompiled binaries for Linux and Windows operational systems that you can find [here](https://github.com/insidersec/insider/releases) :smile:
