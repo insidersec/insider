@@ -3,7 +3,7 @@
 </p>
 
 Insider is the [OSS](https://opensource.org/) CLI project from the [Insider Application Security](https://insidersec.io) Security Team for the community.
-This project have a simplified version of the proprietary Static Application Security Testing engine developed internally by us :smile:, to make source code analysis to find vulnerabilities right in the source code, focused on a agile and easy to implement software inside your DevOps pipeline.
+This project have a simplified version of the proprietary Static Application Security Testing engine developed internally by us :smile:, this version of Insider is exclusively focused on covering the [OWASP Top 10](https://owasp.org/www-project-top-ten/), to make source code analysis to find vulnerabilities right in the source code, focused on a agile and easy to implement software inside your DevOps pipeline.
 
 
 
