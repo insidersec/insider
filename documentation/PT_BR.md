@@ -31,7 +31,7 @@ Uso de insider:
 
 ### Contribuição
 
-- Suas contribuições e sugestões são muito bem-vindas ♥. [**Veja aqui as diretrizes de contribuição.**](/.Github/CONTRIBUTING.md) Por favor, relate erros através de [** página de problemas.**](https://github.com/insidersec/insider/issues) Veja aqui a [**política de segurança.**](/.Github/SECURITY.md) para relatar problemas de segurança. (✿ ◕‿◕)
+- Suas contribuições e sugestões são muito bem-vindas ♥. [**Veja aqui as diretrizes de contribuição.**](/.Github/CONTRIBUTING.md) Por favor, relate erros através de [**página de problemas.**](https://github.com/insidersec/insider/issues) Veja aqui a [**política de segurança.**](/.Github/SECURITY.md) para relatar problemas de segurança. (✿ ◕‿◕)
 
 
 ### Licença
