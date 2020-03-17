@@ -18,7 +18,7 @@ Uso de insider:
   -force
     Não substitua sobre a pasta de resultados
   -no-banner
-    Ignora a impressão do banner (Útil para ambientes de CI / Docker)
+    Ignora a impressão do banner (Útil para ambientes de CI/Docker)
   -no-html
     Ignora a geração do relatório no formato HTML
   -no-json
@@ -36,8 +36,4 @@ Uso de insider:
 
 ### Licença
 
-- Este trabalho está licenciado sob [** LGPL-3.0. **] (/ LICENSE.md)
-Enviar feedback
-Histórico
-Salvas
-Comunidade
+- Este trabalho está licenciado sob [**LGPL-3.0.**](/LICENSE.md)
