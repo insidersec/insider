@@ -35,7 +35,6 @@ Uso de información privilegiada:
 
 - Tus contribuciones y sugerencias son bienvenidas ♥. [**Consulte las pautas de contribución aquí.**](/.Github/CONTRIBUTING.md) Informe los errores a través de [**página del problema.**](https://github.com/insidersec/insider/issues) Consulte aquí la [**política de seguridad.**](/.Github/SECURITY.md) para informar problemas de seguridad. (✿ ◕‿◕)
 
-
 ### Licencia
 
 - Este trabajo está licenciado bajo [**LGPL-3.0.**](/LICENSE.md)

@@ -1,4 +1,5 @@
 ## Instalação
+
 Temos binários pré-compilados para sistemas operacionais Linux e Windows que você pode encontrar [aqui](https://github.com/insidersec/insider/releases) :smile:
 
 Mas se você é (g) old school ou apenas deseja compilá-lo, precisará de pelo menos [Go versão 1.13.3](https://golang.org/dl/) e [GNU Make](https://www.gnu.org/software/make/)> = 4.2.1
@@ -11,6 +12,7 @@ Após fazer o download / verificar se sua versão é compatível, basta:
 * Diverta-se! :foguete:
 
 ## Uso
+
 OBS .: A pasta de destino deve conter todo o código-fonte que deve ser analisado. Planejamos liberar suporte para binários compilados para iOS e APKs do Android: smile:
 
 ````
