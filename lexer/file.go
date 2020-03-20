@@ -4,7 +4,6 @@ import (
 	"regexp"
 	"sort"
 	"strings"
-
 	"github.com/insidersec/insider/models"
 )
 

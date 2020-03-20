@@ -7,7 +7,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-
 	"github.com/insidersec/insider/supervisors"
 )
 
@@ -43,7 +42,6 @@ func main() {
 	flag.Parse()
 
 	if !noBanner {
-		// Prints the ASCII art of the Insider banner :D
 		printBanner()
 	}
 
@@ -103,53 +101,53 @@ func main() {
 	}
 
 	switch tech {
-	case "android":
-		log.Println("Starting analysis for Android app")
+		case "android":
+			log.Println("Starting analysis for Android app")
 
-		err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo)
+			err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo)
 
-		log.Println("Finished analysis for Android app")
+			log.Println("Finished analysis for Android app")
 
-	case "ios":
-		log.Println("Starting analysis for iOS app")
+		case "ios":
+			log.Println("Starting analysis for iOS app")
 
-		err = supervisors.RunIOSCodeAnalysis(codeInfo)
+			err = supervisors.RunIOSCodeAnalysis(codeInfo)
 
-		log.Println("Finished analysis for iOS app")
+			log.Println("Finished analysis for iOS app")
 
-	case "csharp":
-		log.Println("Starting analysis for C# app")
+		case "csharp":
+			log.Println("Starting analysis for C# app")
 
-		err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo)
+			err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo)
 
-		log.Println("Finished analysis for C# application")
+			log.Println("Finished analysis for C# application")
 
-	case "javascript":
-		log.Println("Starting analysis for JavaScript app")
+		case "javascript":
+			log.Println("Starting analysis for JavaScript app")
 
-		err = supervisors.RunJSSourceCodeAnalysis(codeInfo)
+			err = supervisors.RunJSSourceCodeAnalysis(codeInfo)
 
-		log.Println("Finished JavaScript analysis")
-	default:
-		helpText := ", please choose android, ios, csharp or javascript"
+			log.Println("Finished JavaScript analysis")
+		default:
+			helpText := ", please choose android, ios, csharp or javascript"
 
-		if strings.Contains(tech, "c") || strings.Contains(tech, "C") {
-			helpText = ", did you mean csharp ?"
-		}
+			if strings.Contains(tech, "c") || strings.Contains(tech, "C") {
+				helpText = ", did you mean csharp ?"
+			}
 
-		if strings.Contains(tech, "js") || strings.Contains(tech, "j") {
-			helpText = ", did you mean javascript ?"
-		}
+			if strings.Contains(tech, "js") || strings.Contains(tech, "j") {
+				helpText = ", did you mean javascript ?"
+			}
 
-		if strings.Contains(tech, "swift") {
-			helpText = ", did you mean ios ?"
-		}
+			if strings.Contains(tech, "swift") {
+				helpText = ", did you mean ios ?"
+			}
 
-		if strings.Contains(tech, "kotlin") {
-			helpText = ", did you mean android ?"
-		}
+			if strings.Contains(tech, "kotlin") {
+				helpText = ", did you mean android ?"
+			}
 
-		log.Fatalf("Invalid technology%s", helpText)
+			log.Fatalf("Invalid technology%s", helpText)
 	}
 
 	if err != nil {

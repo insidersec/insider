@@ -5,7 +5,6 @@ import (
 	"io/ioutil"
 	"log"
 	"strconv"
-
 	"github.com/insidersec/insider/analyzers"
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
@@ -17,12 +16,10 @@ import (
 **************************************************
  */
 
-// AnalyzeAndroidManifest self-explained
 func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error {
 	return analyzers.AnalyzeAndroidManifest(dirname, report)
 }
 
-// AnalyzeAndroidSource self-explained
 func AnalyzeAndroidSource(dirname string, report *models.AndroidReport) error {
 	files, rules, err := LoadsFilesAndRules(dirname, "android")
 

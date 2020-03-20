@@ -3,11 +3,9 @@ package analyzers
 import (
 	"os"
 	"path/filepath"
-
 	"github.com/insidersec/insider/models"
 )
 
-// IsLibraryUsed self-explained
 func IsLibraryUsed(libraries []models.Library, item string) bool {
 	for _, library := range libraries {
 		if library.Name == item {
@@ -18,7 +16,6 @@ func IsLibraryUsed(libraries []models.Library, item string) bool {
 	return false
 }
 
-// IsUsed self-explained
 func IsUsed(collection []string, item string) bool {
 	for _, itemInCollection := range collection {
 		if itemInCollection == item {
@@ -29,7 +26,6 @@ func IsUsed(collection []string, item string) bool {
 	return false
 }
 
-// GetUnpackedAppSize self-explained
 func GetUnpackedAppSize(path string) (int, error) {
 	var size int64
 
@@ -43,7 +39,6 @@ func GetUnpackedAppSize(path string) (int, error) {
 		return err
 	})
 
-	// Transform the Size to MB
 	megabytes := int(float64(size) / (1024 * 1024))
 
 	return megabytes, err

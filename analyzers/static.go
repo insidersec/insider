@@ -3,7 +3,6 @@ package analyzers
 import (
 	"regexp"
 	"strings"
-
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
 )

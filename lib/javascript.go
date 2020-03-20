@@ -5,13 +5,11 @@ import (
 	"io/ioutil"
 	"log"
 	"strconv"
-
 	"github.com/insidersec/insider/analyzers"
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
 )
 
-// AnalyzeJSSourceCode self-explained.
 func AnalyzeJSSourceCode(dirname string, report *models.Report) error {
 	files, rules, err := LoadsFilesAndRules(dirname, "javascript")
 

@@ -2,7 +2,6 @@ package analyzers
 
 import (
 	"regexp"
-
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
 	"github.com/insidersec/insider/visitor"
@@ -19,7 +18,6 @@ func init() {
 	cartfileFilter = regexp.MustCompile(`(?i)cartfile`)
 }
 
-// ExtractLibsFromCartfile selfexplained.
 func ExtractLibsFromCartfile(file lexer.InputFile) (libraries []models.Library, err error) {
 	findings, err := ExtractLibsFromFile(file.Content, extractLibraryFromCartfile)
 
@@ -55,7 +53,6 @@ func isCartfileResolved(filename string) bool {
 	return cartfileResolverFilter.MatchString(filename)
 }
 
-// ExtractLibsFromCartfiles selfexplained
 func ExtractLibsFromCartfiles(dirname string) (libraries []models.Library, err error) {
 	files, err := visitor.FindFiles(dirname, false, isCartfileResolved)
 

@@ -2,7 +2,6 @@ package analyzers
 
 import (
 	"testing"
-
 	"github.com/insidersec/insider/lexer"
 )
 

@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"log"
 	"strconv"
-
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
 	"github.com/insidersec/insider/visitor"

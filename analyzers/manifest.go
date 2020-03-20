@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
-
 	"github.com/insidersec/insider/models"
 	"github.com/insidersec/insider/visitor"
 )

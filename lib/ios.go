@@ -5,13 +5,11 @@ import (
 	"io/ioutil"
 	"log"
 	"strconv"
-
 	"github.com/insidersec/insider/analyzers"
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
 )
 
-// AnalyzeIOSSource self-explained
 func AnalyzeIOSSource(dirname string, report *models.IOSReport) error {
 	files, rules, err := LoadsFilesAndRules(dirname, "ios")
 
@@ -57,7 +55,6 @@ func AnalyzeIOSSource(dirname string, report *models.IOSReport) error {
 	return nil
 }
 
-// ExtractLibrariesFromFiles self-explained
 func ExtractLibrariesFromFiles(dirname string) (libraries []models.Library, err error) {
 	podfileLibraries, err := analyzers.ExtractLibsFromPodfiles(dirname)
 

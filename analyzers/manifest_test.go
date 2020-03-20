@@ -3,7 +3,6 @@ package analyzers
 import (
 	"path/filepath"
 	"testing"
-
 	"github.com/insidersec/insider/models"
 )
 

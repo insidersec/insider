@@ -6,7 +6,6 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
-
 	"github.com/insidersec/insider/lexer"
 )
 

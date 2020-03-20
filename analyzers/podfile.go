@@ -3,7 +3,6 @@ package analyzers
 import (
 	"regexp"
 	"strings"
-
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
 	"github.com/insidersec/insider/visitor"
@@ -17,7 +16,6 @@ func init() {
 	podfileFilter = regexp.MustCompile(`(?i)(?:\.Podfile|Podfile)`)
 }
 
-// ExtractLibsFromPodfile selfexplained
 func ExtractLibsFromPodfile(file lexer.InputFile) (libraries []models.Library, err error) {
 	findings, err := ExtractLibsFromFile(file.Content, extractLibraryFromPodfile)
 
@@ -47,7 +45,6 @@ func isPodfile(filename string) bool {
 	return podfileFilter.MatchString(filename)
 }
 
-// ExtractLibsFromPodfiles selfexplained
 func ExtractLibsFromPodfiles(dirname string) (libraries []models.Library, err error) {
 	files, err := visitor.FindFiles(dirname, false, isPodfile)
 

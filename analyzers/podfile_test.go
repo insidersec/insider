@@ -4,7 +4,6 @@ import (
 	"io/ioutil"
 	"path/filepath"
 	"testing"
-
 	"github.com/insidersec/insider/lexer"
 )
 
