@@ -1,5 +1,13 @@
 <p align="center">
   <img src="https://insidersec.io/wp-content/uploads/2020/03/insider-novo-logo.png">
+  <p align="center">
+    <a href="https://github.com/insidersec/insider/blob/master/LICENSE.md">
+      <img src="https://img.shields.io/badge/license-LGPL-blue.svg">
+    </a>
+    <a href="https://github.com/insidersec/insider/releases">
+      <img src="https://img.shields.io/badge/version-0.9-blue.svg">
+    </a>
+  </p>
 </p>
 
 Insider is the [OSS](https://opensource.org/) CLI project from the [Insider Application Security](https://insidersec.io) Security Team for the community.
