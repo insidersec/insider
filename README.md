@@ -11,11 +11,11 @@
 </p>
 
 Insider is the [OSS](https://opensource.org/) CLI project from the [Insider Application Security](https://insidersec.io) Security Team for the community.
-This project have a simplified version of the proprietary Static Application Security Testing engine developed internally by us :smile:, this version of Insider is exclusively focused on covering the [OWASP Top 10](https://owasp.org/www-project-top-ten/), to make source code analysis to find vulnerabilities right in the source code, focused on a agile and easy to implement software inside your DevOps pipeline.
+This project have a simplified version of the proprietary Static Application Security Testing engine developed internally by us, this version of Insider is exclusively focused on covering the [OWASP Top 10](https://owasp.org/www-project-top-ten/), to make source code analysis to find vulnerabilities right in the source code, focused on a agile and easy to implement software inside your DevOps pipeline.
 
 ## Installation
 
-We have precompiled binaries for Linux and Windows operational systems that you can find [here](https://github.com/insidersec/insider/releases) :smile:
+We have precompiled binaries for Linux and Windows operational systems that you can find [here](https://github.com/insidersec/insider/releases)
 
 But if you are (g)old school or just want to compile it yourself, you'll need at least [Go version 1.13.3](https://golang.org/dl/), and [GNU Make](https://www.gnu.org/software/make/) >= 4.2.1
 
@@ -28,7 +28,7 @@ After downloading / checking if your version is compatible, you just have to:
 
 ## Usage
 
-OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs :smile:
+OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs
 
 ```
 Usage of insider:
