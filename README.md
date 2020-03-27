@@ -17,7 +17,7 @@ This project have a simplified version of the proprietary Static Application Sec
 
 We have precompiled binaries for Linux and Windows operational systems that you can find [here](https://github.com/insidersec/insider/releases)
 
-But if you are (g)old school or just want to compile it yourself, you'll need at least [Go version 1.13.3](https://golang.org/dl/), and [GNU Make](https://www.gnu.org/software/make/) >= 4.2.1
+But if you are (g)old school or just want to compile it yourself, you'll need at least [Go version 1.13.3.](https://golang.org/dl/), and [GNU Make](https://www.gnu.org/software/make/) >= 4.2.1;
 
 After downloading / checking if your version is compatible, you just have to:
 
@@ -28,7 +28,7 @@ After downloading / checking if your version is compatible, you just have to:
 
 ## Usage
 
-OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs
+OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
 
 ```
 Usage of insider:
@@ -48,10 +48,10 @@ Usage of insider:
 
 ### Contribution
 
-- Your contributions and suggestions are heartily ♥ welcome. [**See here the contribution guidelines.**](/.github/CONTRIBUTING.md) Please, report bugs via [**issues page.**](https://github.com/insidersec/insider/issues) See here the [**security policy.**](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕)
+- Your contributions and suggestions are heartily ♥ welcome. [See here the contribution guidelines.](/.github/CONTRIBUTING.md) Please, report bugs via [issues page.](https://github.com/insidersec/insider/issues) See here the [security policy.](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕)
 
-- You can also see this same documentation in [**Portuguese**](/documentation/PT_BR.md) or in [**Spanish**](/documentation/ES.md).
+- You can also see this same documentation in [Portuguese](/documentation/PT_BR.md) or in [Spanish](/documentation/ES.md).
 
 ### License
 
-- This work is licensed under [**LGPL-3.0.**](/LICENSE.md)
+- This work is licensed under [LGPL-3.0.](/LICENSE.md)

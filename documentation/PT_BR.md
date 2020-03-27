@@ -1,19 +1,19 @@
 ## Instalação
 
-Temos binários pré-compilados para sistemas operacionais Linux e Windows que você pode encontrar [aqui](https://github.com/insidersec/insider/releases) :smile:
+Temos binários pré-compilados para sistemas operacionais Linux e Windows que você pode encontrar [aqui.](https://github.com/insidersec/insider/releases)
 
-Mas se você é (g) old school ou apenas deseja compilá-lo, precisará de pelo menos [Go versão 1.13.3](https://golang.org/dl/) e [GNU Make](https://www.gnu.org/software/make/)> = 4.2.1
+Mas se você é (g) old school ou apenas deseja compilá-lo, precisará de pelo menos [Go versão 1.13.3](https://golang.org/dl/) e [GNU Make](https://www.gnu.org/software/make/)> = 4.2.1;
 
 Após fazer o download / verificar se sua versão é compatível, basta:
 
 * `go get github.com/insidersec/insider`
 * `cd $GOPATH/src/github.com/insidersec/insider`
 * `make build` ou `make buildWindows`
-* Diverta-se! :foguete:
+* Diverta-se!
 
 ## Uso
 
-OBS .: A pasta de destino deve conter todo o código-fonte que deve ser analisado. Planejamos liberar suporte para binários compilados para iOS e APKs do Android: smile:
+OBS .: A pasta de destino deve conter todo o código-fonte que deve ser analisado. Planejamos liberar suporte para binários compilados para iOS e APKs do Android.
 
 ````
 Uso de insider:
@@ -33,9 +33,9 @@ Uso de insider:
 
 ### Contribuição
 
-- Suas contribuições e sugestões são muito bem-vindas ♥. [**Veja aqui as diretrizes de contribuição.**](/.Github/CONTRIBUTING.md) Por favor, relate erros através de [**página de problemas.**](https://github.com/insidersec/insider/issues) Veja aqui a [**política de segurança.**](/.Github/SECURITY.md) para relatar problemas de segurança. (✿ ◕‿◕)
+- Suas contribuições e sugestões são muito bem-vindas ♥. [Veja aqui as diretrizes de contribuição.](/.Github/CONTRIBUTING.md) Por favor, relate erros através de [página de problemas.](https://github.com/insidersec/insider/issues) Veja aqui a [política de segurança.](/.Github/SECURITY.md) para relatar problemas de segurança. (✿ ◕‿◕)
 
 
 ### Licença
 
-- Este trabalho está licenciado sob [**LGPL-3.0.**](/LICENSE.md)
+- Este trabalho está licenciado sob [LGPL-3.0.](/LICENSE.md)
