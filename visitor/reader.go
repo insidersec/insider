@@ -74,7 +74,7 @@ func FindFiles(dirname string, includeDirs bool, isFile FindFunc) ([]lexer.Input
 				}
 			}
 
-			fileContent, err := ioutil.ReadFile(path)
+			fileContent, err := ioutil.ReadFile(filepath.Clean(path))
 
 			if err != nil {
 				return err

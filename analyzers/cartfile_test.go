@@ -2,14 +2,14 @@ package analyzers
 
 import (
 	"io/ioutil"
-	"path/filepath"
 	"testing"
+	"path/filepath"
 	"github.com/insidersec/insider/lexer"
 )
 
 func TestExtractLibsFromCartfile(t *testing.T) {
-	testFileLocation := filepath.FromSlash("testdata/example.cartfile")
-	fileContent, err := ioutil.ReadFile(testFileLocation)
+	testFileLocation := filepath.FromSlash("testdata/example.cartfile")c
+	fileContent, err := ioutil.ReadFile(filepath.Clean(testFileLocation))
 
 	if err != nil {
 		t.Fatal(err)

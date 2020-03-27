@@ -2,9 +2,10 @@ package lib
 
 import (
 	"fmt"
-	"io/ioutil"
 	"log"
 	"strconv"
+	"io/ioutil"
+	"path/filepath"
 	"github.com/insidersec/insider/analyzers"
 	"github.com/insidersec/insider/lexer"
 	"github.com/insidersec/insider/models"
@@ -36,7 +37,7 @@ func AnalyzeAndroidSource(dirname string, report *models.AndroidReport) error {
 	report.AndroidInfo.Size = fmt.Sprintf("%s MB", strconv.Itoa(appSize))
 
 	for _, file := range files {
-		fileContent, err := ioutil.ReadFile(file)
+		fileContent, err := ioutil.ReadFile(filepath.Clean(file))
 
 		if err != nil {
 			return err
