@@ -18,19 +18,19 @@ OBS .: A pasta de destino deve conter todo o código-fonte que deve ser analisad
 ````
 ./insider -help
 
-Uso de insider:
+Usage of insider:
   -force
-    Não substitua sobre a pasta de resultados
+    	Overwrite the results directory. Insider does not overwrite the results directory by default
   -no-banner
-    Ignora a impressão do banner (Útil para ambientes de CI/Docker)
+    	Skips the banner printing (Useful for CI/Docker environments)
   -no-html
-    Ignora a geração do relatório no formato HTML
+    	Skips the report generation in the HTML format
   -no-json
-    Ignora a geração de relatório no formato JSON
+    	Skips the report generation in the JSON format
   -target string
-    Especifique onde procurar arquivos para executar o conjunto de regras específico
+    	Specify the target directory containing the Source Code
   -tech string
-    Especifique qual conjunto de regras de tecnologia carregar. (Os valores válidos são: android, ios, csharp, javascript)
+    	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
 ````
 
 ## Exemplo
