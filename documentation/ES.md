@@ -1,6 +1,6 @@
 ## Instalación
 
-Tenemos binarios precompilados para los sistemas operativos Linux y Windows que puede encontrar [aquí.](https://github.com/insidersec/insider/releases)
+Tenemos binarios precompilados para los sistemas operativos Linux, Windows y macOS que puede encontrar [aquí.](https://github.com/insidersec/insider/releases)
 
 Pero si usted es (g) de la vieja escuela o simplemente quiere compilarlo, necesitará al menos [Go versión 1.13.3](https://golang.org/dl/) y [GNU Make](https://www.gnu.org/software/make/)> = 4.2.1;
 
@@ -16,19 +16,30 @@ Después de descargar/verificar si su versión es compatible, simplemente:
 NOTA: La carpeta de destino debe contener todo el código fuente que debe analizarse. Planeamos lanzar soporte para binarios compilados para iOS y Android APKs.
 
 ````
-Uso de información privilegiada:
+./insider -help
+
+Usage of insider:
   -force
-    No sobrescriba la carpeta de resultados
+    	Overwrite the results directory. Insider does not overwrite the results directory by default
   -no-banner
-    Ignora la impresión de pancartas (útil para entornos CI / Docker)
+    	Skips the banner printing (Useful for CI/Docker environments)
   -no-html
-    Ignora la generación de informes en formato HTML
+    	Skips the report generation in the HTML format
   -no-json
-    Ignora la generación de informes en formato JSON
-  -target
-    Especifique dónde buscar archivos para ejecutar el conjunto de reglas específico
-  -tech
-    Especifique qué conjunto de reglas tecnológicas cargar. (Los valores válidos son: android, ios, csharp, javascript)
+    	Skips the report generation in the JSON format
+  -target string
+    	Specify the target directory containing the Source Code
+  -tech string
+    	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
+````
+
+## Ejemplo
+
+````
+wget https://github.com/insidersec/insider/releases/download/1.0.0/insider-linux-amd64
+chmod +x insider-linux-amd64
+./insider-linux-amd64 -tech android -target example-master/
+cat results/report.json
 ````
 
 ### Contribución

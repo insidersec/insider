@@ -1,6 +1,6 @@
 ## Instalação
 
-Temos binários pré-compilados para sistemas operacionais Linux e Windows que você pode encontrar [aqui.](https://github.com/insidersec/insider/releases)
+Temos binários pré-compilados para sistemas operacionais Linux, Windows e macOS que você pode encontrar [aqui.](https://github.com/insidersec/insider/releases)
 
 Mas se você é (g) old school ou apenas deseja compilá-lo, precisará de pelo menos [Go versão 1.13.3](https://golang.org/dl/) e [GNU Make](https://www.gnu.org/software/make/)> = 4.2.1;
 
@@ -16,20 +16,31 @@ Após fazer o download / verificar se sua versão é compatível, basta:
 OBS .: A pasta de destino deve conter todo o código-fonte que deve ser analisado. Planejamos liberar suporte para binários compilados para iOS e APKs do Android.
 
 ````
-Uso de insider:
+./insider -help
+
+Usage of insider:
   -force
-    Não substitua sobre a pasta de resultados
+    	Overwrite the results directory. Insider does not overwrite the results directory by default
   -no-banner
-    Ignora a impressão do banner (Útil para ambientes de CI/Docker)
+    	Skips the banner printing (Useful for CI/Docker environments)
   -no-html
-    Ignora a geração do relatório no formato HTML
+    	Skips the report generation in the HTML format
   -no-json
-    Ignora a geração de relatório no formato JSON
+    	Skips the report generation in the JSON format
   -target string
-    Especifique onde procurar arquivos para executar o conjunto de regras específico
+    	Specify the target directory containing the Source Code
   -tech string
-    Especifique qual conjunto de regras de tecnologia carregar. (Os valores válidos são: android, ios, csharp, javascript)
+    	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
 ````
+
+## Exemplo
+
+```
+wget https://github.com/insidersec/insider/releases/download/1.0.0/insider-linux-amd64
+chmod +x insider-linux-amd64
+./insider-linux-amd64 -tech android -target example-master/
+cat results/report.json
+```
 
 ### Contribuição
 
