@@ -18,28 +18,29 @@ NOTA: La carpeta de destino debe contener todo el código fuente que debe analiz
 ````
 ./insider -help
 
-Uso:
+Usage of insider:
   -force
-    No sobrescriba la carpeta de resultados
+    	Overwrite the results directory. Insider does not overwrite the results directory by default
   -no-banner
-    Ignora la impresión de pancartas (útil para entornos CI / Docker)
+    	Skips the banner printing (Useful for CI/Docker environments)
   -no-html
-    Ignora la generación de informes en formato HTML
+    	Skips the report generation in the HTML format
   -no-json
-    Ignora la generación de informes en formato JSON
-  -target
-    Especifique dónde buscar archivos para ejecutar el conjunto de reglas específico
-  -tech
-    Especifique qué conjunto de reglas tecnológicas cargar. (Los valores válidos son: android, ios, csharp, javascript)
+    	Skips the report generation in the JSON format
+  -target string
+    	Specify the target directory containing the Source Code
+  -tech string
+    	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
 ````
+
 ## Ejemplo
 
-```
+````
 wget https://github.com/insidersec/insider/releases/download/1.0.0/insider-linux-amd64
 chmod +x insider-linux-amd64
 ./insider-linux-amd64 -tech android -target example-master/
 cat results/report.json
-```
+````
 
 ### Contribución
 
