@@ -1,6 +1,6 @@
 ## Instalación
 
-Tenemos binarios precompilados para los sistemas operativos Linux y Windows que puede encontrar [aquí.](https://github.com/insidersec/insider/releases)
+Tenemos binarios precompilados para los sistemas operativos Linux, Windows y macOS que puede encontrar [aquí.](https://github.com/insidersec/insider/releases)
 
 Pero si usted es (g) de la vieja escuela o simplemente quiere compilarlo, necesitará al menos [Go versión 1.13.3](https://golang.org/dl/) y [GNU Make](https://www.gnu.org/software/make/)> = 4.2.1;
 
@@ -16,7 +16,9 @@ Después de descargar/verificar si su versión es compatible, simplemente:
 NOTA: La carpeta de destino debe contener todo el código fuente que debe analizarse. Planeamos lanzar soporte para binarios compilados para iOS y Android APKs.
 
 ````
-Uso de información privilegiada:
+./insider -help
+
+Uso:
   -force
     No sobrescriba la carpeta de resultados
   -no-banner
@@ -30,6 +32,14 @@ Uso de información privilegiada:
   -tech
     Especifique qué conjunto de reglas tecnológicas cargar. (Los valores válidos son: android, ios, csharp, javascript)
 ````
+## Ejemplo
+
+```
+wget https://github.com/insidersec/insider/releases/download/1.0.0/insider-linux-amd64
+chmod +x insider-linux-amd64
+./insider-linux-amd64 -tech android -target example-master/
+cat results/report.json
+```
 
 ### Contribución
 
