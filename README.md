@@ -30,7 +30,7 @@ After downloading / checking if your version is compatible, you just have to:
 
 OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
 
-```
+````
 ./insider -help
 
 Usage of insider:
@@ -46,17 +46,17 @@ Usage of insider:
     	Specify where to look for files to run the specific ruleset
   -tech string
     	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
-```
+````
 
 ## Example
 
-```
+````
 #Check the correct release for your environment
 wget https://github.com/insidersec/insider/releases/download/1.0.0/insider-linux-amd64 -o insider
 chmod +x insider-linux-amd64
 ./insider-linux-amd64 -tech android -target example-master/
 cat results/report.json
-```
+````
 
 ### Contribution
 
