@@ -35,17 +35,21 @@ OBS.: The target folder should contain all the source code that should be analyz
 
 Usage of insider:
   -force
-    	Do not overwrite over the results folder
+    	Overwrite the results directory. Insider does not overwrite the results directory by default - Optional
   -no-banner
-    	Skips the banner printing (Useful for CI/Docker environments)
+    	Skips the banner printing (Useful for CI/Docker environments) - Optional
   -no-html
-    	Skips the report generation in the HTML format
+    	Skips the report generation in the HTML format - Optional
   -no-json
-    	Skips the report generation in the JSON format
+    	Skips the report generation in the JSON format - Optional
   -target string
     	Specify where to look for files to run the specific ruleset
+        -target <folder>
+        -target <myprojectfolder>
   -tech string
     	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
+        -tech javascript
+        -tech csharp
 ````
 
 ## Example
