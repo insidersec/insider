@@ -3,11 +3,11 @@ package main
 import (
 	"flag"
 	"fmt"
+	"github.com/insidersec/insider/supervisors"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
-	"github.com/insidersec/insider/supervisors"
 )
 
 var tech string
@@ -26,14 +26,14 @@ func formatWarningMessage(message string) string {
 
 func init() {
 	// Required flags
-	flag.StringVar(&tech, "tech", "", "Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)")
-	flag.StringVar(&targetFolder, "target", "", "Specify where to look for files to run the specific ruleset")
+	flag.StringVar(&tech, "tech", "", "Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)\n-tech javascript\n-tech csharp")
+	flag.StringVar(&targetFolder, "target", "", "Specify where to look for files to run the specific ruleset.\n-target <folder>\n-target <myprojectfolder>")
 
 	// Optional flags
-	flag.BoolVar(&ignoreWarnings, "force", false, "Do not overwrite over the results folder")
-	flag.BoolVar(&noHTML, "no-html", false, "Skips the report generation in the HTML format")
-	flag.BoolVar(&noJSON, "no-json", false, "Skips the report generation in the JSON format")
-	flag.BoolVar(&noBanner, "no-banner", false, "Skips the banner printing (Useful for CI/Docker environments)")
+	flag.BoolVar(&ignoreWarnings, "force", false, "Overwrite the results directory. Insider does not overwrite the results directory by default - Optional")
+	flag.BoolVar(&noHTML, "no-html", false, "Skips the report generation in the HTML format - Optional")
+	flag.BoolVar(&noJSON, "no-json", false, "Skips the report generation in the JSON format - Optional")
+	flag.BoolVar(&noBanner, "no-banner", false, "Skips the banner printing (Useful for CI/Docker environments) - Optional")
 }
 
 func main() {
@@ -46,11 +46,11 @@ func main() {
 	}
 
 	if tech == "" {
-		log.Fatal("Should specify a technology")
+		log.Fatal("Should specify a technology (Valid values are: android, ios, csharp, javascript)\n-tech javascript\n-tech csharp")
 	}
 
 	if targetFolder == "" {
-		log.Fatal("Should specify a target folder")
+		log.Fatal("Should specify a target folder\n-target <folder>\n-target <myprojectfolder>")
 	}
 
 	resultsFolderStat, err := os.Stat(supervisors.ResultFolderName)
@@ -101,53 +101,53 @@ func main() {
 	}
 
 	switch tech {
-		case "android":
-			log.Println("Starting analysis for Android app")
+	case "android":
+		log.Println("Starting analysis for Android app")
 
-			err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo)
+		err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo)
 
-			log.Println("Finished analysis for Android app")
+		log.Println("Finished analysis for Android app")
 
-		case "ios":
-			log.Println("Starting analysis for iOS app")
+	case "ios":
+		log.Println("Starting analysis for iOS app")
 
-			err = supervisors.RunIOSCodeAnalysis(codeInfo)
+		err = supervisors.RunIOSCodeAnalysis(codeInfo)
 
-			log.Println("Finished analysis for iOS app")
+		log.Println("Finished analysis for iOS app")
 
-		case "csharp":
-			log.Println("Starting analysis for C# app")
+	case "csharp":
+		log.Println("Starting analysis for C# app")
 
-			err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo)
+		err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo)
 
-			log.Println("Finished analysis for C# application")
+		log.Println("Finished analysis for C# application")
 
-		case "javascript":
-			log.Println("Starting analysis for JavaScript app")
+	case "javascript":
+		log.Println("Starting analysis for JavaScript app")
 
-			err = supervisors.RunJSSourceCodeAnalysis(codeInfo)
+		err = supervisors.RunJSSourceCodeAnalysis(codeInfo)
 
-			log.Println("Finished JavaScript analysis")
-		default:
-			helpText := ", please choose android, ios, csharp or javascript"
+		log.Println("Finished JavaScript analysis")
+	default:
+		helpText := ", please choose android, ios, csharp or javascript"
 
-			if strings.Contains(tech, "c") || strings.Contains(tech, "C") {
-				helpText = ", did you mean csharp ?"
-			}
+		if strings.Contains(tech, "c") || strings.Contains(tech, "C") {
+			helpText = ", did you mean csharp ?"
+		}
 
-			if strings.Contains(tech, "js") || strings.Contains(tech, "j") {
-				helpText = ", did you mean javascript ?"
-			}
+		if strings.Contains(tech, "js") || strings.Contains(tech, "j") {
+			helpText = ", did you mean javascript ?"
+		}
 
-			if strings.Contains(tech, "swift") {
-				helpText = ", did you mean ios ?"
-			}
+		if strings.Contains(tech, "swift") {
+			helpText = ", did you mean ios ?"
+		}
 
-			if strings.Contains(tech, "kotlin") {
-				helpText = ", did you mean android ?"
-			}
+		if strings.Contains(tech, "kotlin") {
+			helpText = ", did you mean android ?"
+		}
 
-			log.Fatalf("Invalid technology%s", helpText)
+		log.Fatalf("Invalid technology%s", helpText)
 	}
 
 	if err != nil {
