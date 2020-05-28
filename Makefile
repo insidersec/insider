@@ -10,7 +10,7 @@ buildDebug:
         @ go build -o insider
 
 macos:
-        @ GOOS=darwin GOARCH=amd64 CGO_ENABLED=1 go build ${BUILD_FLAGS} ${GO_FLAGS} -o insider-macos-amd64
+        @ GOOS=darwin GOARCH=amd64 go build -o insider-macos-amd64
 linux64:
         @ GOOS=linux GOARCH=amd64 go build ${BUILD_FLAGS} ${GO_FLAGS} -o insider-linux-amd64
 linux32:
@@ -24,4 +24,4 @@ all:
         @ GOOS=linux GOARCH=386 go build ${BUILD_FLAGS} ${GO_FLAGS} -o insider-linux-x86
         @ GOOS=windows GOARCH=386 go build ${NT_BUILD_FLAGS} ${GO_FLAGS} -o insider-x86.exe
         @ GOOS=windows GOARCH=amd64 go build ${NT_BUILD_FLAGS} ${GO_FLAGS} -o insider-x64.exe
-        @ GOOS=darwin GOARCH=amd64 CGO_ENABLED=1 go build ${BUILD_FLAGS} ${GO_FLAGS} -o insider-macos-amd64
+        @ GOOS=darwin GOARCH=amd64 go build -o insider-macos-amd64
