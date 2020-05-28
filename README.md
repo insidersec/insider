@@ -31,7 +31,8 @@ We support:
 * `win32`
 * `win64`
 * `macos`
-* Have fun! :rocket:
+
+Have fun! :rocket:
 
 ## Usage
 
