@@ -23,7 +23,13 @@ After downloading / checking if your version is compatible, you just have to:
 
 * `go get github.com/insidersec/insider`
 * `cd $GOPATH/src/github.com/insidersec/insider`
-* `make build` or `make buildWindows`
+* `make linux64` or `make win64` or `make macos` or `make all`
+* We support:
+* `linux32`
+* `linux64`
+* `win32`
+* `win64`
+* `macos`
 * Have fun! :rocket:
 
 ## Usage
