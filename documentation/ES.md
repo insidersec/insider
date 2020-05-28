@@ -8,7 +8,13 @@ Después de descargar/verificar si su versión es compatible, simplemente:
 
 * `go get github.com/insidersec/insider`
 * `cd $GOPATH/src/github.com/insidersec/insider`
-* `make build` o ` make buildWindows`
+* `make linux64` or `make win64` or `make macos` or `make all`
+* We support:
+* `linux32`
+* `linux64`
+* `win32`
+* `win64`
+* `macos`
 * Diviértete!
 
 ## Uso
