@@ -31,7 +31,7 @@ After downloading / checking if your version is compatible, you just have to:
 OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
 
 ````
-./insider -help
+./insider --help
 
 Usage of insider:
   -force
