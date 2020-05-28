@@ -16,21 +16,25 @@ Após fazer o download / verificar se sua versão é compatível, basta:
 OBS .: A pasta de destino deve conter todo o código-fonte que deve ser analisado. Planejamos liberar suporte para binários compilados para iOS e APKs do Android.
 
 ````
-./insider -help
+./insider --help
 
 Usage of insider:
   -force
-    	Overwrite the results directory. Insider does not overwrite the results directory by default
+    	Overwrite the results directory. Insider does not overwrite the results directory by default - Optional
   -no-banner
-    	Skips the banner printing (Useful for CI/Docker environments)
+    	Skips the banner printing (Useful for CI/Docker environments) - Optional
   -no-html
-    	Skips the report generation in the HTML format
+    	Skips the report generation in the HTML format - Optional
   -no-json
-    	Skips the report generation in the JSON format
+    	Skips the report generation in the JSON format - Optional
   -target string
-    	Specify the target directory containing the Source Code
+    	Specify where to look for files to run the specific ruleset
+        -target <folder>
+        -target <myprojectfolder>
   -tech string
     	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
+        -tech javascript
+        -tech csharp
 ````
 
 ## Exemplo
