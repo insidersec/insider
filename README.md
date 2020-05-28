@@ -63,7 +63,7 @@ Usage of insider:
 
 ````
 #Check the correct release for your environment
-wget https://github.com/insidersec/insider/releases/download/1.0.0/insider-linux-amd64
+wget https://github.com/insidersec/insider/releases/download/1.0.1/insider-linux-amd64
 chmod +x insider-linux-amd64
 ./insider-linux-amd64 -tech android -target example-master/
 cat results/report.json
