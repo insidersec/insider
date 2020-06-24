@@ -28,5 +28,4 @@ jobs:
 
     - name: Build
       run: |
-        go build -v .
-        ./insider -tech javascript -target . 
+        make all
