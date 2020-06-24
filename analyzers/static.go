@@ -3,18 +3,19 @@ package analyzers
 import (
 	"regexp"
 	"strings"
-	"github.com/insidersec/insider/lexer"
-	"github.com/insidersec/insider/models"
+
+	"insider/lexer"
+	"insider/visitor"
 )
 
-func evaluateNotANDClause(file lexer.InputFile, rule lexer.Rule) (shouldReportFinding bool) {
+func evaluateNotANDClause(fileContent string, rule lexer.Rule) (shouldReportFinding bool) {
 	// The NOT clause is based on the empty result of a RegExp run.
 	shouldReportFinding = true
 
 	rulesResults := make([]bool, 0)
 	for _, rawNotExpression := range rule.NotAnd {
 		expression := regexp.MustCompile(rawNotExpression)
-		results := expression.FindAllStringIndex(file.Content, -1)
+		results := expression.FindAllStringIndex(fileContent, -1)
 
 		if results != nil {
 			// If this specific rule found anything, it means that
@@ -36,30 +37,31 @@ func evaluateNotANDClause(file lexer.InputFile, rule lexer.Rule) (shouldReportFi
 	return
 }
 
-func evaluateNotORClause(file lexer.InputFile, rule lexer.Rule) (shouldReportFinding bool) {
+func evaluateNotORClause(fileContent string, rule lexer.Rule) (shouldReportFinding bool) {
 	shouldReportFinding = true
 
 	for _, rawNotExpression := range rule.NotOr {
 		expression := regexp.MustCompile(rawNotExpression)
-		results := expression.FindAllStringIndex(file.Content, -1)
+		findPattern := expression.MatchString(fileContent)
 
 		// If already find something, don't need to evaluate the other one.
-		// @TODO: Maybe we should run all of them? :thinking_face:
-		if results == nil {
+		if !findPattern {
 			return
 		}
 	}
 
+	// If we found the pattern intended not to be present
+	// we remove this finding from the final report
 	shouldReportFinding = false
 	return
 }
 
-func evaluateNotClauses(file lexer.InputFile, rule lexer.Rule) (shouldReportFinding bool) {
+func evaluateNotClauses(fileContent string, rule lexer.Rule) (shouldReportFinding bool) {
 	if rule.HaveNotANDClause {
 		// Here the original EXPRESSION already found something, so we need to
-		shouldReportFinding = evaluateNotANDClause(file, rule)
+		shouldReportFinding = evaluateNotANDClause(fileContent, rule)
 	} else if rule.HaveNotORClause {
-		shouldReportFinding = evaluateNotORClause(file, rule)
+		shouldReportFinding = evaluateNotORClause(fileContent, rule)
 	} else {
 		shouldReportFinding = true
 	}
@@ -68,16 +70,16 @@ func evaluateNotClauses(file lexer.InputFile, rule lexer.Rule) (shouldReportFind
 }
 
 func runNotRule(
-	fileInput lexer.InputFile,
+	fileInput visitor.InputFile,
 	rawExpression string,
-	info models.Info,
-	rule lexer.Rule) (findings []models.Finding, isEmptyMatch bool) {
+	info Info,
+	rule lexer.Rule) (findings []Finding, isEmptyMatch bool) {
 	isEmptyMatch = false
 	expression := regexp.MustCompile(rawExpression)
 
 	if rule.IsBinaryFileRule {
 		if !expression.MatchString(fileInput.Content) {
-			finding := models.Finding{
+			finding := Finding{
 				Info: info,
 			}
 
@@ -96,7 +98,7 @@ func runNotRule(
 			fileBasedIndexOfTheFinding := result[0]
 			evidence := fileInput.CollectEvidenceSample(fileBasedIndexOfTheFinding)
 
-			finding := models.Finding{
+			finding := Finding{
 				Info:   info,
 				Line:   evidence.Line,
 				Column: evidence.Column,
@@ -112,16 +114,16 @@ func runNotRule(
 }
 
 func runSingleRule(
-	fileInput lexer.InputFile,
+	fileInput visitor.InputFile,
 	rawExpression string,
-	info models.Info,
-	rule lexer.Rule) (findings []models.Finding, isEmptyMatch bool) {
+	info Info,
+	rule lexer.Rule) (findings []Finding, isEmptyMatch bool) {
 	isEmptyMatch = false
 	expression := regexp.MustCompile(rawExpression)
 
 	if rule.IsBinaryFileRule {
 		if expression.MatchString(fileInput.Content) {
-			finding := models.Finding{
+			finding := Finding{
 				Info: info,
 			}
 
@@ -137,14 +139,26 @@ func runSingleRule(
 		}
 
 		for _, result := range results {
+			fileContentFoundByRule := fileInput.Content[result[0]:result[1]]
+
+			shouldReportFinding := evaluateNotClauses(fileContentFoundByRule, rule)
+
+			if !shouldReportFinding {
+				isEmptyMatch = true
+				return
+			}
+
 			fileBasedIndexOfTheFinding := result[0]
+
 			evidence := fileInput.CollectEvidenceSample(fileBasedIndexOfTheFinding)
 
-			finding := models.Finding{
-				Info:   info,
-				Line:   evidence.Line,
-				Column: evidence.Column,
-				Sample: evidence.Sample,
+			finding := Finding{
+				Info:            info,
+				Line:            evidence.Line,
+				Column:          evidence.Column,
+				Sample:          evidence.Sample,
+				VulnerabilityID: evidence.UniqueHash,
+				ScopeName:       evidence.HazardousScope,
 			}
 
 			isEmptyMatch = false
@@ -152,43 +166,14 @@ func runSingleRule(
 		}
 	}
 
-	if len(rule.Libraries) > 0 {
-		for _, ruleLibrary := range rule.Libraries {
-			isLibraryUsed := IsLibraryUsed(fileInput.Libraries, ruleLibrary)
-
-			if !isLibraryUsed {
-				isEmptyMatch = true
-				return
-			}
-		}
-	}
-
-	if len(rule.Permissions) > 0 {
-		for _, rulePermission := range rule.Permissions {
-			isPermissionRequired := IsUsed(fileInput.Permissions, rulePermission)
-
-			if !isPermissionRequired {
-				isEmptyMatch = true
-				return
-			}
-		}
-	}
-
-	shouldReportFinding := evaluateNotClauses(fileInput, rule)
-
-	if !shouldReportFinding {
-		isEmptyMatch = true
-		return
-	}
-
 	return
 }
 
-func runAndRule(fileInput lexer.InputFile, rule lexer.Rule, info models.Info) (findings []models.Finding, isEmptyMatch bool) {
+func runAndRule(fileInput visitor.InputFile, rule lexer.Rule, info Info) (findings []Finding, isEmptyMatch bool) {
 	isEmptyMatch = false
 	resultStatus := []bool{}
 
-	parcialFindings := make([]models.Finding, 0)
+	parcialFindings := make([]Finding, 0)
 	for _, rawExpression := range rule.AndExpressions {
 		singleFindings, isSingleEmptyMatch := runSingleRule(fileInput, rawExpression, info, rule)
 
@@ -207,7 +192,7 @@ func runAndRule(fileInput lexer.InputFile, rule lexer.Rule, info models.Info) (f
 	return
 }
 
-func runOrRule(fileInput lexer.InputFile, rule lexer.Rule, info models.Info) (findings []models.Finding, isEmptyMatch bool) {
+func runOrRule(fileInput visitor.InputFile, rule lexer.Rule, info Info) (findings []Finding, isEmptyMatch bool) {
 	isEmptyMatch = true
 
 	for _, rawExpression := range rule.OrExpressions {
@@ -223,15 +208,15 @@ func runOrRule(fileInput lexer.InputFile, rule lexer.Rule, info models.Info) (fi
 }
 
 // AnalyzeFile runs all the given rules upon the content and the libraries
-func AnalyzeFile(fileInput lexer.InputFile, rules []lexer.Rule) (summary models.FileSummary) {
+func AnalyzeFile(fileInput visitor.InputFile, rules []lexer.Rule) (summary FileSummary) {
 	for _, rule := range rules {
-		info := models.Info{
-			CWE:              rule.CWE,
-			Title:            rule.Title,
-			Severity:         rule.Severity,
-			Description:      rule.Description,
-			Recomendation:    rule.Recomendation,
-			OWASPReferenceID: rule.OWASPReferenceID,
+		info := Info{
+			CWE:           rule.CWE,
+			Title:         rule.Title,
+			Severity:      rule.Severity,
+			CVSS:          rule.AverageCVSS,
+			Description:   rule.Description,
+			Recomendation: rule.Recomendation,
 		}
 
 		if rule.FileFilter != "" {

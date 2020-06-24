@@ -2,9 +2,9 @@ package analyzers
 
 import (
 	"regexp"
-	"github.com/insidersec/insider/lexer"
-	"github.com/insidersec/insider/models"
-	"github.com/insidersec/insider/visitor"
+
+	"insider/models/reports"
+	"insider/visitor"
 )
 
 var extractLibraryFromCartfile *regexp.Regexp
@@ -18,7 +18,8 @@ func init() {
 	cartfileFilter = regexp.MustCompile(`(?i)cartfile`)
 }
 
-func ExtractLibsFromCartfile(file lexer.InputFile) (libraries []models.Library, err error) {
+// ExtractLibsFromCartfile selfexplained.
+func ExtractLibsFromCartfile(file visitor.InputFile) (libraries []reports.Library, err error) {
 	findings, err := ExtractLibsFromFile(file.Content, extractLibraryFromCartfile)
 
 	if err != nil {
@@ -26,7 +27,7 @@ func ExtractLibsFromCartfile(file lexer.InputFile) (libraries []models.Library, 
 	}
 
 	for _, finding := range findings {
-		library := models.Library{
+		library := reports.Library{
 			Name:   finding[2],
 			Source: finding[1],
 		}
@@ -46,14 +47,23 @@ func ExtractLibsFromCartfile(file lexer.InputFile) (libraries []models.Library, 
 }
 
 func isCartfile(filename string) bool {
-	return cartfileFilter.MatchString(filename)
+	if cartfileFilter.MatchString(filename) {
+		return true
+	}
+
+	return false
 }
 
 func isCartfileResolved(filename string) bool {
-	return cartfileResolverFilter.MatchString(filename)
+	if cartfileResolverFilter.MatchString(filename) {
+		return true
+	}
+
+	return false
 }
 
-func ExtractLibsFromCartfiles(dirname string) (libraries []models.Library, err error) {
+// ExtractLibsFromCartfiles selfexplained
+func ExtractLibsFromCartfiles(dirname string) (libraries []reports.Library, err error) {
 	files, err := visitor.FindFiles(dirname, false, isCartfileResolved)
 
 	if err != nil {

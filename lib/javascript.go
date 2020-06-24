@@ -1,56 +1,110 @@
 package lib
 
 import (
-	"fmt"
+	"encoding/json"
 	"log"
-	"strconv"
-	"io/ioutil"
-	"path/filepath"
-	"github.com/insidersec/insider/analyzers"
-	"github.com/insidersec/insider/lexer"
-	"github.com/insidersec/insider/models"
+	"regexp"
+
+	"insider/connectors"
+	"insider/models"
+	"insider/models/reports"
+	"insider/visitor"
 )
 
-func AnalyzeJSSourceCode(dirname string, report *models.Report) error {
-	files, rules, err := LoadsFilesAndRules(dirname, "javascript")
+const (
+	// PackageFilename is the default package.json filename
+	PackageFilename string = "package.json"
+)
+
+var packageJSONFinder *regexp.Regexp
+
+func init() {
+	packageJSONFinder = regexp.MustCompile(`package\.json`)
+}
+
+func findPackageJSON(filename string) bool {
+	return packageJSONFinder.MatchString(filename)
+}
+
+func getPackageJSON(dirname string) (packageJSON models.PackageJSON, err error) {
+	packageFiles, err := visitor.FindFiles(dirname, false, findPackageJSON)
 
 	if err != nil {
-		return err
+		return
 	}
 
-	appSize, err := analyzers.GetUnpackedAppSize(dirname)
-
-	if err != nil {
-		return err
-	}
-
-	report.Info.Size = fmt.Sprintf("%s MB", strconv.Itoa(appSize))
-
-	for _, file := range files {
-		fileContent, err := ioutil.ReadFile(filepath.Clean(file))
-
-		if err != nil {
-			return err
-		}
-
-		fileForAnalyze := lexer.NewInputFile(dirname, file, fileContent)
-
-		report.Info.NumberOfLines = report.Info.NumberOfLines + len(fileForAnalyze.NewlineIndexes)
-
-		fileSummary := analyzers.AnalyzeFile(fileForAnalyze, rules)
-
-		for _, finding := range fileSummary.Findings {
-			vulnerability := ConvertFindingToReport(
-				fileForAnalyze.Name,
-				fileForAnalyze.DisplayName,
-				finding,
-			)
-
-			report.Vulnerabilities = append(report.Vulnerabilities, vulnerability)
+	var rootPackageFile visitor.InputFile
+	for _, packageFile := range packageFiles {
+		if rootPackageFile.PhysicalPath != "" {
+			if len(rootPackageFile.PhysicalPath) > len(packageFile.PhysicalPath) {
+				rootPackageFile.PhysicalPath = packageFile.PhysicalPath
+				rootPackageFile.Content = packageFile.Content
+			}
+		} else {
+			rootPackageFile.PhysicalPath = packageFile.PhysicalPath
+			rootPackageFile.Content = packageFile.Content
 		}
 	}
 
-	log.Printf("Scanned %d lines", report.Info.NumberOfLines)
+	log.Printf("Found package.json file at %s", rootPackageFile.PhysicalPath)
+
+	err = json.Unmarshal([]byte(rootPackageFile.Content), &packageJSON)
+
+	if err != nil {
+		return
+	}
+
+	return
+}
+
+// AnalyzeJSDependencies uses data from package.json
+// file to search in the NPM Advisory API for known
+// vulnerabilities in the packages that are in use
+// by the application.
+func AnalyzeJSDependencies(dirname, sastID string, report *reports.Report) error {
+	libraries := []reports.Library{}
+	packageJSON, err := getPackageJSON(dirname)
+	existpackageJSON := true
+
+	if err != nil {
+		log.Println("Package.json not found but the process goes on")
+		existpackageJSON = false
+		//return err
+	}
+
+	for dependency, version := range packageJSON.Dependencies {
+		libraryFound := reports.Library{
+			SastID:  sastID,
+			Version: version,
+			Name:    dependency,
+		}
+
+		libraries = append(libraries, libraryFound)
+	}
+
+	if len(libraries) <= 0 && existpackageJSON == true {
+		log.Println("Didn't found any library in package.json file, something should have gone wrong.")
+	}
+
+	report.Libraries = libraries
+
+	report.Info.Name = packageJSON.Name
+	report.Info.Version = packageJSON.Version
+
+	auditResult, err := connectors.AuditLibraries(packageJSON)
+
+	if err != nil {
+		log.Println(err.Error())
+		return err
+	}
+
+	for _, libraryAdvisory := range auditResult.Advisories {
+		libraryIssue := ConvertAdvisoryToReport(libraryAdvisory)
+
+		libraryIssue.SastID = sastID
+
+		report.LibraryIssues = append(report.LibraryIssues, libraryIssue)
+	}
 
 	return nil
 }

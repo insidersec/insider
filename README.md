@@ -41,40 +41,48 @@ OBS.: The target folder should contain all the source code that should be analyz
 ````
 ./insider --help
 
-Usage of insider:
+Insider is the CLI project from the Insider Application Security Team for the community
+Usage :
   -force
-    	Overwrite the results directory. Insider does not overwrite the results directory by default - Optional
+        Overwrite the results directory. Insider does not overwrite the results directory by default - Optional
   -no-banner
-    	Skips the banner printing (Useful for CI/Docker environments) - Optional
+        Skips the banner printing (Useful for CI/Docker environments) - Optional
   -no-html
-    	Skips the report generation in the HTML format - Optional
+        Skips the report generation in the HTML format - Optional
   -no-json
-    	Skips the report generation in the JSON format - Optional
+        Skips the report generation in the JSON format - Optional
+  -security int
+        Set the Security level, values ​​between 0 and 100
   -target string
-    	Specify where to look for files to run the specific ruleset
+        Specify where to look for files to run the specific ruleset.
         -target <folder>
         -target <myprojectfolder>
   -tech string
-    	Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
+        Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
         -tech javascript
         -tech csharp
+  -v    Set true for verbose output
+Example of use :
+        insider -tech javascript -target myprojectfolder 
+        insider -tech=android -target=myandroidfolder 
+        insider -tech android -target <myfolder>  no-html
+
 ````
 
 ## Example
 
 ````
 #Check the correct release for your environment
-wget https://github.com/insidersec/insider/releases/download/1.0.1/insider-linux-amd64
+wget https://github.com/insidersec/insider/releases/download/2.0.0/insider-linux-amd64
 chmod +x insider-linux-amd64
-./insider-linux-amd64 -tech android -target example-master/
-cat results/report.json
+./insider-linux-amd64 -tech=javascript  -target=<projectfolder>
+
 ````
 
 ### Contribution
 
 - Your contributions and suggestions are heartily ♥ welcome. [See here the contribution guidelines.](/.github/CONTRIBUTING.md) Please, report bugs via [issues page.](https://github.com/insidersec/insider/issues) See here the [security policy.](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕)
 
-- You can also see this same documentation in [Portuguese](/documentation/PT_BR.md) or in [Spanish](/documentation/ES.md).
 
 ### License
 

@@ -1,0 +1,1982 @@
+[
+  {
+    "title": "android.permission.SEND_SMS",
+    "status": "perigoso",
+    "description_PT-BR": "Enviar Mensagens SMS",
+    "description_EN": "Enviar Mensagens SMS",
+    "description_ES": "Enviar Mensagens SMS",
+    "info_PT-BR": "Permite a aplicação enviar Mensagens SMS. Aplicações maliciosas podem gastar dinheiro enviando mensagens sem sua confirmação.",
+    "info_EN": "Permite a aplicação enviar Mensagens SMS. Aplicações maliciosas podem gastar dinheiro enviando mensagens sem sua confirmação.",
+    "info_ES": "Permite a aplicação enviar Mensagens SMS. Aplicações maliciosas podem gastar dinheiro enviando mensagens sem sua confirmação."
+  },
+  {
+    "title": "android.permission.SEND_SMS_NO_CONFIRMATION",
+    "status": "perigoso",
+    "description_PT-BR": "Enviar Mensagens SMS",
+    "description_EN": "Send SMS messages",
+    "description_ES": "Enviar mensajes SMS",
+    "info_PT-BR": "Permite o envio de mensagens SMS via aplicativo de mensagens sem entrada ou confirmação do usuário.",
+    "info_EN": "Allows sending SMS messages via messaging application without user input or confirmation.",
+    "info_ES": "Permite enviar mensajes SMS a través de la aplicación de mensajería sin intervención o confirmación del usuario."
+  },
+  {
+    "title": "android.permission.CALL_PHONE",
+    "status": "perigoso",
+    "description_PT-BR": "Ligar diretamente para números de telefone",
+    "description_EN": "Call phone numbers directly",
+    "description_ES": "Llamar directamente a los números",
+    "info_PT-BR": "Permite que o aplicativo seja ativado sem a sua intervenção. Os aplicativos maliciosos podem gerar custos inesperados na sua conta telefônica. Observe que isso não permite que o aplicativo ligue para números de emergência.",
+    "info_EN": "Allows the application to be activated without your intervention. Malicious applications can generate unexpected costs on your phone bill. Note that this does not allow the application to call emergency numbers.",
+    "info_ES": "Permite que la aplicación se active sin su intervención. Las aplicaciones maliciosas pueden generar costos inesperados en su factura telefónica. Tenga en cuenta que esto no permite que la aplicación llame a números de emergencia."
+  },
+  {
+    "title": "android.permission.RECEIVE_SMS",
+    "status": "perigoso",
+    "description_PT-BR": "Receber SMS",
+    "description_EN": "Receive SMS",
+    "description_ES": "Recibir SMS",
+    "info_PT-BR": "Permite que o aplicativo receba e processe mensagens SMS. Os aplicativos maliciosos podem monitorar ou excluir suas mensagens sem você saber.",
+    "info_EN": "Allows the app to receive and process SMS messages. Malicious apps can monitor or delete your messages without you knowing it.",
+    "info_ES": "Permite que la aplicación reciba y procese mensajes SMS. Las aplicaciones maliciosas pueden monitorear o eliminar sus mensajes sin que usted lo sepa."
+  },
+  {
+    "title": "android.permission.RECEIVE_MMS",
+    "status": "perigoso",
+    "description_PT-BR": "Receber MMS",
+    "description_EN": "Receive MMS",
+    "description_ES": "Recibir MMS",
+    "info_PT-BR": "Permite que o aplicativo receba e processe mensagens MMS. Os aplicativos maliciosos podem monitorar ou excluir suas mensagens sem você saber.",
+    "info_EN": "Allows the app to receive and process MMS messages. Malicious apps can monitor or delete your messages without you knowing it.",
+    "info_ES": "Permite que la aplicación reciba y procese mensajes MMS. Las aplicaciones maliciosas pueden monitorear o eliminar sus mensajes sin que usted lo sepa."
+  },
+  {
+    "title": "android.permission.READ_SMS",
+    "status": "perigoso",
+    "description_PT-BR": "Ler SMS ou MMS",
+    "description_EN": "Read SMS or MMS",
+    "description_ES": "Leer SMS o MMS",
+    "info_PT-BR": "Permite que o aplicativo leia mensagens SMS guardadas no seu telefone ou cartão SIM. Os aplicativos maliciosos podem ler como suas mensagens confidenciais.",
+    "info_EN": "Allows the app to read SMS messages saved on your phone or SIM card. Malicious apps can read your confidential messages.",
+    "info_ES": "Permite que la aplicación lea mensajes SMS guardados en su teléfono o tarjeta SIM. Las aplicaciones maliciosas pueden leer sus mensajes confidenciales."
+  },
+  {
+    "title": "android.permission.WRITE_SMS",
+    "status": "perigoso",
+    "description_PT-BR": "Editar SMS ou MMS",
+    "description_EN": "Edit SMS or MMS",
+    "description_ES": "Editar SMS o MMS",
+    "info_PT-BR": "Permite que o aplicativo escreva mensagens SMS guardadas no seu telefone ou cartão SIM. Os aplicativos maliciosos podem excluir suas mensagens.",
+    "info_EN": "Allows the app to write SMS messages saved on your phone or SIM card. Malicious apps can delete your messages.",
+    "info_ES": "Permite que la aplicación escriba mensajes SMS guardados en su teléfono o tarjeta SIM. Las aplicaciones maliciosas pueden eliminar tus mensajes."
+  },
+  {
+    "title": "android.permission.RECEIVE_WAP_PUSH",
+    "status": "perigoso",
+    "description_PT-BR": "Receber WAP",
+    "description_EN": "Receive WAP",
+    "description_ES": "Recibir WAP",
+    "info_PT-BR": "Permite que o aplicativo receba e processe mensagens WAP. Os aplicativos maliciosos podem monitorar suas mensagens ou excluir-você sem saber.",
+    "info_EN": "Allows the app to receive and process WAP messages. Malicious apps can monitor your messages or delete you without knowing it.",
+    "info_ES": "Permite que la aplicación reciba y procese mensajes WAP. Las aplicaciones maliciosas pueden monitorear sus mensajes o eliminarlo sin saberlo."
+  },
+  {
+    "title": "android.permission.READ_CONTACTS",
+    "status": "perigoso",
+    "description_PT-BR": "ler informações de contato",
+    "description_EN": "read contact information",
+    "description_ES": "leer información de contacto",
+    "info_PT-BR": "Permite a aplicação ler todos os dados de contato (endereço) capturados no seu telefone. Aplicativos maliciosos podem usar isso para enviar seus dados para outras pessoas.",
+    "info_EN": "Allows the app to read all the contact (address) data captured on your phone. Malicious apps can use this to send your data to others.",
+    "info_ES": "Permite que la aplicación lea todos los datos de contacto (dirección) capturados en su teléfono. Las aplicaciones maliciosas pueden usar esto para enviar sus datos a otros."
+  },
+  {
+    "title": "android.permission.WRITE_CONTACTS",
+    "status": "perigoso",
+    "description_PT-BR": "escrever informações de contato",
+    "description_EN": "write contact information",
+    "description_ES": "escribir información de contacto",
+    "info_PT-BR": "Permite que o aplicativo modifique os dados de contato (endereço) capturados no seu telefone. Os aplicativos maliciosos podem usar isso para excluir ou modificar os dados de contato.",
+    "info_EN": "Allows the app to modify the contact (address) data captured on your phone. Malicious apps can use this to delete or modify contact data.",
+    "info_ES": "Permite que la aplicación modifique los datos de contacto (dirección) capturados en su teléfono. Las aplicaciones malintencionadas pueden usar esto para eliminar o modificar datos de contacto."
+  },
+  {
+    "title": "android.permission.READ_PROFILE",
+    "status": "perigoso",
+    "description_PT-BR": "ler os dados do perfil pessoal do usuário",
+    "description_EN": "read the user's personal profile data",
+    "description_ES": "leer los datos del perfil personal del usuario",
+    "info_PT-BR": "Permite que a Aplicação leia os dados pessoais do usuário.",
+    "info_EN": "Allows the Application to read the user's personal data.",
+    "info_ES": "Permite que la aplicación lea los datos personales del usuario."
+  },
+  {
+    "title": "android.permission.WRITE_PROFILE",
+    "status": "perigoso",
+    "description_PT-BR": "escrever os dados do perfil pessoal do usuário",
+    "description_EN": "write the user's personal profile data",
+    "description_ES": "escribir los datos del perfil personal del usuario",
+    "info_PT-BR": "Permite que oa aplicação escrita (mas não leia) leia os dados pessoais do usuário.",
+    "info_EN": "Allows the written application (but does not read) to read the user's personal data.",
+    "info_ES": "Permite que la aplicación escrita (pero no lee) lea los datos personales del usuario."
+  },
+  {
+    "title": "android.permission.READ_SOCIAL_STREAM",
+    "status": "perigoso",
+    "description_PT-BR": "ler a partir do fluxo social do usuário",
+    "description_EN": "read from the user's social stream",
+    "description_ES": "leer del flujo social del usuario",
+    "info_PT-BR": "Permite que o aplicativo leia a partir do fluxo social do usuário.",
+    "info_EN": "Allows the app to read from the user's social stream.",
+    "info_ES": "Permite que la aplicación lea de la transmisión social del usuario."
+  },
+  {
+    "title": "android.permission.WRITE_SOCIAL_STREAM",
+    "status": "perigoso",
+    "description_PT-BR": "escrever a partir do fluxo social do usuário",
+    "description_EN": "write from the user's social flow",
+    "description_ES": "escribir desde el flujo social del usuario",
+    "info_PT-BR": "Permite que o aplicativo escreva a partir do fluxo social do usuário.",
+    "info_EN": "Allows the app to write from the user's social stream.",
+    "info_ES": "Permite que la aplicación escriba desde la transmisión social del usuario."
+  },
+  {
+    "title": "android.permission.READ_CALENDAR",
+    "status": "perigoso",
+    "description_PT-BR": "ler eventos da agenda",
+    "description_EN": "read calendar events",
+    "description_ES": "leer eventos del calendario",
+    "info_PT-BR": "Permite a aplicação ler todos os eventos da agenda armazenados no seu telefone. Aplicativos maliciosos podem usar isso para enviar seus eventos da agenda para outras pessoas.",
+    "info_EN": "Allows the app to read all calendar events stored on your phone. Malicious apps can use this to send your calendar events to others.",
+    "info_ES": "Permite que la aplicación lea todos los eventos de calendario almacenados en su teléfono. Las aplicaciones maliciosas pueden usar esto para enviar sus eventos de calendario a otros."
+  },
+  {
+    "title": "android.permission.WRITE_CALENDAR",
+    "status": "perigoso",
+    "description_PT-BR": "adicionar ou modificar eventos da agenda e enviar e-mails aos convidados",
+    "description_EN": "add or modify calendar events and send guests emails",
+    "description_ES": "agregar o modificar eventos del calendario y enviar correos electrónicos de invitados",
+    "info_PT-BR": "Permite a aplicação adicionar ou alterar os eventos do seu calendário, o que pode enviar e-mails para convidados. Aplicativos maliciosos podem usar isso para excluir ou modificar os eventos da sua agenda ou enviar e-mails para os convidados. ",
+    "info_EN": "Allows the app to add or change events on your calendar, which can send emails to guests. Malicious apps can use this to delete or modify events on your calendar or send emails to guests.",
+    "info_ES": "Permite que la aplicación agregue o cambie eventos en su calendario, lo que puede enviar correos electrónicos a los invitados. Las aplicaciones maliciosas pueden usar esto para eliminar o modificar eventos en su calendario o enviar correos electrónicos a los invitados."
+  },
+  {
+    "title": "android.permission.READ_USER_DICTIONARY",
+    "status": "perigoso",
+    "description_PT-BR": "ler dicionário definido pelo usuário",
+    "description_EN": "read user-defined dictionary",
+    "description_ES": "leer el diccionario definido por el usuario",
+    "info_PT-BR": "Permite a aplicação palavras-chave exclusivas, nomes e frases particulares que o usuário possa ter armazenado no dicionário do usuário.",
+    "info_EN": "It allows the application of unique keywords, names and particular phrases that the user may have stored in the user dictionary.",
+    "info_ES": "Permite la aplicación de palabras clave únicas, nombres y frases particulares que el usuario puede haber almacenado en el diccionario del usuario."
+  },
+  {
+    "title": "android.permission.WRITE_USER_DICTIONARY",
+    "status": "normal",
+    "description_PT-BR": "gravar no dicionário definido pelo usuário",
+    "description_EN": "write to the user-defined dictionary",
+    "description_ES": "escribir en el diccionario definido por el usuario",
+    "info_PT-BR": "Permite a aplicação escrever novas palavras no dicionário do usuário.",
+    "info_EN": "Allows the app to write new words in the user dictionary.",
+    "info_ES": "Permite que la aplicación escriba nuevas palabras en el diccionario del usuario."
+  },
+  {
+    "title": "android.permission.READ_HISTORY_BOOKMARKS",
+    "status": "perigoso",
+    "description_PT-BR": "ler histórico e os favoritos do navegador",
+    "description_EN": "read browser history and bookmarks",
+    "description_ES": "leer el historial del navegador y marcadores",
+    "info_PT-BR": "Permite a aplicação ler todos os URLs que o navegador visita e todos os favoritos do navegador.",
+    "info_EN": "Allows the app to read all the URLs the browser visits and all the browser's favorites.",
+    "info_ES": "Permite que la aplicación lea todas las URL que visita el navegador y todos los favoritos del navegador."
+  },
+  {
+    "title": "android.permission.WRITE_HISTORY_BOOKMARKS",
+    "status": "perigoso",
+    "description_PT-BR": "escrever histórico e os favoritos do navegador",
+    "description_EN": "write browser history and bookmarks",
+    "description_ES": "escribir el historial del navegador y marcadores",
+    "info_PT-BR": "Permite a aplicação modificar o histórico ou os favoritos do navegador capturar no seu telefone. Os aplicativos maliciosos podem usar isso para excluir ou modificar os dados do seu navegador.",
+    "info_EN": "Allows the app to modify the browser history or bookmarks to capture on your phone. Malicious apps can use this to delete or modify your browser data.",
+    "info_ES": "Permite que la aplicación modifique el historial del navegador o los marcadores para capturar en su teléfono. Las aplicaciones maliciosas pueden usar esto para eliminar o modificar los datos de su navegador."
+  },
+  {
+    "title": "android.permission.SET_ALARM",
+    "status": "normal",
+    "description_PT-BR": "definir alarme no despertador",
+    "description_EN": "set alarm on alarm clock",
+    "description_ES": "configurar alarma en despertador",
+    "info_PT-BR": "Permite a aplicação definir um alarme no aplicativo de alarme instalado. Alguns aplicativos de alarme podem não implementar esse recurso.",
+    "info_EN": "Allows the app to set an alarm in the installed alarm application. Some alarm applications may not implement this feature.",
+    "info_ES": "Permite que la aplicación configure una alarma en la aplicación de alarma instalada. Es posible que algunas aplicaciones de alarma no implementen esta función."
+  },
+  {
+    "title": "android.permission.ACCESS_FINE_LOCATION",
+    "status": "perigoso",
+    "description_PT-BR": "localização fina (GPS)",
+    "description_EN": "fine location (GPS)",
+    "description_ES": "buena ubicación (GPS)",
+    "info_PT-BR": "Acesse fontes finas de localização, como o Sistema de Posicionamento Global no telefone, quando disponível. Aplicativos maliciosos podem usar isso para determinar onde você está e consumir energia adicional da bateria.",
+    "info_EN": "Access fine location sources, such as the Global Positioning System on the phone, when available. Malicious apps can use this to determine where you are and consume additional battery power.",
+    "info_ES": "Acceda a fuentes de ubicación precisas, como el Sistema de posicionamiento global en el teléfono, cuando esté disponible. Las aplicaciones maliciosas pueden usar esto para determinar dónde estás y consumir batería adicional."
+  },
+  {
+    "title": "android.permission.ACCESS_COARSE_LOCATION",
+    "status": "perigoso",
+    "description_PT-BR": "localização aproximada (baseada na rede)",
+    "description_EN": "approximate location (network based)",
+    "description_ES": "ubicación aproximada (basada en la red)",
+    "info_PT-BR": "Acesse fontes de localização aproximadas, como o banco de dados da rede móvel, para determinar uma localização aproximada do telefone, quando disponível. Aplicativos maliciosos podem usar isso para determinar aproximadamente onde você está.",
+    "info_EN": "Access approximate location sources, such as the mobile network database, to determine an approximate phone location, when available. Malicious apps can use this to roughly determine where you are.",
+    "info_ES": "Acceda a fuentes de ubicación aproximadas, como la base de datos de la red móvil, para determinar una ubicación aproximada del teléfono, cuando esté disponible. Las aplicaciones maliciosas pueden usar esto para determinar aproximadamente dónde se encuentra."
+  },
+  {
+    "title": "android.permission.ACCESS_MOCK_LOCATION",
+    "status": "perigoso",
+    "description_PT-BR": "fontes falsas de localização para teste",
+    "description_EN": "fake location sources for testing",
+    "description_ES": "fuentes de ubicación falsas para pruebas",
+    "info_PT-BR": "Crie fontes de localização falsas para teste. Aplicativos maliciosos podem usar isso para substituir uma localização e / ou status retornado por fontes de localização real, como GPS ou fornecedores de rede.",
+    "info_EN": "Create fake location sources for testing. Malicious apps can use this to replace a returned location and / or status with actual location sources, such as GPS or network providers.",
+    "info_ES": "Cree fuentes de ubicación falsas para realizar pruebas. Las aplicaciones maliciosas pueden usar esto para reemplazar una ubicación y / o estado devuelto con fuentes de ubicación reales, como GPS o proveedores de red."
+  },
+  {
+    "title": "android.permission.ACCESS_LOCATION_EXTRA_COMMANDS",
+    "status": "normal",
+    "description_PT-BR": "acessar comandos adicionais de provedores de localização",
+    "description_EN": "Access extra location provider commands",
+    "description_ES": "acceder a comandos adicionales de proveedores de ubicación",
+    "info_PT-BR": "Acesse os comandos adicionais fornecidos pelo provedor de localização. Os aplicativos maliciosos podem usar isso para interferir na operação do GPS ou em outras fontes de localização.",
+    "info_EN": "Access additional commands provided by the location provider. Malicious applications can use this to interfere with GPS operation or other sources of location.",
+    "info_ES": "Acceda a comandos adicionales proporcionados por el proveedor de ubicación. Las aplicaciones malintencionadas pueden usar esto para interferir con el funcionamiento del GPS u otras fuentes de ubicación."
+  },
+  {
+    "title": "android.permission.INSTALL_LOCATION_PROVIDER",
+    "status": "cuidado",
+    "description_PT-BR": "permissão para instalar um provedor de localização",
+    "description_EN": "permission to install a location provider",
+    "description_ES": "permiso para instalar un proveedor de ubicación",
+    "info_PT-BR": "Crie fontes de localização falsas para teste. Aplicativos maliciosos podem usar isso para substituir uma localização e / ou status retornado por fontes de localização real, como fornecedores de GPS ou rede, ou monitorar e reportar sua localização em uma fonte externa",
+    "info_EN": "Create fake location sources for testing. Malicious applications can use this to replace a location and / or status returned with real location sources, such as GPS or network providers, or to monitor and report your location on an external source",
+    "info_ES": "Cree fuentes de ubicación falsas para realizar pruebas. Las aplicaciones malintencionadas pueden usar esto para reemplazar una ubicación o estado devuelto con fuentes de ubicación reales, como GPS o proveedores de red, o monitorear e informar su ubicación en una fuente externa"
+  },
+  {
+    "title": "android.permission.INTERNET",
+    "status": "perigoso",
+    "description_PT-BR": "acesso total à Internet",
+    "description_EN": "full internet access",
+    "description_ES": "acceso completo a internet",
+    "info_PT-BR": "Permite a aplicação criar soquetes de rede.",
+    "info_EN": "Allows the application to create network sockets.",
+    "info_ES": "Permite que la aplicación cree sockets de red."
+  },
+  {
+    "title": "android.permission.ACCESS_NETWORK_STATE",
+    "status": "normal",
+    "description_PT-BR": "visualizar status da rede",
+    "description_EN": "view network status",
+    "description_ES": "ver el estado de la red",
+    "info_PT-BR": "Permite a aplicação visualizar o status de todas as redes.",
+    "info_EN": "Allows the app to view the status of all networks.",
+    "info_ES": "Permite que la aplicación vea el estado de todas las redes."
+  },
+  {
+    "title": "android.permission.ACCESS_WIFI_STATE",
+    "status": "normal",
+    "description_PT-BR": "visualizar status do Wi-Fi",
+    "description_EN": "view Wi-Fi status",
+    "description_ES": "ver el estado de Wi-Fi",
+    "info_PT-BR": "Permite uma aplicação de visualização como informações sobre o status do Wi-Fi.",
+    "info_EN": "Allows a viewing application as information about the status of Wi-Fi.",
+    "info_ES": "Permite una aplicación de visualización como información sobre el estado de Wi-Fi."
+  },
+  {
+    "title": "android.permission.BLUETOOTH",
+    "status": "perigoso",
+    "description_PT-BR": "Crie conexões Bluetooth",
+    "description_EN": "Create Bluetooth connections",
+    "description_ES": "Crear conexiones Bluetooth",
+    "info_PT-BR": "Permite a aplicação visualizar a configuração do telefone Bluetooth local e fazer conexões com dispositivos emparelhados.",
+    "info_EN": "Allows the app to view the configuration of the local Bluetooth phone and to make connections to paired devices.",
+    "info_ES": "Permite que la aplicación vea la configuración del teléfono Bluetooth local y realice conexiones a dispositivos emparejados."
+  },
+  {
+    "title": "android.permission.NFC",
+    "status": "perigoso",
+    "description_PT-BR": "Controlam a comunicação em campo próximo",
+    "description_EN": "Control near-field communication",
+    "description_ES": "Controlar la comunicación de campo cercano",
+    "info_PT-BR": "Permite a aplicação comunicação com etiquetas, cartões e leitores de NFC (Near-Field Communication).",
+    "info_EN": "It allows the application to communicate with NFC (Near-Field Communication) tags, cards and readers.",
+    "info_ES": "Permite que la aplicación se comunique con etiquetas, tarjetas y lectores NFC (Near-Field Communication)."
+  },
+  {
+    "title": "android.permission.USE_SIP",
+    "status": "perigoso",
+    "description_PT-BR": "Faça / receba chamadas pela Internet",
+    "description_EN": "Make / receive Internet calls",
+    "description_ES": "Hacer / recibir llamadas por Internet",
+    "info_PT-BR": "Permite a aplicação uso do serviço SIP para fazer / receber chamadas pela Internet.",
+    "info_EN": "Allows the application to use the SIP service to make / receive calls over the Internet.",
+    "info_ES": "Permite que la aplicación use el servicio SIP para hacer / recibir llamadas a través de Internet."
+  },
+  {
+    "title": "android.permission.ACCOUNT_MANAGER",
+    "status": "perigoso",
+    "description_PT-BR": "Atua como o serviço de gerente de contas",
+    "description_EN": "Acts as the account manager service",
+    "description_ES": "Actúa como el servicio de administrador de cuenta",
+    "info_PT-BR": "Permite a aplicação chamadas para Autenticadores de Conta",
+    "info_EN": "Allows application to call Account Authenticators",
+    "info_ES": "Permite que la aplicación llame a los Autenticadores de cuenta"
+  },
+  {
+    "title": "android.permission.GET_ACCOUNTS",
+    "status": "normal",
+    "description_PT-BR": "descobrir contas cadastradas",
+    "description_EN": "discover registered accounts",
+    "description_ES": "descubrir cuentas registradas",
+    "info_PT-BR": "Permite a aplicação acesso a uma lista de contas identificadas pelo telefone.",
+    "info_EN": "Allows the app to access a list of accounts identified by the phone.",
+    "info_ES": "Permite que la aplicación acceda a una lista de cuentas identificadas por el teléfono."
+  },
+  {
+    "title": "android.permission.AUTHENTICATE_ACCOUNTS",
+    "status": "perigoso",
+    "description_PT-BR": "atua como um autenticador de conta",
+    "description_EN": "acts as an account authenticator",
+    "description_ES": "actúa como un autenticador de cuenta",
+    "info_PT-BR": "Permite a aplicação usar os recursos de autenticação de contas do Gerente de Contas, incluindo a criação de contas, bem como a identificação e configuração de suas senhas.",
+    "info_EN": "Allows the application to use the Account Manager's account authentication features, including creating accounts, as well as identifying and configuring their passwords.",
+    "info_ES": "Permite que la aplicación use las funciones de autenticación de cuentas del Administrador de cuentas, incluida la creación de cuentas, así como la identificación y configuración de sus contraseñas."
+  },
+  {
+    "title": "android.permission.USE_CREDENTIALS",
+    "status": "perigoso",
+    "description_PT-BR": "use como credenciais de autenticação de uma conta",
+    "description_EN": "use as authentication credentials for an account",
+    "description_ES": "utilizar como credenciales de autenticación para una cuenta",
+    "info_PT-BR": "Permite a aplicação tokens de autenticação de solicitação.",
+    "info_EN": "Allows the application of request authentication tokens.",
+    "info_ES": "Permite la aplicación de tokens de autenticación de solicitud."
+  },
+  {
+    "title": "android.permission.MANAGE_ACCOUNTS",
+    "status": "perigoso",
+    "description_PT-BR": "gerenciar uma lista de contas",
+    "description_EN": "manage a list of accounts",
+    "description_ES": "administrar una lista de cuentas",
+    "info_PT-BR": "Permite a aplicação operações como adicionar e remover contas e excluir sua senha.",
+    "info_EN": "Allows application operations such as adding and removing accounts and deleting your password.",
+    "info_ES": "Permite operaciones de aplicación como agregar y eliminar cuentas y eliminar su contraseña."
+  },
+  {
+    "title": "android.permission.MODIFY_AUDIO_SETTINGS",
+    "status": "perigoso",
+    "description_PT-BR": "altere suas configurações de áudio",
+    "description_EN": "change your audio settings",
+    "description_ES": "cambiar la configuración de audio",
+    "info_PT-BR": "Permite que o aplicativo modifique como configurações globais de áudio, como volume e roteamento.",
+    "info_EN": "Allows the app to modify global audio settings, such as volume and routing.",
+    "info_ES": "Permite que la aplicación modifique la configuración de audio global, como el volumen y el enrutamiento."
+  },
+  {
+    "title": "android.permission.RECORD_AUDIO",
+    "status": "perigoso",
+    "description_PT-BR": "gravar áudio",
+    "description_EN": "record audio",
+    "description_ES": "grabar audio",
+    "info_PT-BR": "Permite que o aplicativo acesse o caminho de gravação de áudio.",
+    "info_EN": "Allows the app to access the audio recording path.",
+    "info_ES": "Permite que la aplicación acceda a la ruta de grabación de audio."
+  },
+  {
+    "title": "android.permission.CAMERA",
+    "status": "perigoso",
+    "description_PT-BR": "tire fotos e vídeos",
+    "description_EN": "take photos and videos",
+    "description_ES": "tomar fotos y videos",
+    "info_PT-BR": "Permite que o aplicativo tire fotos e vídeos com a câmera. Isso permite que o aplicativo colete imagens que a câmera está vendo em qualquer momento.",
+    "info_EN": "Allows the app to take photos and videos with the camera. This allows the application to collect images that the camera is viewing at any time.",
+    "info_ES": "Permite que la aplicación tome fotos y videos con la cámara. Esto permite que la aplicación recopile imágenes que la cámara está viendo en cualquier momento."
+  },
+  {
+    "title": "android.permission.VIBRATE",
+    "status": "normal",
+    "description_PT-BR": "vibrador de controle",
+    "description_EN": "control vibrator",
+    "description_ES": "vibrador de control",
+    "info_PT-BR": "Permite uma aplicação de controle do vibrador.",
+    "info_EN": "It allows a vibrator control application.",
+    "info_ES": "Permite una aplicación de control de vibrador."
+  },
+  {
+    "title": "android.permission.FLASHLIGHT",
+    "status": "normal",
+    "description_PT-BR": "lanterna de controle",
+    "description_EN": "control flashlight",
+    "description_ES": "control de linterna",
+    "info_PT-BR": "Permite uma aplicação de controle da lanterna.",
+    "info_EN": "It allows a flashlight control application.",
+    "info_ES": "Permite una aplicación de control de linterna."
+  },
+  {
+    "title": "android.permission.ACCESS_USB",
+    "status": "cuidado",
+    "description_PT-BR": "Acessar dispositivos USB",
+    "description_EN": "Access USB devices",
+    "description_ES": "Acceda a dispositivos USB",
+    "info_PT-BR": "Permite a aplicação acesso a dispositivos USB.",
+    "info_EN": "Allows the app to access USB devices.",
+    "info_ES": "Permite que la aplicación acceda a dispositivos USB."
+  },
+  {
+    "title": "android.permission.HARDWARE_TEST",
+    "status": "perigoso",
+    "description_PT-BR": "Hardware de teste",
+    "description_EN": "Test hardware",
+    "description_ES": "Prueba de hardware",
+    "info_PT-BR": "Permite a aplicação controle de vários periféricos para fins de testes de hardware.",
+    "info_EN": "Allows application to control various peripherals for hardware testing purposes.",
+    "info_ES": "Permite que la aplicación controle varios periféricos para pruebas de hardware."
+  },
+  {
+    "title": "android.permission.PROCESS_OUTGOING_CALLS",
+    "status": "perigoso",
+    "description_PT-BR": "Interceptar chamadas efetuadas",
+    "description_EN": "Intercept outgoing calls",
+    "description_ES": "Interceptar llamadas salientes",
+    "info_PT-BR": "Permite que o aplicativo processe chamadas efetuadas e altere o número a ser discado. Os aplicativos maliciosos podem monitorar, redirecionar ou impedir chamadas efetuadas.",
+    "info_EN": "Allows the app to process outgoing calls and change the number to be dialed. Malicious applications can monitor, redirect or prevent outgoing calls.",
+    "info_ES": "Permite que la aplicación procese llamadas salientes y cambie el número a marcar. Las aplicaciones maliciosas pueden monitorear, redirigir o prevenir llamadas salientes."
+  },
+  {
+    "title": "android.permission.MODIFY_PHONE_STATE",
+    "status": "cuidado",
+    "description_PT-BR": "Modificar status do telefone",
+    "description_EN": "Modify phone status",
+    "description_ES": "Modificar estado del teléfono",
+    "info_PT-BR": "Permite a aplicação controle dos recursos de telefonia do dispositivo. Um aplicativo com permissão pode alternar entre redes, ligar e desligar o rádio do telefone e semelhante, sem nunca notificá-lo.",
+    "info_EN": "Allows the application to control the telephony resources of the device. An application with permission can switch between networks, turn the phone's radio on and off and the like, without ever notifying you.",
+    "info_ES": "Permite que la aplicación controle los recursos de telefonía del dispositivo. Una aplicación con permiso puede cambiar entre redes, encender y apagar la radio del teléfono y cosas por el estilo, sin avisarle nunca."
+  },
+  {
+    "title": "android.permission.READ_PHONE_STATE",
+    "status": "perigoso",
+    "description_PT-BR": "Ler estado e identidade do telefone",
+    "description_EN": "Read phone status and identity",
+    "description_ES": "Leer el estado del teléfono y la identidad",
+    "info_PT-BR": "Permite a aplicação acesso aos recursos de telefone do dispositivo. Um aplicativo com permissão pode determinar o número de telefone e o número de série deste telefone, se uma chamada estiver ativa, o número de chamada que está conectada etc . ",
+    "info_EN": "Allows the app to access the device's phone resources. An application with permission can determine the phone number and the serial number of this phone, if a call is active, the call number that is connected etc.",
+    "info_ES": "Permite que la aplicación acceda a los recursos del teléfono del dispositivo. Una aplicación con permiso puede determinar el número de teléfono y el número de serie de este teléfono, si una llamada está activa, el número de llamada que está conectado, etc."
+  },
+  {
+    "title": "android.permission.WRITE_EXTERNAL_STORAGE",
+    "status": "perigoso",
+    "description_PT-BR": "Lê / modifica / apaga o conteúdo do cartão SD",
+    "description_EN": "Reads / modifies / deletes the contents of the SD card",
+    "description_ES": "Lee / modifica / elimina el contenido de la tarjeta SD",
+    "info_PT-BR": "Permite uma aplicação de gravação no cartão SD.",
+    "info_EN": "Allows an application to write to the SD card.",
+    "info_ES": "Permite que una aplicación escriba en la tarjeta SD."
+  },
+  {
+    "title": "android.permission.READ_EXTERNAL_STORAGE",
+    "status": "perigoso",
+    "description_PT-BR": "Ler o conteúdo do cartão SD",
+    "description_EN": "Read the contents of the SD card",
+    "description_ES": "Lee el contenido de la tarjeta SD",
+    "info_PT-BR": "Permite uma aplicação de leitura do cartão SD.",
+    "info_EN": "Allows an application to read the SD card.",
+    "info_ES": "Permite que una aplicación lea la tarjeta SD."
+  },
+  {
+    "title": "android.permission.WRITE_SETTINGS",
+    "status": "perigoso",
+    "description_PT-BR": "Modificar configurações globais do sistema",
+    "description_EN": "Modify global system settings",
+    "description_ES": "Modificar la configuración global del sistema",
+    "info_PT-BR": "Permite a aplicação modificação dos dados de configuração do sistema. Os aplicativos maliciosos podem corromper a configuração do sistema.",
+    "info_EN": "Allows the application to modify the system configuration data. Malicious applications can corrupt the system configuration.",
+    "info_ES": "Permite que la aplicación modifique los datos de configuración del sistema. Las aplicaciones malintencionadas pueden dañar la configuración del sistema."
+  },
+  {
+    "title": "android.permission.WRITE_SECURE_SETTINGS",
+    "status": "cuidado",
+    "description_PT-BR": "Modificar configurações de segurança do sistema",
+    "description_EN": "Modify system security settings",
+    "description_ES": "Modificar la configuración de seguridad del sistema",
+    "info_PT-BR": "Permite a aplicação modificação de dados de configurações de segurança do sistema. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "Allows application to modify system security settings data. It is not to be used with common applications.",
+    "info_ES": "Permite que la aplicación modifique los datos de configuración de seguridad del sistema. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.WRITE_GSERVICES",
+    "status": "cuidado",
+    "description_PT-BR": "Modifique o mapa de serviços do Google",
+    "description_EN": "Modify the Google service map",
+    "description_ES": "Modificar el mapa del servicio de Google",
+    "info_PT-BR": "Permite a aplicação modificação ou mapa de serviços do Google. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "Allows the application to modify or map Google services. It is not to be used with common applications.",
+    "info_ES": "Permite que la aplicación modifique o asigne servicios de Google. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.EXPAND_STATUS_BAR",
+    "status": "normal",
+    "description_PT-BR": "expandir / coletar barra de status",
+    "description_EN": "expand / collect status bar",
+    "description_ES": "expandir / recopilar barra de estado",
+    "info_PT-BR": "Permite que o aplicativo expanda ou oculte uma barra de status.",
+    "info_EN": "Allows the app to expand or hide a status bar.",
+    "info_ES": "Permite que la aplicación expanda u oculte una barra de estado."
+  },
+  {
+    "title": "android.permission.GET_TASKS",
+    "status": "perigoso",
+    "description_PT-BR": "recuperar aplicativos em execução",
+    "description_EN": "recover running applications",
+    "description_ES": "recuperar aplicaciones en ejecución",
+    "info_PT-BR": "Permite que o aplicativo recupere informações sobre tarefas em execução recentes ou recentes. Pode permitir que aplicativos com intenções descubram informações privadas sobre outros aplicativos.",
+    "info_EN": "Allows the app to retrieve information about recently and recently running tasks. It can allow applications with intentions to discover private information about other applications.",
+    "info_ES": "Permite que la aplicación recupere información sobre tareas recientes y recientemente ejecutadas. Puede permitir que las aplicaciones con intenciones descubran información privada sobre otras aplicaciones."
+  },
+  {
+    "title": "android.permission.REORDER_TASKS",
+    "status": "perigoso",
+    "description_PT-BR": "reordenar aplicativos em execução",
+    "description_EN": "reorder running applications",
+    "description_ES": "reordenar aplicaciones en ejecución",
+    "info_PT-BR": "Permite a aplicação tarefas de movimentação para o primeiro plano e plano de fundo. Aplicativos maliciosos podem ser usados ​​para abrir para frente sem controle.",
+    "info_EN": "It allows the application of movement tasks for the foreground and background. Malicious applications can be used to open forward without control.",
+    "info_ES": "Permite la aplicación de tareas de movimiento para el primer plano y el fondo. Las aplicaciones maliciosas se pueden usar para abrir hacia adelante sin control."
+  },
+  {
+    "title": "android.permission.CHANGE_CONFIGURATION",
+    "status": "perigoso",
+    "description_PT-BR": "altere as configurações da interface do usuário",
+    "description_EN": "change user interface settings",
+    "description_ES": "cambiar la configuración de la interfaz de usuario",
+    "info_PT-BR": "Permite a aplicação alteração da configuração atual, como localidade ou tamanho geral da fonte.",
+    "info_EN": "Allows the application to change the current configuration, such as locality or general font size.",
+    "info_ES": "Permite que la aplicación cambie la configuración actual, como la localidad o el tamaño de fuente general."
+  },
+  {
+    "title": "android.permission.RESTART_PACKAGES",
+    "status": "normal",
+    "description_PT-BR": "elimine processos em segundo plano",
+    "description_EN": "eliminate background processes",
+    "description_ES": "eliminar procesos en segundo plano",
+    "info_PT-BR": "Permite a aplicação processos de remoção de segundo plano de outros aplicativos, mesmo se a memória não estiver baixa.",
+    "info_EN": "It allows the application to remove background processes from other applications, even if the memory is not low.",
+    "info_ES": "Permite que la aplicación elimine procesos en segundo plano de otras aplicaciones, incluso si la memoria no es baja."
+  },
+  {
+    "title": "android.permission.KILL_BACKGROUND_PROCESSES",
+    "status": "normal",
+    "description_PT-BR": "elimine processos em segundo plano",
+    "description_EN": "eliminate background processes",
+    "description_ES": "eliminar procesos en segundo plano",
+    "info_PT-BR": "Permite a aplicação processos de remoção de segundo plano de outros aplicativos, mesmo se a memória não estiver baixa.",
+    "info_EN": "Allows the application to remove background processes from other applications, even if memory is not low",
+    "info_ES": "Permite que la aplicación elimine procesos en segundo plano de otras aplicaciones, incluso si la memoria no es baja"
+  },
+  {
+    "title": "android.permission.FORCE_STOP_PACKAGES",
+    "status": "perigoso",
+    "description_PT-BR": "forçar a parada de outras aplicações",
+    "description_EN": "force other applications to stop",
+    "description_ES": "obligar a otras aplicaciones a detenerse",
+    "info_PT-BR": "Permite a aplicação parar outros aplicativos à força.",
+    "info_EN": "Allows the application to stop other applications forcibly.",
+    "info_ES": "Permite que la aplicación detenga otras aplicaciones por la fuerza."
+  },
+  {
+    "title": "android.permission.DUMP",
+    "status": "cuidado",
+    "description_PT-BR": "recuperar status interno do sistema",
+    "description_EN": "retrieve internal system status",
+    "description_ES": "recuperar el estado del sistema interno",
+    "info_PT-BR": "Permite que o aplicativo recupere o status interno do sistema. Os aplicativos maliciosos podem recuperar uma grande variedade de informações privadas e de segurança das quais eles geralmente nunca usam.",
+    "info_EN": "Allows the app to retrieve the internal status of the system. Malicious applications can recover a wide variety of private and security information that they usually never use.",
+    "info_ES": "Permite que la aplicación recupere el estado interno del sistema. Las aplicaciones maliciosas pueden recuperar una amplia variedad de información privada y de seguridad que generalmente nunca usan."
+  },
+  {
+    "title": "android.permission.SYSTEM_ALERT_WINDOW",
+    "status": "perigoso",
+    "description_PT-BR": "exibir alertas no nível do sistema",
+    "description_EN": "display system-level alerts",
+    "description_ES": "mostrar alertas a nivel de sistema",
+    "info_PT-BR": "Permite a aplicação janelas de alerta do sistema. Aplicativos maliciosos podem invadir uma tela inteira do telefone.",
+    "info_EN": "Allows the application of system alert windows. Malicious apps can invade an entire phone screen.",
+    "info_ES": "Permite la aplicación de ventanas de alerta del sistema. Las aplicaciones maliciosas pueden invadir la pantalla completa de un teléfono."
+  },
+  {
+    "title": "android.permission.SET_ANIMATION_SCALE",
+    "status": "perigoso",
+    "description_PT-BR": "modifique a velocidade global da animação",
+    "description_EN": "modify the overall speed of the animation",
+    "description_ES": "modificar la velocidad general de la animación",
+    "info_PT-BR": "Permite a aplicação alterar a velocidade global da animação (animações mais rápidas ou mais lentas) a qualquer momento.",
+    "info_EN": "Allows the app to change the overall speed of the animation (faster or slower animations) at any time.",
+    "info_ES": "Permite que la aplicación cambie la velocidad general de la animación (animaciones más rápidas o más lentas) en cualquier momento."
+  },
+  {
+    "title": "android.permission.PERSISTENT_ACTIVITY",
+    "status": "perigoso",
+    "description_PT-BR": "faça o aplicativo sempre rodar",
+    "description_EN": "always make the application run",
+    "description_ES": "siempre haga que la aplicación se ejecute",
+    "info_PT-BR": "Permite a aplicação tornar partes persistentes, para que o sistema não possa usar para outros aplicativos.",
+    "info_EN": "It allows the application to make parts persistent, so that the system cannot use it for other applications.",
+    "info_ES": "Permite que la aplicación haga partes persistentes, de modo que el sistema no pueda usarla para otras aplicaciones."
+  },
+  {
+    "title": "android.permission.GET_PACKAGE_SIZE",
+    "status": "normal",
+    "description_PT-BR": "mede o espaço de armazenamento do aplicativo",
+    "description_EN": "measures the storage space of the application",
+    "description_ES": "mide el espacio de almacenamiento de la aplicación",
+    "info_PT-BR": "Permite a aplicação recuperar seu código, tamanho de dados e cache",
+    "info_EN": "Allows the application to recover its code, data size and cache",
+    "info_ES": "Permite que la aplicación recupere su código, tamaño de datos y caché"
+  },
+  {
+    "title": "android.permission.SET_PREFERRED_APPLICATIONS",
+    "status": "perigoso",
+    "description_PT-BR": "definir aplicativos preferidos",
+    "description_EN": "set favorite apps",
+    "description_ES": "establecer aplicaciones favoritas",
+    "info_PT-BR": "Permite a aplicação modificar seus aplicativos preferidos. Isso pode permitir que aplicativos maliciosos alterem silenciosamente os aplicativos executados, falsificando seus aplicativos existentes para coletar dados particulares de você.",
+    "info_EN": "Allows the app to modify your favorite applications. This can allow malicious applications to silently alter running applications, spoofing your existing applications to collect private data from you.",
+    "info_ES": "Permite que la aplicación modifique tus aplicaciones favoritas. Esto puede permitir que las aplicaciones maliciosas alteren silenciosamente las aplicaciones en ejecución, falsificando sus aplicaciones existentes para recopilar datos privados de usted."
+  },
+  {
+    "title": "android.permission.RECEIVE_BOOT_COMPLETED",
+    "status": "normal",
+    "description_PT-BR": "iniciar automaticamente na inicialização",
+    "description_EN": "automatically start at startup",
+    "description_ES": "comenzar automáticamente al inicio",
+    "info_PT-BR": "Permite a aplicação iniciar automaticamente assim que o sistema terminar. Isso pode levar mais tempo para iniciar o telefone e permitir que o aplicativo desacelere o telefone geral, sempre utilizado.",
+    "info_EN": "Allows the application to start automatically as soon as the system ends. This may take longer to start the phone and allow the application to slow down the general phone, which is always in use.",
+    "info_ES": "Permite que la aplicación se inicie automáticamente tan pronto como finalice el sistema. Esto puede llevar más tiempo para iniciar el teléfono y permitir que la aplicación desacelere el teléfono general, que siempre está en uso."
+  },
+  {
+    "title": "android.permission.BROADCAST_STICKY",
+    "status": "normal",
+    "description_PT-BR": "enviar transmissão fixa",
+    "description_EN": "send fixed transmission",
+    "description_ES": "enviar transmisión fija",
+    "info_PT-BR": "Permite uma aplicação de envio persistente, que permanece após o término da transmissão. Os aplicativos maliciosos podem tornar o telefone lento ou instável, fazendo com que ele use muita memória.",
+    "info_EN": "It allows a persistent sending application, which remains after the transmission is finished. Malicious applications can make your phone slow or unstable, causing it to use a lot of memory.",
+    "info_ES": "Permite una aplicación de envío persistente, que permanece una vez finalizada la transmisión. Las aplicaciones malintencionadas pueden hacer que su teléfono sea lento o inestable, haciendo que use mucha memoria."
+  },
+  {
+    "title": "android.permission.WAKE_LOCK",
+    "status": "perigoso",
+    "description_PT-BR": "impeça o telefone de dormir",
+    "description_EN": "prevent the phone from sleeping",
+    "description_ES": "evitar que el teléfono duerma",
+    "info_PT-BR": "Permite a aplicação impedir que o telefone entre no modo de suspensão.",
+    "info_EN": "Allows the app to prevent the phone from going to sleep.",
+    "info_ES": "Permite que la aplicación evite que el teléfono se vaya a dormir."
+  },
+  {
+    "title": "android.permission.SET_WALLPAPER",
+    "status": "normal",
+    "description_PT-BR": "definir papel de parede",
+    "description_EN": "set wallpaper",
+    "description_ES": "establecer fondo de pantalla",
+    "info_PT-BR": "Permite a aplicação definir o papel de parede do sistema.",
+    "info_EN": "Allows the app to set the system's wallpaper.",
+    "info_ES": "Permite que la aplicación configure el fondo de pantalla del sistema."
+  },
+  {
+    "title": "android.permission.SET_WALLPAPER_HINTS",
+    "status": "normal",
+    "description_PT-BR": "definir dicas de tamanho de papel de parede",
+    "description_EN": "set wallpaper size tips",
+    "description_ES": "establecer consejos de tamaño de papel tapiz",
+    "info_PT-BR": "Permite a aplicação definir como dicas de tamanho de papel de parede do sistema.",
+    "info_EN": "Allows the app to set system wallpaper size tips.",
+    "info_ES": "Permite que la aplicación establezca consejos de tamaño de fondo de pantalla del sistema."
+  },
+  {
+    "title": "android.permission.SET_TIME",
+    "status": "cuidado",
+    "description_PT-BR": "definir tempo",
+    "description_EN": "set time",
+    "description_ES": "fijar tiempo",
+    "info_PT-BR": "Permite uma aplicação de alteração de hora do telefone.",
+    "info_EN": "Allows a time change application on the phone.",
+    "info_ES": "Permite una aplicación de cambio de hora en el teléfono."
+  },
+  {
+    "title": "android.permission.SET_TIME_ZONE",
+    "status": "perigoso",
+    "description_PT-BR": "definir fuso horário",
+    "description_EN": "set time zone",
+    "description_ES": "establecer zona horaria",
+    "info_PT-BR": "Permite uma aplicação de alteração do horário do telefone.",
+    "info_EN": "Allows an application to change the phone time.",
+    "info_ES": "Permite que una aplicación cambie la hora del teléfono."
+  },
+  {
+    "title": "android.permission.MOUNT_UNMOUNT_FILESYSTEMS",
+    "status": "perigoso",
+    "description_PT-BR": "montar e desmontar sistemas de arquivos",
+    "description_EN": "mount and unmount file systems",
+    "description_ES": "montar y desmontar sistemas de archivos",
+    "info_PT-BR": "Permite aplicar e desmontar sistemas de arquivos para armazenamento removível.",
+    "info_EN": "Allows you to apply and unmount file systems for removable storage.",
+    "info_ES": "Le permite aplicar y desmontar sistemas de archivos para almacenamiento extraíble."
+  },
+  {
+    "title": "android.permission.MOUNT_FORMAT_FILESYSTEMS",
+    "status": "perigoso",
+    "description_PT-BR": "formatar armazenamento externo",
+    "description_EN": "format external storage",
+    "description_ES": "formatear almacenamiento externo",
+    "info_PT-BR": "Permite uma aplicação de formato de armazenamento removível.",
+    "info_EN": "It allows a removable storage format application.",
+    "info_ES": "Permite una aplicación de formato de almacenamiento extraíble."
+  },
+  {
+    "title": "android.permission.ASEC_ACCESS",
+    "status": "perigoso",
+    "description_PT-BR": "Obter informações sobre armazenamento interno",
+    "description_EN": "Get information about internal storage",
+    "description_ES": "Obtenga información sobre el almacenamiento interno",
+    "info_PT-BR": "Permite a aplicação obter informações sobre armazenamento interno.",
+    "info_EN": "Allows the app to get information about internal storage.",
+    "info_ES": "Permite que la aplicación obtenga información sobre el almacenamiento interno."
+  },
+  {
+    "title": "android.permission.ASEC_CREATE",
+    "status": "perigoso",
+    "description_PT-BR": "criar armazenamento interno",
+    "description_EN": "create internal storage",
+    "description_ES": "crear almacenamiento interno",
+    "info_PT-BR": "Permite a aplicação criar armazenamento interno.",
+    "info_EN": "Allows the app to create internal storage.",
+    "info_ES": "Permite que la aplicación cree almacenamiento interno."
+  },
+  {
+    "title": "android.permission.ASEC_DESTROY",
+    "status": "perigoso",
+    "description_PT-BR": "destruição do armazenamento interno",
+    "description_EN": "destruction of internal storage",
+    "description_ES": "destrucción del almacenamiento interno",
+    "info_PT-BR": "Permite uma aplicação de destruição do armazenamento interno.",
+    "info_EN": "Enables an application to destroy internal storage.",
+    "info_ES": "Permite que una aplicación destruya el almacenamiento interno."
+  },
+  {
+    "title": "android.permission.ASEC_MOUNT_UNMOUNT",
+    "status": "perigoso",
+    "description_PT-BR": "montar / desmontar armazenamento interno",
+    "description_EN": "mount / unmount internal storage",
+    "description_ES": "montar / desmontar almacenamiento interno",
+    "info_PT-BR": "Permite a aplicação montar / desmontar armazenamento interno.",
+    "info_EN": "Allows the application to mount / unmount internal storage.",
+    "info_ES": "Permite que la aplicación monte / desmonte almacenamiento interno."
+  },
+  {
+    "title": "android.permission.ASEC_RENAME",
+    "status": "perigoso",
+    "description_PT-BR": "renomear armazenamento interno",
+    "description_EN": "rename internal storage",
+    "description_ES": "renombrar almacenamiento interno",
+    "info_PT-BR": "Permite uma aplicação de renomear armazenamento interno.",
+    "info_EN": "Allows an application to rename internal storage.",
+    "info_ES": "Permite que una aplicación cambie el nombre del almacenamiento interno."
+  },
+  {
+    "title": "android.permission.DISABLE_KEYGUARD",
+    "status": "perigoso",
+    "description_PT-BR": "desativar bloqueio de teclas",
+    "description_EN": "disable key lock",
+    "description_ES": "desactivar bloqueo de teclas",
+    "info_PT-BR": "Permite a aplicação alteração de bloqueio de teclas e segurança de senha associada. Um exemplo legítimo disso é o telefone desativado ou o bloqueio de teclas para receber uma chamada telefônica e, em seguida, reativar ou bloquear as teclas quando a chamada está concluída. ",
+    "info_EN": "Allows the application to change key lock and associated password security. A legitimate example of this is the disabled phone or key lock to receive a phone call and then reactivate or lock the keys when the call is complete.",
+    "info_ES": "Permite que la aplicación cambie el bloqueo de teclas y la seguridad de contraseña asociada. Un ejemplo legítimo de esto es el teléfono deshabilitado o el bloqueo de teclas para recibir una llamada telefónica y luego reactivar o bloquear las teclas cuando se completa la llamada."
+  },
+  {
+    "title": "android.permission.READ_SYNC_SETTINGS",
+    "status": "normal",
+    "description_PT-BR": "leia configurações de sincronização",
+    "description_EN": "read sync settings",
+    "description_ES": "leer la configuración de sincronización",
+    "info_PT-BR": "Permite a aplicação leitura como configurações de sincronização, como se a sincronização estiver ativada para contatos.",
+    "info_EN": "Allows the application to read as synchronization settings, as if synchronization is enabled for contacts.",
+    "info_ES": "Permite que la aplicación lea como configuración de sincronización, como si la sincronización estuviera habilitada para los contactos."
+  },
+  {
+    "title": "android.permission.WRITE_SYNC_SETTINGS",
+    "status": "perigoso",
+    "description_PT-BR": "escrever configurações de sincronização",
+    "description_EN": "write synchronization settings",
+    "description_ES": "escribir configuraciones de sincronización",
+    "info_PT-BR": "Permite a aplicação modificação como configurações de sincronização, como se a sincronização estiver ativada para contatos.",
+    "info_EN": "Allows the application to modify as synchronization settings, as if synchronization is enabled for contacts.",
+    "info_ES": "Permite que la aplicación se modifique como configuración de sincronización, como si la sincronización estuviera habilitada para los contactos."
+  },
+  {
+    "title": "android.permission.READ_SYNC_STATS",
+    "status": "normal",
+    "description_PT-BR": "leia estatísticas de sincronização",
+    "description_EN": "read sync statistics",
+    "description_ES": "leer estadísticas de sincronización",
+    "info_PT-BR": "Permite a aplicação leitura como estatísticas de sincronização; por exemplo, o histórico de sincronizações que ocorre.",
+    "info_EN": "Allows the application to read as synchronization statistics; for example, the synchronization history that occurs.",
+    "info_ES": "Permite que la aplicación lea como estadísticas de sincronización; por ejemplo, el historial de sincronización que ocurre."
+  },
+  {
+    "title": "android.permission.WRITE_APN_SETTINGS",
+    "status": "perigoso",
+    "description_PT-BR": "escrever configurações do nome do ponto de acesso",
+    "description_EN": "write access point name settings",
+    "description_ES": "escribir la configuración del nombre del punto de acceso",
+    "info_PT-BR": "Permite uma aplicação de modificação como configurações do APN, como Proxy e Porta de qualquer APN.",
+    "info_EN": "It allows a modification application such as APN settings, such as Proxy and Port of any APN.",
+    "info_ES": "Permite una aplicación de modificación, como la configuración de APN, como Proxy y Puerto de cualquier APN."
+  },
+  {
+    "title": "android.permission.SUBSCRIBED_FEEDS_READ",
+    "status": "normal",
+    "description_PT-BR": "leia feeds inscritos",
+    "description_EN": "read subscribed feeds",
+    "description_ES": "leer feeds suscritos",
+    "info_PT-BR": "Permite a aplicação receber detalhes sobre os feeds sincronizados no momento.",
+    "info_EN": "Allows the app to receive details about the feeds currently synced.",
+    "info_ES": "Permite que la aplicación reciba detalles sobre los feeds actualmente sincronizados."
+  },
+  {
+    "title": "android.permission.SUBSCRIBED_FEEDS_WRITE",
+    "status": "perigoso",
+    "description_PT-BR": "escreve feeds inscritos",
+    "description_EN": "writes subscribed feeds",
+    "description_ES": "escribe feeds suscritos",
+    "info_PT-BR": "Permite a aplicação modificar seus feeds sincronizados no momento. Isso pode permitir que um aplicativo com intenção de alterar seus feeds sincronizados.",
+    "info_EN": "Allows the app to modify your currently synced feeds. This can allow an application intent on changing its synchronized feeds.",
+    "info_ES": "Permite que la aplicación modifique tus feeds sincronizados actualmente. Esto puede permitir que una aplicación intente cambiar sus feeds sincronizados."
+  },
+  {
+    "title": "android.permission.CHANGE_NETWORK_STATE",
+    "status": "perigoso",
+    "description_PT-BR": "alterar a conectividade da rede",
+    "description_EN": "change network connectivity",
+    "description_ES": "cambiar la conectividad de red",
+    "info_PT-BR": "Permite a aplicação alteração ou estado da conexão de rede.",
+    "info_EN": "Allows the application to change or state the network connection.",
+    "info_ES": "Permite que la aplicación cambie o establezca la conexión de red."
+  },
+  {
+    "title": "android.permission.CHANGE_WIFI_STATE",
+    "status": "perigoso",
+    "description_PT-BR": "alterar o status do Wi-Fi",
+    "description_EN": "change Wi-Fi status",
+    "description_ES": "cambiar el estado de Wi-Fi",
+    "info_PT-BR": "Permite a aplicação conectar e desconectar pontos de acesso Wi-Fi e fazer alterações nas redes Wi-Fi configuradas.",
+    "info_EN": "Allows the app to connect and disconnect Wi-Fi access points and make changes to configured Wi-Fi networks.",
+    "info_ES": "Permite que la aplicación se conecte y desconecte puntos de acceso Wi-Fi y realice cambios en las redes Wi-Fi configuradas."
+  },
+  {
+    "title": "android.permission.CHANGE_WIFI_MULTICAST_STATE",
+    "status": "perigoso",
+    "description_PT-BR": "permite a recepção Wi-Fi Multicast",
+    "description_EN": "allows Wi-Fi Multicast reception",
+    "description_ES": "permite la recepción de Wi-Fi Multicast",
+    "info_PT-BR": "Permite a aplicação recebimento de pacotes não endereçados diretamente ao seu dispositivo. Isso pode ser útil na descoberta de serviços oferecidos nas ameaças. Ele consome mais energia do que o modo não multicast.",
+    "info_EN": "Allows the application to receive packets not addressed directly to your device. This can be useful in discovering services offered in threats. It consumes more energy than non-multicast mode.",
+    "info_ES": "Permite que la aplicación reciba paquetes no dirigidos directamente a su dispositivo. Esto puede ser útil para descubrir servicios ofrecidos en amenazas. Consume más energía que el modo sin multidifusión."
+  },
+  {
+    "title": "android.permission.BLUETOOTH_ADMIN",
+    "status": "perigoso",
+    "description_PT-BR": "administração bluetooth",
+    "description_EN": "bluetooth administration",
+    "description_ES": "administración de bluetooth",
+    "info_PT-BR": "Permite a aplicação configurar o telefone Bluetooth local e descobrir e procurar com dispositivos remotos.",
+    "info_EN": "Allows the app to configure the local Bluetooth phone and to discover and search with remote devices.",
+    "info_ES": "Permite que la aplicación configure el teléfono Bluetooth local y descubra y busque con dispositivos remotos."
+  },
+  {
+    "title": "android.permission.CLEAR_APP_CACHE",
+    "status": "perigoso",
+    "description_PT-BR": "exclua todos os dados do cache do aplicativo",
+    "description_EN": "delete all data from the application cache",
+    "description_ES": "eliminar todos los datos del caché de la aplicación",
+    "info_PT-BR": "Permite a aplicação armazenamento telefônico gratuito excluindo arquivos no diretório de cache do aplicativo. O acesso é muito restrito ao processo do sistema.",
+    "info_EN": "Allows the application to free phone storage by excluding files in the application's cache directory. Access is very restricted to the system process.",
+    "info_ES": "Permite que la aplicación libere el almacenamiento del teléfono al excluir archivos en el directorio de caché de la aplicación. El acceso está muy restringido al proceso del sistema."
+  },
+  {
+    "title": "android.permission.READ_LOGS",
+    "status": "perigoso",
+    "description_PT-BR": "ler dados confidenciais do log",
+    "description_EN": "read sensitive data from the log",
+    "description_ES": "leer datos confidenciales del registro",
+    "info_PT-BR": "Permite uma aplicação de leitura dos vários arquivos de log do sistema. Isso permite descobrir informações gerais sobre quem você está fazendo com o telefone, incluindo possíveis informações pessoais ou privadas.",
+    "info_EN": "It allows an application to read the various system log files. This allows you to discover general information about who you are doing with the phone, including possible personal or private information.",
+    "info_ES": "Permite que una aplicación lea los diversos archivos de registro del sistema. Esto le permite descubrir información general sobre quién está haciendo con el teléfono, incluida la posible información personal o privada."
+  },
+  {
+    "title": "android.permission.SET_DEBUG_APP",
+    "status": "perigoso",
+    "description_PT-BR": "ativar a depuração do aplicativo",
+    "description_EN": "enable application debugging",
+    "description_ES": "habilitar depuración de aplicaciones",
+    "info_PT-BR": "Permite a aplicação ativação da depuração para outro aplicativo. Aplicativos maliciosos podem usar isso para matar outros aplicativos.",
+    "info_EN": "Allows the application to activate debugging for another application. Malicious apps can use this to kill other apps.",
+    "info_ES": "Permite que la aplicación active la depuración para otra aplicación. Las aplicaciones maliciosas pueden usar esto para matar otras aplicaciones."
+  },
+  {
+    "title": "android.permission.SET_PROCESS_LIMIT",
+    "status": "perigoso",
+    "description_PT-BR": "número limite de processos em execução",
+    "description_EN": "limit number of running processes",
+    "description_ES": "limitar el número de procesos en ejecución",
+    "info_PT-BR": "Permite a aplicação controle do número máximo de processos que serão executados. Nunca é necessário para aplicativos comuns.",
+    "info_EN": "It allows the application to control the maximum number of processes that will be executed. It is never necessary for common applications.",
+    "info_ES": "Permite que la aplicación controle el número máximo de procesos que se ejecutarán. Nunca es necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.SET_ALWAYS_FINISH",
+    "status": "perigoso",
+    "description_PT-BR": "fecha todos os aplicativos no segundo plano",
+    "description_EN": "closes all applications in the background",
+    "description_ES": "cierra todas las aplicaciones en segundo plano",
+    "info_PT-BR": "Permite a aplicação controle como atividades sempre concluídas da mesma forma que entram no segundo plano. Nunca são necessárias para aplicativos comuns.",
+    "info_EN": "It allows the control application as activities always completed in the same way that they enter the background. They are never needed for common applications.",
+    "info_ES": "Permite la aplicación de control ya que las actividades siempre se completan de la misma manera que ingresan al fondo. Nunca son necesarios para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.SIGNAL_PERSISTENT_PROCESSES",
+    "status": "perigoso",
+    "description_PT-BR": "envia sinais do Linux para aplicativos",
+    "description_EN": "sends Linux signals to applications",
+    "description_ES": "envía señales de Linux a las aplicaciones",
+    "info_PT-BR": "Permite que o aplicativo solicite que o sinal seja enviado a todos os processos persistentes.",
+    "info_EN": "Allows the app to request that the signal be sent to all persistent processes.",
+    "info_ES": "Permite que la aplicación solicite que se envíe la señal a todos los procesos persistentes."
+  },
+  {
+    "title": "android.permission.DIAGNOSTIC",
+    "status": "perigoso",
+    "description_PT-BR": "leitura / gravação em recursos pertencentes a diag",
+    "description_EN": "read / write to resources belonging to diag",
+    "description_ES": "leer / escribir en recursos pertenecientes a diag",
+    "info_PT-BR": "Permite a aplicação leitura e gravação em qualquer recurso pertencente ao grupo diag; por exemplo, arquivos em / dev. Isso pode afetar a estabilidade e a segurança do sistema. Isso deve ser usado SOMENTE para diagnósticos de hardware usados ​​pelo fabricante ou operador",
+    "info_EN": "Allows the application to read and write to any resource belonging to the diag group; for example, files in / dev. This can affect the stability and security of the system. This should ONLY be used for hardware diagnostics used by the manufacturer or operator",
+    "info_ES": "Permite que la aplicación lea y escriba en cualquier recurso que pertenezca al grupo diag; por ejemplo, archivos en / dev. Esto puede afectar la estabilidad y la seguridad del sistema. Esto SOLO debe usarse para diagnósticos de hardware utilizados por el fabricante u operador"
+  },
+  {
+    "title": "android.permission.STATUS_BAR",
+    "status": "cuidado",
+    "description_PT-BR": "alterar ou modificar a barra de status",
+    "description_EN": "change or modify the status bar",
+    "description_ES": "cambiar o modificar la barra de estado",
+    "info_PT-BR": "Permite que o aplicativo desative a barra de status ou adicione e remova ícones do sistema.",
+    "info_EN": "Allows the app to disable the status bar or to add and remove icons from the system.",
+    "info_ES": "Permite que la aplicación desactive la barra de estado o que agregue y elimine íconos del sistema."
+  },
+  {
+    "title": "android.permission.STATUS_BAR_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "barra de status",
+    "description_EN": "status bar",
+    "description_ES": "barra de estado",
+    "info_PT-BR": "Permite a aplicação ser uma barra de status.",
+    "info_EN": "Allows the application to be a status bar.",
+    "info_ES": "Permite que la aplicación sea una barra de estado."
+  },
+  {
+    "title": "android.permission.FORCE_BACK",
+    "status": "perigoso",
+    "description_PT-BR": "forçar o fechamento do aplicativo",
+    "description_EN": "force the application to close",
+    "description_ES": "forzar el cierre de la aplicación",
+    "info_PT-BR": "Permite a aplicação qualquer atividade que esteja no primeiro plano a fechar e voltar. Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "The application allows any activity that is in the foreground to close and return. It should never be necessary for common applications.",
+    "info_ES": "La aplicación permite que cualquier actividad que esté en primer plano se cierre y regrese. Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.UPDATE_DEVICE_STATS",
+    "status": "cuidado",
+    "description_PT-BR": "modificar estatísticas da bateria",
+    "description_EN": "modify battery statistics",
+    "description_ES": "modificar las estadísticas de la batería",
+    "info_PT-BR": "Permite alterar estatísticas coletadas da bateria. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "Allows you to change statistics collected from the battery. It is not to be used with common applications.",
+    "info_ES": "Le permite cambiar las estadísticas recopiladas de la batería. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.INTERNAL_SYSTEM_WINDOW",
+    "status": "perigoso",
+    "description_PT-BR": "exibidas janelas não autorizadas",
+    "description_EN": "unauthorized windows are displayed",
+    "description_ES": "se muestran ventanas no autorizadas",
+    "info_PT-BR": "Permite a criação de janelas que devem ser usadas pela interface do usuário do sistema interno. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "It allows the creation of windows to be used by the internal system's user interface. It is not to be used with common applications.",
+    "info_ES": "Permite la creación de ventanas para ser utilizada por la interfaz de usuario del sistema interno. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.MANAGE_APP_TOKENS",
+    "status": "perigoso",
+    "description_PT-BR": "gerenciar tokens de aplicativos",
+    "description_EN": "manage application tokens",
+    "description_ES": "administrar tokens de aplicaciones",
+    "info_PT-BR": "Permite que os aplicativos criem e gerem seus tokens únicos, ignorando sua ordem Z comum. Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "Allows applications to create and generate their unique tokens, ignoring their common Z order. It should never be necessary for common applications.",
+    "info_ES": "Permite que las aplicaciones creen y generen sus tokens únicos, ignorando su orden Z común. Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.INJECT_EVENTS",
+    "status": "perigoso",
+    "description_PT-BR": "pressione as teclas e os botões de controle",
+    "description_EN": "press keys and control buttons",
+    "description_ES": "presione teclas y botones de control",
+    "info_PT-BR": "Permite a aplicação entregar seus próprios eventos de entrada (pressionamentos de tecla, etc.) para outros aplicativos. Aplicativos maliciosos podem usar isso para controlar o telefone.",
+    "info_EN": "Allows the app to deliver its own input events (key presses, etc.) to other apps. Malicious apps can use this to control the phone.",
+    "info_ES": "Permite que la aplicación entregue sus propios eventos de entrada (pulsaciones de teclas, etc.) a otras aplicaciones. Las aplicaciones maliciosas pueden usar esto para controlar el teléfono."
+  },
+  {
+    "title": "android.permission.SET_ACTIVITY_WATCHER",
+    "status": "perigoso",
+    "description_PT-BR": "monitora e controla todo o lançamento de aplicativos",
+    "description_EN": "monitors and controls all application launches",
+    "description_ES": "monitorea y controla todos los lanzamientos de aplicaciones",
+    "info_PT-BR": "Permite a aplicação monitoramento e controle de como o sistema inicia atividades. Como aplicativos maliciosos podem comprometer completamente o sistema. Essa permissão é necessária apenas para o desenvolvimento, nunca para o uso comum do telefone.",
+    "info_EN": "It allows the application to monitor and control how the system starts activities. How malicious applications can completely compromise the system. This permission is only necessary for development, never for ordinary telephone use.",
+    "info_ES": "Permite que la aplicación monitoree y controle cómo el sistema inicia actividades. Cómo las aplicaciones maliciosas pueden comprometer completamente el sistema. Este permiso solo es necesario para el desarrollo, nunca para el uso ordinario del teléfono."
+  },
+  {
+    "title": "android.permission.SHUTDOWN",
+    "status": "perigoso",
+    "description_PT-BR": "desligamento parcial",
+    "description_EN": "partial shutdown",
+    "description_ES": "cierre parcial",
+    "info_PT-BR": "Colocar ou gerenciar atividades em um estado de desligamento. Não execute um desligamento completo.",
+    "info_EN": "Put or manage activities in a shutdown state. Do not perform a complete shutdown.",
+    "info_ES": "Poner o gestionar actividades en estado de apagado. No realice un apagado completo."
+  },
+  {
+    "title": "android.permission.STOP_APP_SWITCHES",
+    "status": "perigoso",
+    "description_PT-BR": "impedir trocas de aplicativos",
+    "description_EN": "prevent application exchanges",
+    "description_ES": "evitar intercambios de aplicaciones",
+    "info_PT-BR": "Previna o usuário de alterar para outra aplicação.",
+    "info_EN": "Prevent the user from changing to another application.",
+    "info_ES": "Evitar que el usuario cambie a otra aplicación."
+  },
+  {
+    "title": "android.permission.READ_INPUT_STATE",
+    "status": "perigoso",
+    "description_PT-BR": "registre o que você digita e as ações que executam",
+    "description_EN": "record what you type and the actions you take",
+    "description_ES": "registra lo que escribes y las acciones que tomas",
+    "info_PT-BR": "Permite que os aplicativos observem como as teclas que você pressiona, mesmo ao interagir com outro aplicativo (como digitar uma senha). Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "Allows applications to observe the keys you press, even when interacting with another application (such as entering a password). It should never be necessary for common applications.",
+    "info_ES": "Permite que las aplicaciones observen las teclas que presiona, incluso cuando interactúa con otra aplicación (como ingresar una contraseña). Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.BIND_INPUT_METHOD",
+    "status": "perigoso",
+    "description_PT-BR": "vincular a um método de entrada",
+    "description_EN": "link to an input method",
+    "description_ES": "enlace a un método de entrada",
+    "info_PT-BR": "Permite que o proprietário vincule à interface de nível superior de um método de entrada. Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "Allows the owner to link to the top level interface of an input method. It should never be necessary for common applications.",
+    "info_ES": "Permite al propietario vincular a la interfaz de nivel superior de un método de entrada. Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.BIND_WALLPAPER",
+    "status": "cuidado",
+    "description_PT-BR": "vincular ao papel de parede",
+    "description_EN": "link to wallpaper",
+    "description_ES": "enlace al fondo de pantalla",
+    "info_PT-BR": "Permite ao proprietário vincular-se à interface de nível superior do papel de parede. Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "Allows the owner to link to the top-level wallpaper interface. It should never be necessary for common applications.",
+    "info_ES": "Permite al propietario vincular a la interfaz de fondo de pantalla de nivel superior. Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.BIND_DEVICE_ADMIN",
+    "status": "perigoso",
+    "description_PT-BR": "interaja com o administrador do dispositivo",
+    "description_EN": "interact with the device administrator",
+    "description_ES": "interactuar con el administrador del dispositivo",
+    "info_PT-BR": "Permite que o proprietário envie intenções ao administrador de dispositivos. Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "Allows the owner to send intentions to the device administrator. It should never be necessary for common applications.",
+    "info_ES": "Permite al propietario enviar intenciones al administrador del dispositivo. Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.SET_ORIENTATION",
+    "status": "perigoso",
+    "description_PT-BR": "alterar orientação da tela",
+    "description_EN": "change screen orientation",
+    "description_ES": "cambiar la orientación de la pantalla",
+    "info_PT-BR": "Permite a aplicação alteração da tela a qualquer momento. Nunca deve ser necessário para aplicativos comuns.",
+    "info_EN": "Allows the application to change the screen at any time. It should never be necessary for common applications.",
+    "info_ES": "Permite que la aplicación cambie la pantalla en cualquier momento. Nunca debería ser necesario para aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.INSTALL_PACKAGES",
+    "status": "cuidado",
+    "description_PT-BR": "instale aplicativos diretamente",
+    "description_EN": "install apps directly",
+    "description_ES": "instalar aplicaciones directamente",
+    "info_PT-BR": "Permite a aplicação instalação de pacotes novos ou de uso Android. Aplicativos maliciosos podem usar isso para adicionar novos aplicativos com aplicativos arbitrariamente poderosos.",
+    "info_EN": "Allows the application to install new packages or use Android. Malicious apps can use this to add new apps with arbitrarily powerful apps.",
+    "info_ES": "Permite que la aplicación instale nuevos paquetes o use Android. Las aplicaciones maliciosas pueden usar esto para agregar nuevas aplicaciones con aplicaciones arbitrariamente potentes."
+  },
+  {
+    "title": "android.permission.REQUEST_INSTALL_PACKAGES",
+    "status": "perigoso",
+    "description_PT-BR": "Permite uma aplicação de solicitação de instalação de pacotes.",
+    "description_EN": "Enables a package installation request application.",
+    "description_ES": "Habilita una aplicación de solicitud de instalación de paquete.",
+    "info_PT-BR": "Aplicativos maliciosos podem usar isso para tentar induzir os usuários a instalar pacotes maliciosos adicionais.",
+    "info_EN": "Malicious applications can use this to try to trick users into installing additional malicious packages.",
+    "info_ES": "Las aplicaciones maliciosas pueden usar esto para tratar de engañar a los usuarios para que instalen paquetes maliciosos adicionales."
+  },
+  {
+    "title": "android.permission.CLEAR_APP_USER_DATA",
+    "status": "perigoso",
+    "description_PT-BR": "apague os dados de outras aplicações",
+    "description_EN": "erase data from other applications",
+    "description_ES": "borrar datos de otras aplicaciones",
+    "info_PT-BR": "Permite a aplicação dados claros do usuário.",
+    "info_EN": "Allows application of clear user data.",
+    "info_ES": "Permite la aplicación de datos de usuario claros."
+  },
+  {
+    "title": "android.permission.DELETE_CACHE_FILES",
+    "status": "cuidado",
+    "description_PT-BR": "excluindo os caches de outros aplicativos",
+    "description_EN": "excluding caches from other applications",
+    "description_ES": "excluyendo cachés de otras aplicaciones",
+    "info_PT-BR": "Permite a aplicação excluir arquivos de cache.",
+    "info_EN": "Allows the app to delete cache files.",
+    "info_ES": "Permite que la aplicación elimine archivos de caché."
+  },
+  {
+    "title": "android.permission.DELETE_PACKAGES",
+    "status": "cuidado",
+    "description_PT-BR": "excluir aplicativos",
+    "description_EN": "delete apps",
+    "description_ES": "eliminar aplicaciones",
+    "info_PT-BR": "Permite a aplicação exclusão de pacotes do Android. Aplicativos maliciosos podem usar isso para excluir aplicativos importantes.",
+    "info_EN": "Allows the application to delete packages from Android. Malicious apps can use this to delete important apps.",
+    "info_ES": "Permite que la aplicación elimine paquetes de Android. Las aplicaciones malintencionadas pueden usar esto para eliminar aplicaciones importantes."
+  },
+  {
+    "title": "android.permission.MOVE_PACKAGE",
+    "status": "cuidado",
+    "description_PT-BR": "Mover recursos do aplicativo",
+    "description_EN": "Move application resources",
+    "description_ES": "Mover recursos de la aplicación",
+    "info_PT-BR": "Permite a aplicação recursos de aplicativos de mídia interna para externa e vice-versa.",
+    "info_EN": "Allows application resources from internal to external media applications and vice versa.",
+    "info_ES": "Permite recursos de aplicaciones de aplicaciones de medios internos a externos y viceversa."
+  },
+  {
+    "title": "android.permission.CHANGE_COMPONENT_ENABLED_STATE",
+    "status": "cuidado",
+    "description_PT-BR": "ativar ou desativar componentes do aplicativo",
+    "description_EN": "enable or disable application components",
+    "description_ES": "activar o desactivar componentes de la aplicación",
+    "info_PT-BR": "Permite a aplicação alteração se um componente de outro aplicativo for ativado ou desativado. Aplicativos maliciosos podem usar-lo para ativar recursos importantes do telefone. É importante ter cuidado com permissões, pois é possível incluir componentes do aplicativo estado inutilizável, inconsistente ou instável",
+    "info_EN": "Allows the application to change if a component of another application is enabled or disabled. Malicious apps can use it to activate important phone features. It is important to be careful with permissions as it is possible to include application components that are unusable, inconsistent or unstable",
+    "info_ES": "Permite que la aplicación cambie si un componente de otra aplicación está habilitado o deshabilitado. Las aplicaciones maliciosas pueden usarlo para activar funciones importantes del teléfono. Es importante tener cuidado con los permisos, ya que es posible incluir componentes de la aplicación que sean inutilizables, inconsistentes o inestables."
+  },
+  {
+    "title": "android.permission.ACCESS_SURFACE_FLINGER",
+    "status": "perigoso",
+    "description_PT-BR": "acesse o SurfaceFlinger",
+    "description_EN": "access SurfaceFlinger",
+    "description_ES": "acceder a SurfaceFlinger",
+    "info_PT-BR": "Permite que o aplicativo use os recursos de nível inferior do SurfaceFlinger.",
+    "info_EN": "Allows the app to use the lower-level features of SurfaceFlinger.",
+    "info_ES": "Permite que la aplicación use las funciones de nivel inferior de SurfaceFlinger."
+  },
+  {
+    "title": "android.permission.READ_FRAME_BUFFER",
+    "status": "perigoso",
+    "description_PT-BR": "leia o buffer do quadro",
+    "description_EN": "read frame buffer",
+    "description_ES": "leer el búfer de trama",
+    "info_PT-BR": "Permite que o aplicativo leia o conteúdo do buffer de quadros.",
+    "info_EN": "Allows the app to read the frame buffer content.",
+    "info_ES": "Permite que la aplicación lea el contenido del búfer de trama."
+  },
+  {
+    "title": "android.permission.BRICK",
+    "status": "perigoso",
+    "description_PT-BR": "desativar permanentemente o telefone",
+    "description_EN": "permanently disable the phone",
+    "description_ES": "deshabilitar permanentemente el teléfono",
+    "info_PT-BR": "Permite a aplicação remover todo o telefone permanentemente. Isso é muito perigoso.",
+    "info_EN": "Allows the app to remove the entire phone permanently. That is very dangerous.",
+    "info_ES": "Permite que la aplicación elimine todo el teléfono de forma permanente. Esto es muy peligroso"
+  },
+  {
+    "title": "android.permission.REBOOT",
+    "status": "cuidado",
+    "description_PT-BR": "forçar reinicialização do telefone",
+    "description_EN": "force phone restart",
+    "description_ES": "forzar reinicio del teléfono",
+    "info_PT-BR": "Permite uma aplicação de telefone ou reiniciar.",
+    "info_EN": "Allow a phone application or restart.",
+    "info_ES": "Permitir una aplicación de teléfono o reiniciar."
+  },
+  {
+    "title": "android.permission.DEVICE_POWER",
+    "status": "perigoso",
+    "description_PT-BR": "liga ou desliga o telefone",
+    "description_EN": "turns the phone on or off",
+    "description_ES": "enciende o apaga el teléfono",
+    "info_PT-BR": "Permite a aplicação ligar ou desligar o telefone.",
+    "info_EN": "Allows the app to turn the phone on or off.",
+    "info_ES": "Permite que la aplicación encienda o apague el teléfono."
+  },
+  {
+    "title": "android.permission.FACTORY_TEST",
+    "status": "perigoso",
+    "description_PT-BR": "executar no modo de teste de fábrica",
+    "description_EN": "run in factory test mode",
+    "description_ES": "ejecutar en modo de prueba de fábrica",
+    "info_PT-BR": "Executar como um teste de nível baixo do fabricante, permitir acesso completo ao hardware do telefone. Disponível apenas quando um telefone estiver sendo executado no modo de teste do fabricante.",
+    "info_EN": "Realice una prueba de bajo nivel del fabricante, permita el acceso completo al hardware del teléfono. Disponible solo cuando un teléfono se ejecuta en el modo de prueba del fabricante.",
+    "info_ES": "Realice una prueba de bajo nivel del fabricante, permita el acceso completo al hardware del teléfono. Disponible solo cuando un teléfono se ejecuta en el modo de prueba del fabricante."
+  },
+  {
+    "title": "android.permission.BROADCAST_PACKAGE_REMOVED",
+    "status": "perigoso",
+    "description_PT-BR": "enviar transmissão removida do pacote",
+    "description_EN": "send stream removed from package",
+    "description_ES": "enviar flujo eliminado del paquete",
+    "info_PT-BR": "Permite a aplicação transmitir uma notificação de que um pacote de aplicativos foi removido. Os aplicativos maliciosas podem usar isso para eliminar qualquer outro aplicativo em execução.",
+    "info_EN": "Allows the app to transmit a notification that an app package has been removed. Malicious applications can use this to eliminate any other running applications.",
+    "info_ES": "Permite que la aplicación transmita una notificación de que se ha eliminado un paquete de la aplicación. Las aplicaciones maliciosas pueden usar esto para eliminar cualquier otra aplicación en ejecución."
+  },
+  {
+    "title": "android.permission.BROADCAST_SMS",
+    "status": "perigoso",
+    "description_PT-BR": "enviar transmissão recebida por SMS",
+    "description_EN": "send incoming SMS transmission",
+    "description_ES": "enviar transmisión entrante de SMS",
+    "info_PT-BR": "Permite a aplicação transmitir uma notificação de que uma mensagem SMS foi recebida. Os aplicativos maliciosos podem usar isso para forjar mensagens SMS recebidas.",
+    "info_EN": "Allows the app to transmit a notification that an SMS message has been received. Malicious applications can use this to forge incoming SMS messages.",
+    "info_ES": "Permite que la aplicación transmita una notificación de que se ha recibido un mensaje SMS. Las aplicaciones malintencionadas pueden usar esto para falsificar mensajes SMS entrantes."
+  },
+  {
+    "title": "android.permission.BROADCAST_WAP_PUSH",
+    "status": "perigoso",
+    "description_PT-BR": "envia transmissão recebida por WAP-PUSH",
+    "description_EN": "send transmission received by WAP-PUSH",
+    "description_ES": "enviar transmisión recibida por WAP-PUSH",
+    "info_PT-BR": "Permite a aplicação transmitir uma notificação de que uma mensagem WAP-PUSH foi recebida. As aplicações maliciosas podem usar isso para forjar o recebimento de mensagens MMS ou substituir o conteúdo de qualquer página da Web silenciosamente por variantes maliciosas.",
+    "info_EN": "Allows the app to transmit a notification that a WAP-PUSH message has been received. Malicious applications can use this to forge the receipt of MMS messages or to silently replace the content of any web page with malicious variants.",
+    "info_ES": "Permite que la aplicación transmita una notificación de que se ha recibido un mensaje WAP-PUSH. Las aplicaciones maliciosas pueden usar esto para falsificar la recepción de mensajes MMS o para reemplazar silenciosamente el contenido de cualquier página web con variantes maliciosas."
+  },
+  {
+    "title": "android.permission.MASTER_CLEAR",
+    "status": "cuidado",
+    "description_PT-BR": "redefinir o sistema para os padrões de fábrica",
+    "description_EN": "reset the system to factory defaults",
+    "description_ES": "restablecer el sistema a los valores predeterminados de fábrica",
+    "info_PT-BR": "Permite a aplicação redefinir completamente o sistema para as configurações de fábrica, apagando todos os dados, configurações e aplicativos instalados.",
+    "info_EN": "Allows the app to completely reset the system to factory settings, erasing all installed data, settings and applications.",
+    "info_ES": "Permite que la aplicación restablezca completamente el sistema a la configuración de fábrica, borrando todos los datos, configuraciones y aplicaciones instaladas."
+  },
+  {
+    "title": "android.permission.CALL_PRIVILEGED",
+    "status": "cuidado",
+    "description_PT-BR": "ligue diretamente para qualquer número de telefone",
+    "description_EN": "call directly to any phone number",
+    "description_ES": "llame directamente a cualquier número de teléfono",
+    "info_PT-BR": "Permite a aplicação qualquer número de telefone, incluindo números de emergência, sem a sua intervenção. Aplicações maliciosas podem fazer chamadas desnecessárias e ilegais para serviços de emergência.",
+    "info_EN": "Allows the application of any phone number, including emergency numbers, without your intervention. Malicious applications can make unnecessary and illegal calls to emergency services.",
+    "info_ES": "Permite la aplicación de cualquier número de teléfono, incluidos los números de emergencia, sin su intervención. Las aplicaciones maliciosas pueden hacer llamadas innecesarias e ilegales a los servicios de emergencia."
+  },
+  {
+    "title": "android.permission.PERFORM_CDMA_PROVISIONING",
+    "status": "cuidado",
+    "description_PT-BR": "inicia diretamente a configuração do telefone CDMA",
+    "description_EN": "directly initiates CDMA phone setup",
+    "description_ES": "inicia directamente la configuración del teléfono CDMA",
+    "info_PT-BR": "Permite a aplicação iniciar o provisionamento de CDMA. Os aplicativos maliciosos podem iniciar o provisionamento de CDMA desnecessariamente",
+    "info_EN": "Allows the application to start provisioning CDMA. Malicious applications may unnecessarily initiate CDMA provisioning",
+    "info_ES": "Permite que la aplicación comience a aprovisionar CDMA. Las aplicaciones malintencionadas pueden iniciar innecesariamente el aprovisionamiento de CDMA"
+  },
+  {
+    "title": "android.permission.CONTROL_LOCATION_UPDATES",
+    "status": "cuidado",
+    "description_PT-BR": "controlar notificações de atualização de local",
+    "description_EN": "control location update notifications",
+    "description_ES": "controlar las notificaciones de actualización de ubicación",
+    "info_PT-BR": "Permite ativar / desativar notificações de atualização de localização do rádio. Não é para ser usado com aplicações comuns.",
+    "info_EN": "Enables / disables radio location update notifications. It is not to be used with common applications.",
+    "info_ES": "Activa / desactiva las notificaciones de actualización de ubicación de radio. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.ACCESS_CHECKIN_PROPERTIES",
+    "status": "cuidado",
+    "description_PT-BR": "acessar propriedades de check-in",
+    "description_EN": "access check-in properties",
+    "description_ES": "acceder a las propiedades de check-in",
+    "info_PT-BR": "Permite acesso de leitura / gravação às propriedades carregadas pelo serviço de check-in. Não é para ser usado com aplicações comuns.",
+    "info_EN": "Allows read / write access to properties loaded by the check-in service. It is not to be used with common applications.",
+    "info_ES": "Permite el acceso de lectura / escritura a las propiedades cargadas por el servicio de registro. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.PACKAGE_USAGE_STATS",
+    "status": "perigoso",
+    "description_PT-BR": "atualizar estatísticas de uso do componente",
+    "description_EN": "update component usage statistics",
+    "description_ES": "actualizar las estadísticas de uso de componentes",
+    "info_PT-BR": "Permite a modificação das estatísticas de uso de componentes coletados. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "It allows the modification of the usage statistics of collected components. It is not to be used with common applications.",
+    "info_ES": "Permite la modificación de las estadísticas de uso de los componentes recopilados. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.BATTERY_STATS",
+    "status": "normal",
+    "description_PT-BR": "modificar estatísticas da bateria",
+    "description_EN": "modify battery statistics",
+    "description_ES": "modificar las estadísticas de la batería",
+    "info_PT-BR": "Permite a modificação das estatísticas coletadas da bateria. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "It allows the modification of the statistics collected from the battery. It is not to be used with common applications.",
+    "info_ES": "Permite la modificación de las estadísticas recopiladas de la batería. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.BACKUP",
+    "status": "cuidado",
+    "description_PT-BR": "backup e restauração do sistema de controle",
+    "description_EN": "backup and restore control system",
+    "description_ES": "sistema de control de respaldo y restauración",
+    "info_PT-BR": "Permite a aplicação controle do mecanismo de backup e restauração do sistema. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "Allows the application to control the system's backup and restore mechanism. It is not to be used with common applications.",
+    "info_ES": "Permite que la aplicación controle el mecanismo de respaldo y restauración del sistema. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.BIND_APPWIDGET",
+    "status": "cuidado",
+    "description_PT-BR": "escolha widgets",
+    "description_EN": "choose widgets",
+    "description_ES": "elegir widgets",
+    "info_PT-BR": "Permite a aplicação informar ao sistema quais widgets podem ser usados ​​por qual aplicativo. Com essa permissão, os aplicativos podem acessar dados pessoais para outros aplicativos. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "Allows the app to tell the system which widgets can be used by which app. With this permission, applications can access personal data for other applications. It is not to be used with common applications.",
+    "info_ES": "Permite que la aplicación le diga al sistema qué widgets puede usar cada aplicación. Con este permiso, las aplicaciones pueden acceder a datos personales para otras aplicaciones. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.CHANGE_BACKGROUND_DATA_SETTING",
+    "status": "perigoso",
+    "description_PT-BR": "altere a configuração de uso de dados em segundo plano",
+    "description_EN": "change the background data usage setting",
+    "description_ES": "cambiar la configuración de uso de datos de fondo",
+    "info_PT-BR": "Permite a aplicação alterar a configuração de uso de dados em segundo plano.",
+    "info_EN": "Allows the app to change the data usage setting in the background.",
+    "info_ES": "Permite que la aplicación cambie la configuración de uso de datos en segundo plano."
+  },
+  {
+    "title": "android.permission.GLOBAL_SEARCH",
+    "status": "cuidado",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "",
+    "info_EN": "",
+    "info_ES": ""
+  },
+  {
+    "title": "android.permission.GLOBAL_SEARCH_CONTROL",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "",
+    "info_EN": "",
+    "info_ES": ""
+  },
+  {
+    "title": "android.permission.SET_WALLPAPER_COMPONENT",
+    "status": "cuidado",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "",
+    "info_EN": "",
+    "info_ES": ""
+  },
+  {
+    "title": "android.permission.ACCESS_CACHE_FILESYSTEM",
+    "status": "cuidado",
+    "description_PT-BR": "acesse o sistema de arquivos em cache",
+    "description_EN": "access the cached file system",
+    "description_ES": "acceder al sistema de archivos en caché",
+    "info_PT-BR": "Permite a aplicação leitura e gravação no sistema de arquivos em cache.",
+    "info_EN": "Allows the application to read and write to the cached file system.",
+    "info_ES": "Permite que la aplicación lea y escriba en el sistema de archivos en caché."
+  },
+  {
+    "title": "android.permission.COPY_PROTECTED_DATA",
+    "status": "perigoso",
+    "description_PT-BR": "Permite chamar o serviço de contêiner padrão para copiar o conteúdo. Não é para ser usado com aplicativos comuns.",
+    "description_EN": "Allows you to call the standard container service to copy the content. It is not to be used with common applications.",
+    "description_ES": "Le permite llamar al servicio de contenedor estándar para copiar el contenido. No se debe utilizar con aplicaciones comunes.",
+    "info_PT-BR": "Permite chamar o serviço de contêiner padrão para copiar o conteúdo. Não é para ser usado com aplicativos comuns.",
+    "info_EN": "Allows you to call the standard container service to copy the content. It is not to be used with common applications.",
+    "info_ES": "Le permite llamar al servicio de contenedor estándar para copiar el contenido. No se debe utilizar con aplicaciones comunes."
+  },
+  {
+    "title": "android.permission.C2D_MESSAGE",
+    "status": "perigoso",
+    "description_PT-BR": "Permite que a nuvem envie mensagens para o dispositivo",
+    "description_EN": "Allows the cloud to send messages to the device",
+    "description_ES": "Permite que la nube envíe mensajes al dispositivo",
+    "info_PT-BR": "Permite a aplicação receber notificações push.",
+    "info_EN": "Allows the app to receive push notifications.",
+    "info_ES": "Permite que la aplicación reciba notificaciones push."
+  },
+  {
+    "title": "android.permission.ADD_VOICEMAIL",
+    "status": "perigoso",
+    "description_PT-BR": "Adicione mensagens de voz ao sistema",
+    "description_EN": "Add voice messages to the system",
+    "description_ES": "Agregar mensajes de voz al sistema",
+    "info_PT-BR": "Permite a aplicação adicionar mensagens de voz ao sistema.",
+    "info_EN": "Allows the app to add voice messages to the system.",
+    "info_ES": "Permite que la aplicación agregue mensajes de voz al sistema."
+  },
+  {
+    "title": "android.permission.ACCEPT_HANDOVER",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que o aplicativo de chamada continue uma chamada iniciada em outro aplicativo. Um exemplo é um aplicativo de videochamada que deseja continuar uma chamada de voz na rede móvel do usuário.",
+    "info_EN": "Allows the calling application to continue a call initiated in another application. An example is a video call application that wants to continue a voice call on the user's mobile network.",
+    "info_ES": "Permite que la aplicación que realiza la llamada continúe una llamada iniciada en otra aplicación. Un ejemplo es una aplicación de videollamada que desea continuar una llamada de voz en la red móvil del usuario."
+  },
+  {
+    "title": "android.permission.ACCESS_NOTIFICATION_POLICY",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permissão do marcador para aplicativos que desejam acessar a política de notificação.",
+    "info_EN": "Bookmark permission for apps that want to access the notification policy.",
+    "info_ES": "Marcar permiso para aplicaciones que desean acceder a la política de notificación."
+  },
+  {
+    "title": "android.permission.ANSWER_PHONE_CALLS",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de resposta a ligações.",
+    "info_EN": "Allows an application to answer calls.",
+    "info_ES": "Permite que una aplicación responda llamadas."
+  },
+  {
+    "title": "android.permission.BIND_ACCESSIBILITY_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um AccessibilityService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by an AccessibilityService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un AccessibilityService para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_AUTOFILL_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um AutofillService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by an AutofillService, to ensure that only the system can be linked to it.",
+    "info_ES": "Debe ser requerido por un AutofillService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_CARRIER_MESSAGING_SERVICE",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "O processo do sistema que é permitido vincular aos serviços nos aplicativos da operadora terá essa permissão.",
+    "info_EN": "The system process that is allowed to link to services in the operator's applications will have this permission.",
+    "info_ES": "El proceso del sistema que se permite vincular a los servicios en las aplicaciones del operador tendrá este permiso."
+  },
+  {
+    "title": "android.permission.BIND_CARRIER_SERVICES",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "O processo do sistema que pode se vincular aos serviços nos aplicativos da operadora terá essa permissão. Os aplicativos da operadora devem usar essa permissão para proteger seus serviços aos quais somente o sistema está autorizado.",
+    "info_EN": "The system process that can link to services in the operator's applications will have this permission. Operator applications must use this permission to protect their services to which only the system is authorized.",
+    "info_ES": "El proceso del sistema que puede vincularse a los servicios en las aplicaciones del operador tendrá este permiso. Las aplicaciones del operador deben usar este permiso para proteger sus servicios para los cuales solo el sistema está autorizado."
+  },
+  {
+    "title": "android.permission.BIND_CHOOSER_TARGET_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um ChooserTargetService, para garantir que apenas o sistema possa se vincular a ele",
+    "info_EN": "Must be required by a ChooserTargetService, to ensure that only the system can link to it",
+    "info_ES": "Debe ser requerido por un ChooserTargetService, para garantizar que solo el sistema pueda vincularse a él"
+  },
+  {
+    "title": "android.permission.BIND_CONDITION_PROVIDER_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um ConditionProviderService, para garantir que apenas o sistema possa se vincular a ele",
+    "info_EN": "Must be required by a ConditionProviderService, to ensure that only the system can link to it",
+    "info_ES": "Debe ser requerido por un ConditionProviderService, para garantizar que solo el sistema pueda vincularse a él"
+  },
+  {
+    "title": "android.permission.BIND_DREAM_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um DreamService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a DreamService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un DreamService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_INCALL_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um InCallService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by an InCallService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un InCallService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_MIDI_DEVICE_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um MidiDeviceService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a MidiDeviceService, to ensure that only the system can be linked to it.",
+    "info_ES": "Debe ser requerido por un MidiDeviceService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_NFC_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um HostApduService ou OffHostApduService para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a HostApduService or OffHostApduService to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un HostApduService o OffHostApduService para garantizar que solo el sistema pueda conectarse a él."
+  },
+  {
+    "title": "android.permission.BIND_NOTIFICATION_LISTENER_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um NotificationListenerService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a NotificationListenerService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un NotificationListenerService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_PRINT_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um PrintService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a PrintService, to ensure that only the system can be linked to it.",
+    "info_ES": "Debe ser requerido por un PrintService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_QUICK_SETTINGS_TILE",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de ligação a blocos de configurações rápidas de terceiros.",
+    "info_EN": "Allows a connection application to third party quick setting blocks.",
+    "info_ES": "Permite una aplicación de conexión a bloques de configuración rápida de terceros."
+  },
+  {
+    "title": "android.permission.BIND_REMOTEVIEWS",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um RemoteViewsService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a RemoteViewsService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un RemoteViewsService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_SCREENING_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um CallScreeningService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a CallScreeningService, to ensure that only the system can be linked to it.",
+    "info_ES": "Debe ser requerido por un CallScreeningService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_TELECOM_CONNECTION_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um ConnectionService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a ConnectionService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un ConnectionService, para garantizar que solo el sistema pueda conectarse a él."
+  },
+  {
+    "title": "android.permission.BIND_TEXT_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um TextService (por exemplo, SpellCheckerService) para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a TextService (for example, SpellCheckerService) to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un TextService (por ejemplo, SpellCheckerService) para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_TV_INPUT",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um TvInputService para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a TvInputService to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un TvInputService para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_VISUAL_VOICEMAIL_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um link",
+    "info_EN": "Must be required by a link",
+    "info_ES": "Debe ser requerido por un enlace"
+  },
+  {
+    "title": "android.permission.BIND_VOICE_INTERACTION",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um VoiceInteractionService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a VoiceInteractionService, to ensure that only the system can be linked to it.",
+    "info_ES": "Debe ser requerido por un VoiceInteractionService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_VPN_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um VpnService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a VpnService, to ensure that only the system can be linked to it.",
+    "info_ES": "Debe ser requerido por un VpnService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BIND_VR_LISTENER_SERVICE",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Deve ser exigido por um VrListenerService, para garantir que apenas o sistema possa se vincular a ele.",
+    "info_EN": "It must be required by a VrListenerService, to ensure that only the system can link to it.",
+    "info_ES": "Debe ser requerido por un VrListenerService, para garantizar que solo el sistema pueda vincularse a él."
+  },
+  {
+    "title": "android.permission.BLUETOOTH_PRIVILEGED",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que os aplicativos emparelhem dispositivos bluetooth sem a interação do usuário e permita ou não o acesso à agenda telefônica ou ao acesso a mensagens. Isso não está disponível para aplicativos de terceiros.",
+    "info_EN": "Allows applications to pair Bluetooth devices without user interaction and allows or disallows access to the phonebook or access to messages. This is not available for third party applications.",
+    "info_ES": "Permite que las aplicaciones emparejen dispositivos Bluetooth sin interacción del usuario y permite o impide el acceso a la agenda telefónica o el acceso a los mensajes. Esto no está disponible para aplicaciones de terceros."
+  },
+  {
+    "title": "android.permission.BODY_SENSORS",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação acesso a dados de sensores que o usuário utiliza para medir o que está acontecendo dentro de seu corpo, como freqüência cardíaca.",
+    "info_EN": "It allows the application to access sensor data that the user uses to measure what is happening inside his body, such as heart rate.",
+    "info_ES": "Permite que la aplicación acceda a los datos del sensor que el usuario usa para medir lo que sucede dentro de su cuerpo, como la frecuencia cardíaca."
+  },
+  {
+    "title": "android.permission.CAPTURE_AUDIO_OUTPUT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de captura de saída de áudio.",
+    "info_EN": "Enables an audio output capture application.",
+    "info_ES": "Habilita una aplicación de captura de salida de audio."
+  },
+  {
+    "title": "android.permission.CAPTURE_SECURE_VIDEO_OUTPUT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de captura de saída de vídeo segura.",
+    "info_EN": "Enables a secure video output capture application.",
+    "info_ES": "Permite una aplicación segura de captura de salida de video."
+  },
+  {
+    "title": "android.permission.CAPTURE_VIDEO_OUTPUT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de captura de saída de vídeo.",
+    "info_EN": "It allows a video output capture application.",
+    "info_ES": "Permite una aplicación de captura de salida de video."
+  },
+  {
+    "title": "android.permission.FOREGROUND_SERVICE",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que o aplicativo comum use.",
+    "info_EN": "Allows the common application to use.",
+    "info_ES": "Permite el uso de la aplicación común."
+  },
+  {
+    "title": "android.permission.GET_ACCOUNTS_PRIVILEGED",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite acesso à lista de contas no Serviço de Contas.",
+    "info_EN": "Allows access to the list of accounts in the Account Service.",
+    "info_ES": "Permite el acceso a la lista de cuentas en el Servicio de cuenta."
+  },
+  {
+    "title": "android.permission.INSTALL_SHORTCUT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação instalar um atalho no Launcher.",
+    "info_EN": "Allows the app to install a shortcut on the Launcher.",
+    "info_ES": "Permite que la aplicación instale un acceso directo en el Iniciador."
+  },
+  {
+    "title": "android.permission.INSTANT_APP_FOREGROUND_SERVICE",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que o aplicativo instantâneo crie serviços em primeiro plano.",
+    "info_EN": "Allows the instant application to create services in the foreground.",
+    "info_ES": "Permite que la aplicación instantánea cree servicios en primer plano."
+  },
+  {
+    "title": "android.permission.LOCATION_HARDWARE",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação usar recursos de localização em hardware, como a API de geofencing.",
+    "info_EN": "Allows the app to use hardware localization features, such as the geofencing API.",
+    "info_ES": "Permite que la aplicación use funciones de localización de hardware, como la API de geofencing."
+  },
+  {
+    "title": "android.permission.MANAGE_DOCUMENTS",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação gerenciar o acesso a documentos, geralmente como parte de um seletor de documentos.",
+    "info_EN": "Allows the app to manage access to documents, usually as part of a document selector.",
+    "info_ES": "Permite que la aplicación administre el acceso a los documentos, generalmente como parte de un selector de documentos."
+  },
+  {
+    "title": "android.permission.MANAGE_OWN_CALLS",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a um aplicativo de chamada que gerencia suas próprias chamadas através do autogerenciamento.",
+    "info_EN": "Allows a calling application to manage its own calls through self-management.",
+    "info_ES": "Permite que una aplicación de llamadas administre sus propias llamadas a través de la autogestión."
+  },
+  {
+    "title": "android.permission.MEDIA_CONTENT_CONTROL",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação saber qual conteúdo está sendo reproduzido e controlar sua reprodução.",
+    "info_EN": "It allows the application to know what content is being played and to control its reproduction.",
+    "info_ES": "Le permite a la aplicación saber qué contenido se está reproduciendo y controlar su reproducción."
+  },
+  {
+    "title": "android.permission.NFC_TRANSACTION_EVENT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que os aplicativos recebam eventos de transação NFC.",
+    "info_EN": "Allows applications to receive NFC transaction events.",
+    "info_ES": "Permite que las aplicaciones reciban eventos de transacciones NFC."
+  },
+  {
+    "title": "android.permission.READ_CALL_LOG",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação ler o registro de chamadas do usuário.",
+    "info_EN": "Allows the app to read the user's call log.",
+    "info_ES": "Permite que la aplicación lea el registro de llamadas del usuario."
+  },
+  {
+    "title": "android.permission.READ_PHONE_NUMBERS",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite acesso de leitura aos números de telefone do dispositivo. Esse é um subconjunto dos recursos concedidos por",
+    "info_EN": "Allows read access to the device's phone numbers. This is a subset of the resources provided by",
+    "info_ES": "Permite el acceso de lectura a los números de teléfono del dispositivo. Este es un subconjunto de los recursos proporcionados por"
+  },
+  {
+    "title": "android.permission.READ_VOICEMAIL",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação leitura de mensagens de voz no sistema.",
+    "info_EN": "Allows the application to read voice messages in the system.",
+    "info_ES": "Permite que la aplicación lea mensajes de voz en el sistema."
+  },
+  {
+    "title": "android.permission.REQUEST_COMPANION_RUN_IN_BACKGROUND",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação 'Companheira' de rodar no segundo plano.",
+    "info_EN": "Allows a 'Companion' application to run in the background.",
+    "info_ES": "Permite que una aplicación 'Companion' se ejecute en segundo plano."
+  },
+  {
+    "title": "android.permission.REQUEST_COMPANION_USE_DATA_IN_BACKGROUND",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação 'Companheira' de usar dados no segundo plano.",
+    "info_EN": "Allows a 'Companion' application to use data in the background.",
+    "info_ES": "Permite que una aplicación 'Companion' use datos en segundo plano."
+  },
+  {
+    "title": "android.permission.REQUEST_DELETE_PACKAGES",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de solicitação de exclusão de pacotes. Aplicativos direcionados a APIs.",
+    "info_EN": "It allows a request to exclude packages. API-driven applications.",
+    "info_ES": "Permite una solicitud para excluir paquetes. Aplicaciones basadas en API."
+  },
+  {
+    "title": "android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permissão que um aplicativo deve manter para poder usar.",
+    "info_EN": "Permission that an application must maintain in order to use.",
+    "info_ES": "Permiso que una aplicación debe mantener para poder usar."
+  },
+  {
+    "title": "android.permission.SEND_RESPOND_VIA_MESSAGE",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que o aplicativo (Telefone) envie uma solicitação a outros aplicativos para lidar com a ação de resposta por mensagem durante as chamadas recebidas.",
+    "info_EN": "Allows the app (Phone) to send a request to other apps to handle the message reply action during incoming calls.",
+    "info_ES": "Permite que la aplicación (Teléfono) envíe una solicitud a otras aplicaciones para manejar la acción de respuesta del mensaje durante las llamadas entrantes."
+  },
+  {
+    "title": "android.permission.TRANSMIT_IR",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite usar o transmissor IR do dispositivo, se disponível.",
+    "info_EN": "Allows you to use the device's IR transmitter, if available.",
+    "info_ES": "Le permite usar el transmisor IR del dispositivo, si está disponible."
+  },
+  {
+    "title": "android.permission.UNINSTALL_SHORTCUT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Não use essa permissão no seu aplicativo. Esta permissão não é mais suportada.",
+    "info_EN": "Do not use this permission in your application. This permission is no longer supported.",
+    "info_ES": "No use este permiso en su aplicación. Este permiso ya no es compatible."
+  },
+  {
+    "title": "android.permission.USE_BIOMETRIC",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite que o aplicativo use modalidades biométricas compatíveis com o dispositivo.",
+    "info_EN": "Allows the app to use biometric modalities compatible with the device.",
+    "info_ES": "Permite que la aplicación use modalidades biométricas compatibles con el dispositivo."
+  },
+  {
+    "title": "android.permission.USE_FINGERPRINT",
+    "status": "normal",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Essa constante foi descontinuada na API nível 28. Os aplicativos devem requerer USE_BIOMETRIC no lugar.",
+    "info_EN": "This constant has been deprecated at API level 28. Applications must require USE_BIOMETRIC instead.",
+    "info_ES": "Esta constante ha quedado en desuso en el nivel 28 de la API. Las aplicaciones deben requerir USE_BIOMETRIC en su lugar."
+  },
+  {
+    "title": "android.permission.WRITE_CALL_LOG",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite uma aplicação de gravação (mas não leitura) dos dados do log de chamadas do usuário.",
+    "info_EN": "Allows an application to write (but not read) the user's call log data.",
+    "info_ES": "Permite que una aplicación escriba (pero no lea) los datos del registro de llamadas del usuario."
+  },
+  {
+    "title": "android.permission.WRITE_VOICEMAIL",
+    "status": "perigoso",
+    "description_PT-BR": "",
+    "description_EN": "",
+    "description_ES": "",
+    "info_PT-BR": "Permite a aplicação modificação e remoção de erros de voz existentes no sistema.",
+    "info_EN": "It allows the application to modify and remove existing voice errors in the system.",
+    "info_ES": "Permite que la aplicación modifique y elimine los errores de voz existentes en el sistema."
+  }
+]

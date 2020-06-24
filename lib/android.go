@@ -2,13 +2,12 @@ package lib
 
 import (
 	"fmt"
+	"io/ioutil"
 	"log"
 	"strconv"
-	"io/ioutil"
-	"path/filepath"
-	"github.com/insidersec/insider/analyzers"
-	"github.com/insidersec/insider/lexer"
-	"github.com/insidersec/insider/models"
+	"insider/analyzers"
+	"insider/models/reports"
+	"insider/visitor"
 )
 
 /*
@@ -17,12 +16,16 @@ import (
 **************************************************
  */
 
-func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error {
-	return analyzers.AnalyzeAndroidManifest(dirname, report)
+// AnalyzeAndroidManifest self-explained
+func AnalyzeAndroidManifest(dirname, sastID string, report *reports.AndroidReport, lang string) error {
+	return analyzers.AnalyzeAndroidManifest(dirname, sastID, report, lang)
 }
 
-func AnalyzeAndroidSource(dirname string, report *models.AndroidReport) error {
-	files, rules, err := LoadsFilesAndRules(dirname, "android")
+// AnalyzeAndroidSource self-explained
+func AnalyzeAndroidSource(
+	dirname, sastID string,
+	report *reports.AndroidReport, lang string) error {
+	files, rules, err := LoadsFilesAndRules(dirname, "android", lang)
 
 	if err != nil {
 		return err
@@ -36,16 +39,37 @@ func AnalyzeAndroidSource(dirname string, report *models.AndroidReport) error {
 
 	report.AndroidInfo.Size = fmt.Sprintf("%s MB", strconv.Itoa(appSize))
 
+	log.Println("Starting extracting hardcoded information")
+
+	err = ExtractHardcodedInfo(dirname, sastID, report)
+
+	if err != nil {
+		return err
+	}
+
+	log.Println("Finished hardcoded information extraction")
+
+	log.Println("Starting main source code analysis")
+
+	highestCVSS := 0.0
+
 	for _, file := range files {
-		fileContent, err := ioutil.ReadFile(filepath.Clean(file))
+		//log.Println("Code analysis", file)
+		fileContent, err := ioutil.ReadFile(file)
 
 		if err != nil {
 			return err
 		}
 
-		fileForAnalyze := lexer.NewInputFile(dirname, file, fileContent)
+		fileForAnalyze := visitor.NewInputFile(dirname, file, fileContent)
 
 		report.AndroidInfo.NumberOfLines = report.AndroidInfo.NumberOfLines + len(fileForAnalyze.NewlineIndexes)
+
+		urls := extractURLs(report.GetDRAURLs(), fileForAnalyze.Content)
+		emails := extractEmails(report.GetDRAEmails(), fileForAnalyze.Content)
+
+		report.AddDRAURLs(urls, fileForAnalyze.PhysicalPath)
+		report.AddDRAEmails(emails, fileForAnalyze.PhysicalPath)
 
 		fileSummary := analyzers.AnalyzeFile(fileForAnalyze, rules)
 
@@ -56,10 +80,36 @@ func AnalyzeAndroidSource(dirname string, report *models.AndroidReport) error {
 				finding,
 			)
 
+			// Now we search other files affected by this vulnerability
+			for _, affectedFile := range files {
+				affectedFileContent, err := ioutil.ReadFile(affectedFile)
+
+				if err != nil {
+					return err
+				}
+
+				affectedInputFile := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+
+				if affectedInputFile.Uses(fileForAnalyze.ImportReference) {
+					vulnerability.AffectedFiles = append(vulnerability.AffectedFiles, affectedInputFile.DisplayName)
+				}
+			}
+
+			if vulnerability.CVSS > highestCVSS {
+				highestCVSS = vulnerability.CVSS
+			}
+
+			vulnerability.SastID = sastID
+
 			report.Vulnerabilities = append(report.Vulnerabilities, vulnerability)
 		}
 	}
 
+	report.AndroidInfo.HighestCVSS = highestCVSS
+	report.AndroidInfo.SecurityScore = CalculateSecurityScore(report.AndroidInfo.HighestCVSS)
+	report.AndroidInfo.SastID = sastID
+
+	log.Println("Finished main source code analysis")
 	log.Printf("Scanned %d lines", report.AndroidInfo.NumberOfLines)
 
 	return nil

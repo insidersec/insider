@@ -2,28 +2,22 @@ package analyzers
 
 import (
 	"io/ioutil"
-	"path/filepath"
 	"testing"
 
-	"github.com/insidersec/insider/lexer"
+	"inmetrics/eve/visitor"
 )
 
 func TestExtractLibsFromPodfile(t *testing.T) {
-	testFileLocation := filepath.FromSlash("testdata/example.podfile")
-
-	fileContent, err := ioutil.ReadFile(filepath.Clean(testFileLocation))
+	testFileLocation := visitor.SolvePathToTestFolder("example.podfile")
+	fileContent, err := ioutil.ReadFile(testFileLocation)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	testFile := lexer.NewInputFile("test", testFileLocation, fileContent)
+	testFile := visitor.NewInputFile("test", testFileLocation, fileContent)
 
 	libraries, err := ExtractLibsFromPodfile(testFile)
-
-	if err != nil {
-		t.Fatal(err)
-	}
 
 	if len(libraries) <= 0 {
 		t.Fatal("Should have found libraries.")

@@ -1,17 +1,29 @@
 package analyzers
 
 import (
+	"encoding/json"
 	"encoding/xml"
 	"fmt"
+	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
+	"reflect"
 	"regexp"
 	"strconv"
-	"github.com/insidersec/insider/models"
-	"github.com/insidersec/insider/visitor"
+	"strings"
+
+	"insider/models"
+	"insider/models/reports"
+	"insider/visitor"
 )
 
 var xmlFilesFilter *regexp.Regexp
+var gradleVersions *regexp.Regexp
 var haveMainActivity *regexp.Regexp
 var gradleFilesFilter *regexp.Regexp
+
+var substituteQuotationMarks *regexp.Regexp
 
 var extractGradleVersionName *regexp.Regexp
 var extractGradleVersionNumber *regexp.Regexp
@@ -19,70 +31,20 @@ var extractGradleTargetSDKVersion *regexp.Regexp
 var extractGradleMinimumSDKVersion *regexp.Regexp
 var extractGradleMaximumSDKVersion *regexp.Regexp
 
+var evaluateGradleVariable string
+
 const (
 	// UnknownStatus is the default status for a Manifest permission
 	UnknownStatus string = "Desconhecido"
 )
 
-// Permission is a AndroidManifest permission entry
-type Permission struct {
-	Name     string `xml:"name,attr"`
-	Required bool   `xml:"required,attr"`
-}
-
-// SDKInfo is the AndroidManifest informative entry
-type SDKInfo struct {
-	MinimumSDKVersion string `xml:"minSdkVersion,attr"`
-	TargetSDKVersion  string `xml:"targetSdkVersion,attr"`
-	MaximumSDKVersion string `xml:"maxSdkVersion,attr"`
-}
-
-// IntentAction represents a Action for the Android Activity.
-type IntentAction struct {
-	Name string `xml:"name,attr"`
-}
-
-// IntentCategory holds data about the Activity category.
-type IntentCategory struct {
-	Name string `xml:"name,attr"`
-}
-
-// IntentFilter holds metadata about the `intention-filter` tag for the given Activity.
-type IntentFilter struct {
-	Actions    []IntentAction `xml:"action"`
-	Categories IntentCategory `xml:"category"`
-}
-
-// ManifestActivity holds data from the `activities` tag in the AndroidManifest.xml file
-type ManifestActivity struct {
-	Name         string       `xml:"name,attr"`
-	IntentFilter IntentFilter `xml:"intent-filter"`
-}
-
-// ApplicationInfo holds app data from AndroidManifest.xml
-type ApplicationInfo struct {
-	Name           string             `xml:"name,attr"`
-	AllowADBBackup bool               `xml:"allowBackup,attr"`
-	Activities     []ManifestActivity `xml:"activity"`
-}
-
-// Manifest holds all the data about the AndroidManifest file
-type Manifest struct {
-	PackageName string          `xml:"package,attr"`
-	Permissions []Permission    `xml:"uses-permission"`
-	SDKInfo     SDKInfo         `xml:"uses-sdk"`
-	Application ApplicationInfo `xml:"application"`
-
-	// Info section
-	VersionName            string `xml:"versionName,attr"`
-	VersionCode            string `xml:"versionCode,attr"`
-	CompiledSDKVersion     string `xml:"compileSdkVersion,attr"`
-	CompiledSDKVersionCode string `xml:"compileSdkVersionCodename,attr"`
-}
-
 func init() {
 	xmlFilesFilter = regexp.MustCompile(`AndroidManifest\.xml`)
 	gradleFilesFilter = regexp.MustCompile(`dependencies\w*\.gradle`)
+
+	gradleVersions = regexp.MustCompile(`(\w*)\s+=\s+(['"].+['"]|\d+)`)
+
+	substituteQuotationMarks = regexp.MustCompile(`['|"]`)
 
 	haveMainActivity = regexp.MustCompile(`android.intent.action.MAIN`)
 
@@ -92,6 +54,7 @@ func init() {
 	extractGradleTargetSDKVersion = regexp.MustCompile(`targetSdkVersion\s+(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`)
 	extractGradleMaximumSDKVersion = regexp.MustCompile(`maxSdkVersion\s+(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`)
 
+	evaluateGradleVariable = `%s\s*=\s*(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`
 }
 
 func isMainPackage(content string) bool {
@@ -108,10 +71,46 @@ func findManifests(filename string) bool {
 	return xmlFilesFilter.MatchString(filename)
 }
 
+func loadManifestData(lang string) (permissions []reports.ManifestPermission, err error) {
+	fullPath, _ := os.Getwd()
+	log.Println("fullpath",fullPath)
+	projectPrefix := ""
+
+	manifestData, err := ioutil.ReadFile(filepath.Join(fullPath, projectPrefix, "analyzers/manifest.json"))
+
+	if err != nil {
+		return permissions, err
+	}
+
+	err = json.Unmarshal(manifestData, &permissions)
+
+	if err != nil {
+		return permissions, err
+	}
+	lang = strings.ToLower(lang)
+	for i, v := range permissions {
+		r := reflect.ValueOf(v)
+		desc := reflect.Indirect(r).FieldByName("Description_" + lang)
+		info := reflect.Indirect(r).FieldByName("Info_" + lang)
+		permissions[i].Description = desc.String()
+		permissions[i].Info = info.String()
+	}
+
+	return permissions, nil
+}
+
 // AnalyzeAndroidManifest analyzes the given directory and builds the
 // AndroidInfo field of the AndroidReport struct, only modifying this field inside the pointer.
-func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error {
-	manifestPermissionData := loadManifestData()
+// The sastID parameter is responsible only for later reference to this specific run.
+// OBS.: You don't have to worry about this field, the Insider BFF will provide it.
+func AnalyzeAndroidManifest(dirname, sastID string, report *reports.AndroidReport, lang string) error {
+
+
+	//manifestPermissionData, err := loadManifestData(lang)
+	log.Println("Loading manifest permission")
+	manifestPermissionData := GetManifestPermission()
+	log.Println(len(manifestPermissionData))
+
 
 	appSize, err := GetUnpackedAppSize(dirname)
 
@@ -128,7 +127,7 @@ func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error 
 	}
 
 	for _, file := range manifestFiles {
-		manifest := Manifest{}
+		manifest := models.Manifest{}
 
 		err = xml.Unmarshal([]byte(file.Content), &manifest)
 
@@ -144,8 +143,9 @@ func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error 
 					}
 				}
 
-				reportActivity := models.Activity{
-					Name: activity.Name,
+				reportActivity := reports.Activity{
+					SastID: sastID,
+					Name:   activity.Name,
 				}
 
 				report.AvailableActivities = append(report.AvailableActivities, reportActivity)
@@ -170,7 +170,8 @@ func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error 
 		if len(manifest.Permissions) >= 0 {
 			// For each permission found in the AndroidManifest.xml file
 			for _, permission := range manifest.Permissions {
-				manifestPermission := models.ManifestPermission{}
+				manifestPermission := reports.ManifestPermission{}
+				manifestPermission.SastID = sastID
 				manifestPermission.Title = permission.Name
 				// Searches in our stored manifest data for the whole data about that permission.
 				// I know it's a dumb algorithm, but for now, we only have 198 permission entries
@@ -188,47 +189,76 @@ func AnalyzeAndroidManifest(dirname string, report *models.AndroidReport) error 
 				report.ManifestPermissions = append(report.ManifestPermissions, manifestPermission)
 			}
 		}
+
+		if len(manifest.Application.BroadcastReceivers) >= 0 {
+			for _, manifestReceiver := range manifest.Application.BroadcastReceivers {
+				receiver := reports.BroadcastReceiver{
+					SastID: sastID,
+					Name:   manifestReceiver.Name,
+				}
+
+				report.BroadcastReceivers = append(report.BroadcastReceivers, receiver)
+			}
+		}
+
+		if len(manifest.Application.Services) >= 0 {
+			for _, manifestService := range manifest.Application.Services {
+				service := reports.Service{
+					SastID: sastID,
+					Name:   manifestService.Name,
+				}
+
+				report.Services = append(report.Services, service)
+			}
+		}
 	}
 
-	gradleFiles, err := visitor.FindFiles(dirname, false, findGradleFiles)
+	// Fallback cenario for some information about the application when
+	// the AndroidManifest.xml wasn't expanded by Gradle build scripts yet
+	// a.k.a the source code being analyzed is not a artifact.
+	if report.AndroidInfo.TargetSDK == "" &&
+		report.AndroidInfo.MinimumSDK == "" &&
+		report.AndroidInfo.MaximumSDK == "" {
+		gradleFiles, err := visitor.FindFiles(dirname, false, findGradleFiles)
 
-	if err != nil {
-		return err
-	}
-
-	for _, buildFile := range gradleFiles {
-		if extractGradleVersionNumber.MatchString(buildFile.Content) {
-			finding := extractGradleVersionNumber.FindStringSubmatch(buildFile.Content)
-			if finding != nil {
-				report.AndroidInfo.AndroidVersionCode = finding[len(finding)-1]
-			}
+		if err != nil {
+			return err
 		}
 
-		if extractGradleVersionName.MatchString(buildFile.Content) {
-			finding := extractGradleVersionName.FindStringSubmatch(buildFile.Content)
-			if finding != nil {
-				report.AndroidInfo.AndroidVersionName = finding[len(finding)-1]
+		for _, buildFile := range gradleFiles {
+			if extractGradleVersionNumber.MatchString(buildFile.Content) {
+				finding := extractGradleVersionNumber.FindStringSubmatch(buildFile.Content)
+				if finding != nil {
+					report.AndroidInfo.AndroidVersionCode = finding[len(finding)-1]
+				}
 			}
-		}
 
-		if extractGradleTargetSDKVersion.MatchString(buildFile.Content) {
-			finding := extractGradleTargetSDKVersion.FindStringSubmatch(buildFile.Content)
-			if finding != nil {
-				report.AndroidInfo.TargetSDK = finding[len(finding)-1]
+			if extractGradleVersionName.MatchString(buildFile.Content) {
+				finding := extractGradleVersionName.FindStringSubmatch(buildFile.Content)
+				if finding != nil {
+					report.AndroidInfo.AndroidVersionName = finding[len(finding)-1]
+				}
 			}
-		}
 
-		if extractGradleMinimumSDKVersion.MatchString(buildFile.Content) {
-			finding := extractGradleMinimumSDKVersion.FindStringSubmatch(buildFile.Content)
-			if finding != nil {
-				report.AndroidInfo.MinimumSDK = finding[len(finding)-1]
+			if extractGradleTargetSDKVersion.MatchString(buildFile.Content) {
+				finding := extractGradleTargetSDKVersion.FindStringSubmatch(buildFile.Content)
+				if finding != nil {
+					report.AndroidInfo.TargetSDK = finding[len(finding)-1]
+				}
 			}
-		}
 
-		if extractGradleMaximumSDKVersion.MatchString(buildFile.Content) {
-			finding := extractGradleMaximumSDKVersion.FindStringSubmatch(buildFile.Content)
-			if finding != nil {
-				report.AndroidInfo.MaximumSDK = finding[len(finding)-1]
+			if extractGradleMinimumSDKVersion.MatchString(buildFile.Content) {
+				finding := extractGradleMinimumSDKVersion.FindStringSubmatch(buildFile.Content)
+				if finding != nil {
+					report.AndroidInfo.MinimumSDK = finding[len(finding)-1]
+				}
+			}
+
+			if extractGradleMaximumSDKVersion.MatchString(buildFile.Content) {
+				finding := extractGradleMaximumSDKVersion.FindStringSubmatch(buildFile.Content)
+				if finding != nil {
+					report.AndroidInfo.MaximumSDK = finding[len(finding)-1]
+				}
 			}
 		}
 	}

@@ -1,23 +1,30 @@
 package visitor
 
 import (
+	"archive/zip"
+	"encoding/json"
+	"insider/config"
+	"io"
 	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
-	"github.com/insidersec/insider/lexer"
+
+	yaml "gopkg.in/yaml.v3"
 )
 
+// ExtensionFilter excludes useless files
+var ExtensionFilter *regexp.Regexp
+
 var iosExtraFilter *regexp.Regexp
-var extensionFilter *regexp.Regexp
 var jsExtensionFilter *regexp.Regexp
 var iosExtensionFilter *regexp.Regexp
 var csharpExtensionFilter *regexp.Regexp
 var androidExtensionFilter *regexp.Regexp
 
 func init() {
-	extensionFilter = regexp.MustCompile(`(\w*\.[ot]tf)|(\w*\.bat)|(\w*\.sh)|(\w*\.png)|(\w*\.jpg)|(\w*\.jpeg)|(\w*\.pdf)|(\w*\.md)|(\w*\.markdown)|(\w*\.svg)|(\w*\.woff2)|(\w*\.woff)|(\w*\.ico)|(\w*LICENSE)|(\w*\.txt)|(\w*\.eot)|(\w*\.git)`)
+	ExtensionFilter = regexp.MustCompile(`(\w*\.[ot]tf)|(\w*\.bat)|(\w*\.sh)|(\w*\.png)|(\w*\.jpg)|(\w*\.jpeg)|(\w*\.pdf)|(\w*\.md)|(\w*\.markdown)|(\w*\.svg)|(\w*\.woff2)|(\w*\.woff)|(\w*\.ico)|(\w*LICENSE)|(\w*\.txt)|(\w*\.eot)|(\w*\.git)`)
 
 	androidExtensionFilter =
 		regexp.MustCompile(`(\s*gradle\/.+\.jar)|(\w+\/android\/\w+)|(.+\.aar)|(.+\.cpp)|(.+\.h)|(.+\.mk)|(.+\.c)|(.+\.dex)|(.+\.apk)`)
@@ -26,7 +33,7 @@ func init() {
 	// Useless files in iOS .IPA files
 	iosExtraFilter = regexp.MustCompile(`(?i)(\w+\/Build\/\w+)|(\w+\/docs/\w+)|(\w+\/\w*[tT]est\w*\/\w+)|(\w*\.aep)|(\w+\/Assets\w*\/\w+)|(\w+\/\w*idwall.*\/\w+)|(\w*\.xcscheme)|(\w*\.pbxproj)|(\w*\.storyboard)|(\w*\.\w*proj)|(\w*\.plist)|(\w*\.modulemap)|(\w+\/\w+.framework\/\w+)|(.+\.ipa)`)
 
-	csharpExtensionFilter = regexp.MustCompile(`(.+\.css)|(.+\.map)|(.+\.js)|(.+\.exe)|(.+\.dll)|(.+\.p12)|(.+\.xml)|(.+\.svcmap)|(.+\.svcinfo)|(.+\.disco)`)
+	csharpExtensionFilter = regexp.MustCompile(`(.+\.css)|(.+\.map)|(.+\.js)|(.+\.exe)|(.+\.dll)|(.+\.p12)|(.+\.xml)|(.+\.svcmap)|(.+\.svcinfo)|(.+\.disco)|(.+\.cache)`)
 
 	jsExtensionFilter = regexp.MustCompile(`(.+\.js)|(.+\.jsx)|(.+\.ts)|(.+\.tsx)|`)
 }
@@ -45,13 +52,65 @@ func androidManifestFilter(filename string) bool {
 ********************************************
  */
 
+// Unzip creates a folder with the given archive file
+// name and unzips all its content inside of it.
+func Unzip(sourceFile string) (string, error) {
+	r, err := zip.OpenReader(sourceFile)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer r.Close()
+
+	fileExtension := filepath.Ext(sourceFile)
+	destinationFolder := sourceFile[0 : len(sourceFile)-len(fileExtension)]
+
+	for _, file := range r.File {
+		// Store filename/path for returning and using later on
+		filePath := filepath.Join(destinationFolder, file.Name)
+
+		if file.FileInfo().IsDir() {
+			// Make Folder
+			os.MkdirAll(filePath, os.ModePerm)
+			continue
+		}
+
+		// Make File
+		if err = os.MkdirAll(filepath.Dir(filePath), os.ModePerm); err != nil {
+			return destinationFolder, err
+		}
+
+		outFile, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, file.Mode())
+		if err != nil {
+			return destinationFolder, err
+		}
+
+		rc, err := file.Open()
+		if err != nil {
+			return destinationFolder, err
+		}
+
+		_, err = io.Copy(outFile, rc)
+
+		// Close the file without defer to close before next iteration of loop
+		outFile.Close()
+		rc.Close()
+
+		if err != nil {
+			return destinationFolder, err
+		}
+	}
+	return destinationFolder, nil
+}
+
 // FindFunc should be used with FindFiles to
 // match certain criteria inside a folder
 type FindFunc func(dirname string) bool
 
 // FindFiles searches for filenames who the given FindFunc returns true
-func FindFiles(dirname string, includeDirs bool, isFile FindFunc) ([]lexer.InputFile, error) {
-	files := make([]lexer.InputFile, 0)
+func FindFiles(dirname string, includeDirs bool, isFile FindFunc) ([]InputFile, error) {
+	files := make([]InputFile, 0)
 	err := filepath.Walk(dirname, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			return err
@@ -65,22 +124,24 @@ func FindFiles(dirname string, includeDirs bool, isFile FindFunc) ([]lexer.Input
 		if isFile(path) {
 			if info.IsDir() {
 				if includeDirs {
-					file := lexer.NewInputFile(dirname, path, []byte{})
+					file := NewInputFile(dirname, path, []byte{})
 
 					file.IsDir = true
 
 					files = append(files, file)
 					return nil
 				}
+
+				return nil
 			}
 
-			fileContent, err := ioutil.ReadFile(filepath.Clean(path))
+			fileContent, err := ioutil.ReadFile(path)
 
 			if err != nil {
 				return err
 			}
 
-			file := lexer.NewInputFile(dirname, path, fileContent)
+			file := NewInputFile(dirname, path, fileContent)
 
 			files = append(files, file)
 			return nil
@@ -111,7 +172,7 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 			return nil
 		}
 
-		if extensionFilter.MatchString(path) {
+		if ExtensionFilter.MatchString(path) {
 			return nil
 		}
 
@@ -127,6 +188,7 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 			}
 
 			files = append(files, path)
+			break
 		case "ios":
 			if iosExtraFilter.MatchString(path) {
 				return nil
@@ -137,19 +199,26 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 				return nil
 			}
 
+			break
 		case "csharp":
 			if csharpExtensionFilter.MatchString(path) {
 				return nil
 			}
 
 			files = append(files, path)
+			break
+		case "iac":
+			files = append(files, path)
+			break
 		case "javascript":
 			if jsExtensionFilter.MatchString(path) {
 				files = append(files, path)
 			}
 
+			break
 		default:
 			files = append(files, path)
+			break
 		}
 
 		return nil
@@ -159,5 +228,56 @@ func LoadSourceDir(dirname, tech string) ([]string, error) {
 		return nil, err
 	}
 
+	//newfiles := make([]string, 0)
+
+	// cleanning the list os files with  filelistcontrol.json
+	err = config.CleanListFiles(tech, &files)
+	if err != nil {
+		return nil, err
+	}
+
 	return files, nil
+}
+
+// ParseCloudFormationTemplate try to parse the given file
+// to fullfill the cloudformation.Template struct
+func ParseCloudFormationTemplate(filename string) (template map[string]interface{}, err error) {
+	file, err := ioutil.ReadFile(filename)
+
+	if err != nil {
+		return
+	}
+
+	extension := filepath.Ext(filename)
+
+	// If founds a YAML file uses the right package do unmarshal it.
+	if extension == ".yml" || extension == ".yaml" {
+		err = yaml.Unmarshal(file, &template)
+
+		if err != nil {
+			return
+		}
+
+		return
+	}
+
+	// Otherwise will use the built-in JSON unmarshaler
+	err = json.Unmarshal(file, &template)
+
+	if err != nil {
+		// Sometimes the extension is ".template"
+		// and as it could be a YAML file
+		// Only if is this case we try again
+		if extension == ".template" {
+			err = yaml.Unmarshal(file, &template)
+
+			if err != nil {
+				return
+			}
+		}
+
+		return
+	}
+
+	return
 }

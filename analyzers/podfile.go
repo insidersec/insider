@@ -3,9 +3,9 @@ package analyzers
 import (
 	"regexp"
 	"strings"
-	"github.com/insidersec/insider/lexer"
-	"github.com/insidersec/insider/models"
-	"github.com/insidersec/insider/visitor"
+
+	"insider/models/reports"
+	"insider/visitor"
 )
 
 var extractLibraryFromPodfile *regexp.Regexp
@@ -16,7 +16,8 @@ func init() {
 	podfileFilter = regexp.MustCompile(`(?i)(?:\.Podfile|Podfile)`)
 }
 
-func ExtractLibsFromPodfile(file lexer.InputFile) (libraries []models.Library, err error) {
+// ExtractLibsFromPodfile selfexplained
+func ExtractLibsFromPodfile(file visitor.InputFile) (libraries []reports.Library, err error) {
 	findings, err := ExtractLibsFromFile(file.Content, extractLibraryFromPodfile)
 
 	if err != nil {
@@ -24,7 +25,7 @@ func ExtractLibsFromPodfile(file lexer.InputFile) (libraries []models.Library, e
 	}
 
 	for _, finding := range findings {
-		library := models.Library{
+		library := reports.Library{
 			Name:   finding[1],
 			Source: "CocoaPod",
 		}
@@ -42,10 +43,15 @@ func ExtractLibsFromPodfile(file lexer.InputFile) (libraries []models.Library, e
 }
 
 func isPodfile(filename string) bool {
-	return podfileFilter.MatchString(filename)
+	if podfileFilter.MatchString(filename) {
+		return true
+	}
+
+	return false
 }
 
-func ExtractLibsFromPodfiles(dirname string) (libraries []models.Library, err error) {
+// ExtractLibsFromPodfiles selfexplained
+func ExtractLibsFromPodfiles(dirname string) (libraries []reports.Library, err error) {
 	files, err := visitor.FindFiles(dirname, false, isPodfile)
 
 	if err != nil {

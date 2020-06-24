@@ -3,10 +3,12 @@ package analyzers
 import (
 	"os"
 	"path/filepath"
-	"github.com/insidersec/insider/models"
+
+	"insider/models/reports"
 )
 
-func IsLibraryUsed(libraries []models.Library, item string) bool {
+// IsLibraryUsed self-explained
+func IsLibraryUsed(libraries []reports.Library, item string) bool {
 	for _, library := range libraries {
 		if library.Name == item {
 			return true
@@ -16,6 +18,7 @@ func IsLibraryUsed(libraries []models.Library, item string) bool {
 	return false
 }
 
+// IsUsed self-explained
 func IsUsed(collection []string, item string) bool {
 	for _, itemInCollection := range collection {
 		if itemInCollection == item {
@@ -26,6 +29,7 @@ func IsUsed(collection []string, item string) bool {
 	return false
 }
 
+// GetUnpackedAppSize self-explained
 func GetUnpackedAppSize(path string) (int, error) {
 	var size int64
 
@@ -39,7 +43,9 @@ func GetUnpackedAppSize(path string) (int, error) {
 		return err
 	})
 
-	megabytes := int(float64(size) / (1024 * 1024))
+	// Transform the Size to MB
+	//megabytes := int(float64(size) / (1024 * 1024))
+	megabytes := int(float64(size))
 
 	return megabytes, err
 }

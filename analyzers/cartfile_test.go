@@ -2,21 +2,20 @@ package analyzers
 
 import (
 	"io/ioutil"
-	"path/filepath"
 	"testing"
 
-	"github.com/insidersec/insider/lexer"
+	"inmetrics/eve/visitor"
 )
 
 func TestExtractLibsFromCartfile(t *testing.T) {
-	testFileLocation := filepath.FromSlash("testdata/example.cartfile")
-	fileContent, err := ioutil.ReadFile(filepath.Clean(testFileLocation))
+	testFileLocation := visitor.SolvePathToTestFolder("example.cartfile")
+	fileContent, err := ioutil.ReadFile(testFileLocation)
 
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	testFile := lexer.NewInputFile("test", testFileLocation, fileContent)
+	testFile := visitor.NewInputFile("test", testFileLocation, fileContent)
 
 	libraries, err := ExtractLibsFromCartfile(testFile)
 
@@ -85,5 +84,35 @@ func TestExtractLibsFromCartfile(t *testing.T) {
 
 	if !foundLatestLib {
 		t.Fatal("Failed to find the library with latest version from GitHub Enterprise Server")
+	}
+}
+
+func TestExtractLibsFromCartfiles(t *testing.T) {
+	testDir := visitor.SolvePathToTmpFolder("ios")
+
+	libraries, err := ExtractLibsFromCartfiles(testDir)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	if len(libraries) <= 0 {
+		t.Fatal("Should have found libraries")
+	}
+
+	found := false
+	for _, library := range libraries {
+		if library.Name == "testfairy/testfairy-carthage" {
+			if library.Version == "1.19.7" {
+				found = true
+				break
+			}
+
+			t.Fatal("Problems parsing the Testfairy version.")
+		}
+	}
+
+	if !found {
+		t.Fatal("Should have found testfairy")
 	}
 }

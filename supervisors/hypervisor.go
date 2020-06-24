@@ -3,103 +3,61 @@ package supervisors
 import (
 	"bytes"
 	"encoding/json"
-	"html/template"
+	"fmt"
+	"insider/util"
 	"log"
 	"os"
-	"path/filepath"
-
-	"github.com/insidersec/insider/models"
+	"strconv"
+	"strings"
 )
-
-// ResultFolderName is the default output folder for reports
-const ResultFolderName string = "results"
-const resultJSONFilename string = "report.json"
-const resultHTMLFilename string = "report.html"
 
 // SourceCodeInfo holds information about the received code to analyze
 type SourceCodeInfo struct {
-	Tech             string
-	PhysicalPath     string
-	ForceOverwriting bool
+	Path         string
+	Tech         string
+	SastID       string
+	Version      string
+	ComponentID  string
+	PhysicalPath string
+
+	// Hashing
+	MD5Hash    string
+	SHA1Hash   string
+	SHA256Hash string
 }
 
-type templateData struct {
-	Count           int
-	Vulnerabilities []models.Vulnerability
-}
+// reportResult will handle the logic to upload the final report about the source code
+// being analyzed to somewhere it can be feed into other tools or used by hand.
+// By default, in development environment it will save the report to a file in the
+// current directory with the name of report-[here will be the SAST ID].json
+func reportResult(
+	codeInfo SourceCodeInfo,
+	bReport []byte) error {
 
-func exportHTMLReport(findings []models.Vulnerability) error {
-	reportHTML := filepath.Join(ResultFolderName, resultHTMLFilename)
+	// Running on debug mode, should avoid communication with the Console.
+	reportFilename := fmt.Sprintf("report-json.json")
+	pwd, _ := os.Getwd()
+	log.Printf("Json Report %s/%s", pwd, "report-json.json")
+	//log.Println("Writting report to JSON file.")
 
-	htmlFile, err := os.OpenFile(reportHTML, os.O_CREATE|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(reportFilename, os.O_CREATE|os.O_WRONLY, 0666)
 
 	if err != nil {
-		return err
+		log.Println("Problems writing the report to the JSON file.")
 	}
 
-	defer htmlFile.Close()
+	defer file.Close()
 
 	// Makes sure we start to write in the beginning of the file
 	// and overwriting anything that was previously inside the file
-	err = htmlFile.Truncate(0)
-
-	if err != nil {
-		log.Println("Problems writing the report to the HTML file.")
-		return err
-	}
-
-	_, err = htmlFile.Seek(0, 0)
-
-	if err != nil {
-		log.Println("Problems writing the report to the HTML file.")
-		return err
-	}
-
-	rawTemplate := getReportHTML()
-	reportTemplate, err := template.New("report").Parse(rawTemplate)
-
-	if err != nil {
-		return err
-	}
-
-	templateData := templateData{
-		Count:           len(findings),
-		Vulnerabilities: findings,
-	}
-
-	err = reportTemplate.Execute(htmlFile, templateData)
-
-	if err != nil {
-		return err
-	}
-
-	log.Println("Saved report's HTML")
-
-	return nil
-}
-
-func exportJSONReport(bReport []byte) error {
-	reportJSON := filepath.Join(ResultFolderName, resultJSONFilename)
-
-	jsonFile, err := os.OpenFile(reportJSON, os.O_CREATE|os.O_WRONLY, 0600)
+	err = file.Truncate(0)
 
 	if err != nil {
 		log.Println("Problems writing the report to the JSON file.")
 		return err
 	}
 
-	defer jsonFile.Close()
-
-	// Makes sure we start to write in the beginning of the file
-	// and overwriting anything that was previously inside the file
-	err = jsonFile.Truncate(0)
-
-	if err != nil {
-		log.Println("Problems writing the report to the JSON file.")
-		return err
-	}
-
-	_, err = jsonFile.Seek(0, 0)
+	_, err = file.Seek(0, 0)
 
 	if err != nil {
 		log.Println("Problems writing the report to the JSON file.")
@@ -116,40 +74,24 @@ func exportJSONReport(bReport []byte) error {
 	// - the third is a prefix to each line in the input buffer
 	// - the fourth is the actual character to be used in identation
 	//    here we're using space for compatibility
-	if err := json.Indent(&outputBuffer, bReport, "", " "); err != nil {
-		log.Println("Problems writing the report to the JSON file.")
-		return err
-	}
+	json.Indent(&outputBuffer, bReport, "", " ")
 
-	bytesWritten, err := jsonFile.Write(outputBuffer.Bytes())
+	//formattedContent, err := strconv.Unquote(strings.Replace(strconv.Quote(string(outputBuffer.Bytes())), `\\u`, `\u`, -1))
+	formattedContent, err := strconv.Unquote(strings.Replace(strconv.Quote(string(outputBuffer.Bytes())), ``, ``, -1))
 
 	if err != nil {
 		log.Println("Problems writing the report to the JSON file.")
 		return err
 	}
 
-	log.Printf("Saved report's JSON with %f MB", float64(bytesWritten)/(1024*1024))
-	return nil
-}
-
-// reportResult will handle the logic to upload the final report about the source code
-// being analyzed to somewhere it can be feed into other tools or used by hand.
-// By default, in development environment it will save the report to a file in the
-// current directory with the name of report.json
-func reportResult(codeInfo SourceCodeInfo, findings []models.Vulnerability, bReport []byte) error {
-	log.Println("Writting report...")
-
-	err := exportJSONReport(bReport)
+	bytesWritten, err := file.Write([]byte(formattedContent))
 
 	if err != nil {
+		log.Println("Problems writing the report to the JSON file.")
 		return err
 	}
 
-	err = exportHTMLReport(findings)
-
-	if err != nil {
-		return err
-	}
+	log.Printf("Json Report %v bytes written successfully", util.ByteCountSI(int64(bytesWritten)))
 
 	return nil
 }
