@@ -1,2 +1,4 @@
 artifacts/
 results/
+*.DS_Store
+*.ideia
