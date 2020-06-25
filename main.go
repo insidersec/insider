@@ -23,7 +23,7 @@ func main() {
 	//flag.StringVar(&lang, "language", "", flaglabel["language"])
 
 	// Optional flags
-	flag.BoolVar(&ignoreWarnings, "force", false, "Overwrite the results directory. Insider does not overwrite the results directory by default - Optional")
+	flag.BoolVar(&ignoreWarnings, "force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default - Optional")
 	flag.BoolVar(&noHTML, "no-html", false, "Skips the report generation in the HTML format - Optional")
 	flag.BoolVar(&noJSON, "no-json", false, "Skips the report generation in the JSON format - Optional")
 	flag.BoolVar(&noBanner, "no-banner", false, "Skips the banner printing (Useful for CI/Docker environments) - Optional")
@@ -65,8 +65,7 @@ func main() {
 		}
 		log.Fatalln("")
 	}
-	//
-	//correlationID := ""
+
 	componentID := ""
 	sastID := ""
 	version := ""
@@ -74,7 +73,7 @@ func main() {
 
 	var err error
 
-	destinationFileName := "" // onde fica o arquivo zip
+	destinationFileName := "" // where zip file is
 
 	codeInfo := supervisors.SourceCodeInfo{
 		Path:         path,
@@ -88,22 +87,22 @@ func main() {
 	switch tech {
 	case "android":
 		log.Printf("Starting analysis for Android target %s", targetFolder)
-		err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose)
+		err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Printf("Finished analysis for Android app #%s", targetFolder)
 		break
 	case "csharp":
 		log.Printf("Starting analysis for C# app #%s", sastID)
-		err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose)
+		err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Printf("Finished analysis for C# application #%s", sastID)
 		break
 	case "javascript":
 		log.Printf("Starting analysis for JavaScript/TypeScript app #%s", sastID)
-		err = supervisors.RunJSSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose)
+		err = supervisors.RunJSSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Println("Finished JavaScript/TypeScript analysis")
 		break
 	case "ios":
 		log.Printf("Starting analysis for iOS app #%s", sastID)
-		err = supervisors.RunIOSCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose)
+		err = supervisors.RunIOSCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Printf("Finished analysis for iOS app #%s", sastID)
 		break
 	default:

@@ -280,12 +280,6 @@ func ResumeReport(r newreport) {
 	log.Println("visit http://insidersec.io and get to know our enterprise version.")
 	log.Println("If you are a developer, then you can contribute to the improvement of the software while using an open source version")
 	log.Println("-----------------------------------------------------------------------------------------------------------------------")
-	log.Println("This Project are free software except otherwise stated. You can redistribute it and/or modify it under the terms of the ")
-	log.Println("GNU General Public License as published by the Free Software Foundation. ")
-	log.Println("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY")
-	log.Println("without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. ")
-	log.Println("See the GNU General Public License for more details.")
-	log.Println("-----------------------------------------------------------------------------------------------------------------------")
 }
 
 func ConsoleReport(r newreport) {
@@ -306,7 +300,7 @@ func ConsoleReport(r newreport) {
 		if i == 0 {
 			log.Printf("%-20v %-10v \n", "Library", "Version")
 		}
-		log.Printf("%-20v %-10=v \n", k.Name, k.Version)
+		log.Printf("%-20v %-10v \n", k.Name, k.Version)
 	}
 	log.Println(" ")
 

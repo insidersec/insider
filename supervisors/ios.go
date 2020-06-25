@@ -12,7 +12,7 @@ import (
 )
 
 // RunIOSCodeAnalysis self-explained
-func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder string, noJSON bool, noHTML bool, security int, verbose bool) error {
+func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder string, noJSON bool, noHTML bool, security int, verbose bool, ignoreWarnings bool) error {
 	log.Println("Starting iOS Source code analysis")
 
 	report := reports.IOSReport{}
@@ -74,7 +74,7 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(codeInfo, bReport)
+		err = reportResult(bReport, ignoreWarnings)
 		if err != nil {
 			return err
 		}
@@ -83,7 +83,7 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang)
+		export.ToHtml(r, lang, ignoreWarnings)
 	}
 	if err != nil {
 		return err

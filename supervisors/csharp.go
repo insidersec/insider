@@ -11,7 +11,7 @@ import (
 )
 
 // RunCSharpSourceCodeAnalysis analyzes the given folder and constructs a models.Report.
-func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder string, noJSON bool, noHTML bool, security int, verbose bool) error {
+func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder string, noJSON bool, noHTML bool, security int, verbose bool, ignoreWarnings bool) error {
 	log.Println("Starting C# source code analysis")
 
 	report := reports.Report{}
@@ -41,7 +41,7 @@ func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinati
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(codeInfo, bReport)
+		err = reportResult(bReport, ignoreWarnings)
 		if err != nil {
 			return err
 		}
@@ -50,7 +50,7 @@ func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinati
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang)
+		export.ToHtml(r, lang, ignoreWarnings)
 	}
 	if err != nil {
 		return err

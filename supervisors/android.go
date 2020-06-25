@@ -10,7 +10,7 @@ import (
 )
 
 // RunAndroidSourceCodeAnalysis analyzes the given folder and constructs a models.AndroidReport.
-func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder string, noJSON bool, noHTML bool, security int, verbose bool) error {
+func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder string, noJSON bool, noHTML bool, security int, verbose bool, ignoreWarnings bool) error {
 	log.Println("Starting Android source code analysis")
 
 	report := reports.AndroidReport{}
@@ -57,7 +57,7 @@ func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinat
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(codeInfo, bReport)
+		err = reportResult(bReport, ignoreWarnings)
 		if err != nil {
 			return err
 		}
@@ -66,7 +66,7 @@ func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinat
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang)
+		export.ToHtml(r, lang, ignoreWarnings)
 	}
 	if err != nil {
 		log.Printf("Error: %s", err.Error())

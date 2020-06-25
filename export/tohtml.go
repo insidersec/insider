@@ -2,10 +2,12 @@ package export
 
 import (
 	"bytes"
+	"fmt"
 	"html/template"
 	"insider/util"
 	"log"
 	"os"
+	"time"
 )
 
 func createHTMLFile(file string, content string) {
@@ -34,7 +36,7 @@ func createHTMLFile(file string, content string) {
 	}
 }
 
-func ToHtml(report interface{}, lang string) {
+func ToHtml(report interface{}, lang string, ignoreWarnings bool) {
 	tmpl, err := template.New("report").Parse(GetTemplate(lang))
 	if err != nil {
 		log.Println(err)
@@ -47,6 +49,14 @@ func ToHtml(report interface{}, lang string) {
 		return
 	}
 
-	createHTMLFile("report.html", tpl.String())
+	var reportname string
+	if !ignoreWarnings {
+		currentTime := time.Now()
+		reportname = fmt.Sprintf("report-%v.html", currentTime.Format("20060102150405"))
+	} else {
+		reportname = "report.html"
+	}
+
+	createHTMLFile(reportname, tpl.String())
 	util.DownloadFile("style.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css")
 }

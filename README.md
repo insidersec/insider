@@ -46,7 +46,7 @@ OBS.: The target folder should contain all the source code that should be analyz
 Insider is the CLI project from the Insider Application Security Team for the community
 Usage :
   -force
-        Overwrite the results directory. Insider does not overwrite the results directory by default - Optional
+        Overwrite the results directory. Insider does not overwrite the the report file name by default - Optional
   -no-banner
         Skips the banner printing (Useful for CI/Docker environments) - Optional
   -no-html
