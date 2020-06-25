@@ -40,7 +40,7 @@ func reportResult(bReport []byte, ignoreWarnings bool) error {
 		currentTime := time.Now()
 		reportFilename = fmt.Sprintf("report-%v.json", currentTime.Format("20060102150405"))
 	} else {
-		reportFilename = "report.html"
+		reportFilename = "report.json"
 	}
 	pwd, _ := os.Getwd()
 	log.Printf("Json Report %s/%s", pwd, reportFilename)
