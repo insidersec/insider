@@ -40,13 +40,13 @@ Have fun! :rocket:
 
 OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
 
-```bash
+```
 ./insider --help
-
 Insider is the CLI project from the Insider Application Security Team for the community
-Usage :
+
+Usage:
   -force
-        Overwrite the results directory. Insider does not overwrite the the report file name by default - Optional
+        Overwrite the report file name. Insider does not overwrite the results directory by default - Optional
   -no-banner
         Skips the banner printing (Useful for CI/Docker environments) - Optional
   -no-html
@@ -65,10 +65,10 @@ Usage :
         -tech csharp
   -v    Set true for verbose output
 
-Examples of use:
-        insider -tech javascript -target myprojectfolder 
-        insider -tech=android -target=myandroidfolder 
-        insider -tech android -target <myfolder>  no-html
+Example of use :
+        insider -tech javascript -target <myprojectfolder>
+        insider -tech=android -target=<myandroidfolder>
+        insider -tech android -target <myfolder> -no-html
 ```
 
 ---

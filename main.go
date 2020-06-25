@@ -20,7 +20,6 @@ func main() {
 
 	flag.StringVar(&tech, "tech", "", flaglabel["tech"])
 	flag.StringVar(&targetFolder, "target", "", flaglabel["target"])
-	//flag.StringVar(&lang, "language", "", flaglabel["language"])
 
 	// Optional flags
 	flag.BoolVar(&ignoreWarnings, "force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default - Optional")
@@ -36,7 +35,7 @@ func main() {
 		flag.PrintDefaults()
 		fmt.Println("Example of use :\n\tinsider -tech javascript -target myprojectfolder \n" +
 			"\tinsider -tech=android -target=myandroidfolder \n" +
-			"\tinsider -tech android -target <myfolder>  no-html")
+			"\tinsider -tech android -target <myfolder> -no-html")
 	}
 
 	log.SetPrefix("[INSIDER]: ")
