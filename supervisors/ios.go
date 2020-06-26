@@ -91,6 +91,8 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 
 	log.Printf("Found %d warnings", len(report.Vulnerabilities))
 
+	reports.ResumeReport(r)
+
 	util.CheckSecurityScore(security, int(report.IOSInfo.SecurityScore))
 
 	return nil

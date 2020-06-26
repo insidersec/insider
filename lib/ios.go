@@ -177,14 +177,6 @@ func AnalyzeIOSBinary(dirname, sastID string, report *reports.IOSReport, lang st
 
 // AnalyzeIOSSource self-explained
 func AnalyzeIOSSource(dirname, sastID string, report *reports.IOSReport, lang string) error {
-	log.Println("Starting analysis on PList and XCodeProj files")
-	err := analyzers.AnalyzePList(dirname, report)
-
-	if err != nil {
-		return err
-	}
-
-	log.Println("Finished PList/XCodeProj analysis")
 
 	files, rules, err := LoadsFilesAndRules(dirname, "ios", lang)
 
