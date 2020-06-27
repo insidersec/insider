@@ -38,7 +38,8 @@ Have fun! :rocket:
 
 ### Usage
 
-OBS.: Do not put insider in the same project folder.
+OBS.: 
+Do not put the insider in the same folder that contains the files to be analyzed.
 
 The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
 
