@@ -38,7 +38,9 @@ Have fun! :rocket:
 
 ### Usage
 
-OBS.: The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
+OBS.: Do not put insider in the same project folder.
+
+The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
 
 ```
 ./insider --help
