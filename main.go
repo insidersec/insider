@@ -6,6 +6,7 @@ import (
 	"insider/supervisors"
 	"insider/util"
 	"log"
+	"os"
 )
 
 func main() {
@@ -58,6 +59,13 @@ func main() {
 	if targetFolder == "" {
 		flagerr = append(flagerr, "Should specify a target folder\n-target <folder>\n-target <myprojectfolder>")
 	}
+
+	getpath, _ := os.Getwd()
+
+	if targetFolder == "." || targetFolder == getpath {
+		flagerr = append(flagerr, "Please put the insider out of the folder to be analyzed!")
+	}
+
 	if len(flagerr) >= 1 {
 		for i := range flagerr {
 			log.Println(flagerr[i])
