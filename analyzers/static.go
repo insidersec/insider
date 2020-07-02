@@ -113,11 +113,7 @@ func runNotRule(
 	return
 }
 
-func runSingleRule(
-	fileInput visitor.InputFile,
-	rawExpression string,
-	info Info,
-	rule lexer.Rule) (findings []Finding, isEmptyMatch bool) {
+func runSingleRule(fileInput visitor.InputFile, rawExpression string, info Info, rule lexer.Rule) (findings []Finding, isEmptyMatch bool) {
 	isEmptyMatch = false
 	expression := regexp.MustCompile(rawExpression)
 
