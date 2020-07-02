@@ -3,7 +3,7 @@ package models
 // Permission is a AndroidManifest permission entry
 type Permission struct {
 	Name     string `xml:"name,attr"`
-	Required bool   `xml:"required,attr"`
+	Required string `xml:"required,attr"`
 }
 
 // SDKInfo is the AndroidManifest informative entry
@@ -38,22 +38,22 @@ type ManifestActivity struct {
 // BroadcastReceiver holds data about a broadcast receiver entry in AndroidManifest.xml
 type BroadcastReceiver struct {
 	Name       string `xml:"name,attr"`
-	Enabled    bool   `xml:"enabled,attr"`
-	IsExported bool   `xml:"exported,attr"`
+	Enabled    string `xml:"enabled,attr"`
+	IsExported string `xml:"exported,attr"`
 	Permission string `xml:"permission,attr"`
 }
 
 // Service holds data about a Android Service entry in AndroidManifest.xml file
 type Service struct {
 	Name       string `xml:"name,attr"`
-	IsExported bool   `xml:"exported,attr"`
+	IsExported string `xml:"exported,attr"`
 	Permission string `xml:"permission,attr"`
 }
 
 // ApplicationInfo holds app data from AndroidManifest.xml
 type ApplicationInfo struct {
 	Name               string              `xml:"name,attr"`
-	AllowADBBackup     bool                `xml:"allowBackup,attr"`
+	AllowADBBackup     string              `xml:"allowBackup,attr"`
 	Activities         []ManifestActivity  `xml:"activity"`
 	BroadcastReceivers []BroadcastReceiver `xml:"receiver"`
 	Services           []Service           `xml:"service"`
