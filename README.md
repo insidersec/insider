@@ -5,7 +5,7 @@
       <img src="https://img.shields.io/badge/license-LGPL-blue.svg">
     </a>
     <a href="https://github.com/insidersec/insider/releases">
-      <img src="https://img.shields.io/badge/version-2.0.0-blue.svg">
+      <img src="https://img.shields.io/badge/version-2.0.4-blue.svg">
     </a>
   </p>
 </p>
