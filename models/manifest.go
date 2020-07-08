@@ -67,7 +67,7 @@ type Manifest struct {
 	Application ApplicationInfo `xml:"application"`
 
 	// Info section
-	VersionName            string `xml:versionName,attr`
+	VersionName            string `xml:"versionName,attr"`
 	VersionCode            string `xml:"versionCode,attr"`
 	CompiledSDKVersion     string `xml:"compileSdkVersion,attr"`
 	CompiledSDKVersionCode string `xml:"compileSdkVersionCodename,attr"`

@@ -24,14 +24,21 @@ func init() {
 // GetPlistFromJSON takes care of the special structure for Plist files
 // in decompiled apps, searching for a file called Info.plist inside
 // the given directory in `dirname` param
-func GetPlistFromJSON(dirname string) (plist models.Plist, err error) {
+func GetPlistFromJSON(dirname string) (models.Plist, error) {
+	var plist models.Plist
+
 	infoPlistFilename := filepath.Join(dirname, "Info.plist")
 
 	infoPlistContent, err := ioutil.ReadFile(infoPlistFilename)
+	if err != nil {
+		return models.Plist{}, err
+	}
 
-	err = json.Unmarshal(infoPlistContent, &plist)
+	if err := json.Unmarshal(infoPlistContent, &plist); err != nil {
+		return models.Plist{}, err
+	}
 
-	return
+	return plist, nil
 }
 
 // ParseLibsFile gets the `libs.e` file from the decompiler

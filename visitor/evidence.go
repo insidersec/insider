@@ -16,11 +16,11 @@ func ArchiveEvidence(correlationID, filename string) (evidencePath string, err e
 
 	// If the folder does not exists yet, creates it.
 	if _, err = os.Stat(archivePhysicalPath); os.IsNotExist(err) {
-		os.Mkdir(archivePhysicalPath, 0777)
+		if err := os.Mkdir(archivePhysicalPath, 0777); err != nil {
+			return "", err
+		}
 
 	} else if err != nil {
-		// Means that any other error have happened, so deal with it.
-		// a.k.a the caller should deal with the error :D
 		return
 	}
 

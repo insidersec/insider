@@ -69,12 +69,7 @@ func sumFiles(done <-chan struct{}, root string) (<-chan result, <-chan error) {
 }
 
 // DigestFile returns the MD5, SHA1 and SHA256 digests for the given file
-func DigestFile(filename string) (
-	md5Digest string,
-	sha1Digest string,
-	sha256Digest string,
-	err error,
-) {
+func DigestFile(filename string) (md5Digest string, sha1Digest string, sha256Digest string, err error) {
 	data, err := ioutil.ReadFile(filename)
 
 	if err != nil {
@@ -88,8 +83,6 @@ func DigestFile(filename string) (
 	md5Digest = fmt.Sprintf("%x", md5Hash)
 	sha1Digest = fmt.Sprintf("%x", sha1Hash)
 	sha256Digest = fmt.Sprintf("%x", sha256Hash)
-
-	data = nil
 
 	return
 }

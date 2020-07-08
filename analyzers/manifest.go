@@ -19,19 +19,14 @@ import (
 )
 
 var xmlFilesFilter *regexp.Regexp
-var gradleVersions *regexp.Regexp
 var haveMainActivity *regexp.Regexp
 var gradleFilesFilter *regexp.Regexp
-
-var substituteQuotationMarks *regexp.Regexp
 
 var extractGradleVersionName *regexp.Regexp
 var extractGradleVersionNumber *regexp.Regexp
 var extractGradleTargetSDKVersion *regexp.Regexp
 var extractGradleMinimumSDKVersion *regexp.Regexp
 var extractGradleMaximumSDKVersion *regexp.Regexp
-
-var evaluateGradleVariable string
 
 const (
 	// UnknownStatus is the default status for a Manifest permission
@@ -42,10 +37,6 @@ func init() {
 	xmlFilesFilter = regexp.MustCompile(`AndroidManifest\.xml`)
 	gradleFilesFilter = regexp.MustCompile(`dependencies\w*\.gradle`)
 
-	gradleVersions = regexp.MustCompile(`(\w*)\s+=\s+(['"].+['"]|\d+)`)
-
-	substituteQuotationMarks = regexp.MustCompile(`['|"]`)
-
 	haveMainActivity = regexp.MustCompile(`android.intent.action.MAIN`)
 
 	extractGradleVersionName = regexp.MustCompile(`versionName\s+(?:=|)(\d*\.\d*\.\d*)`)
@@ -54,7 +45,6 @@ func init() {
 	extractGradleTargetSDKVersion = regexp.MustCompile(`targetSdkVersion\s+(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`)
 	extractGradleMaximumSDKVersion = regexp.MustCompile(`maxSdkVersion\s+(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`)
 
-	evaluateGradleVariable = `%s\s*=\s*(?:\=\s|)(?:(?:(?:['"]|)(.*)(?:['"]|))|\d*)`
 }
 
 func isMainPackage(content string) bool {
@@ -73,7 +63,7 @@ func findManifests(filename string) bool {
 
 func loadManifestData(lang string) (permissions []reports.ManifestPermission, err error) {
 	fullPath, _ := os.Getwd()
-	log.Println("fullpath",fullPath)
+	log.Println("fullpath", fullPath)
 	projectPrefix := ""
 
 	manifestData, err := ioutil.ReadFile(filepath.Join(fullPath, projectPrefix, "analyzers/manifest.json"))
@@ -105,12 +95,10 @@ func loadManifestData(lang string) (permissions []reports.ManifestPermission, er
 // OBS.: You don't have to worry about this field, the Insider BFF will provide it.
 func AnalyzeAndroidManifest(dirname, sastID string, report *reports.AndroidReport, lang string) error {
 
-
 	//manifestPermissionData, err := loadManifestData(lang)
 	log.Println("Loading manifest permission")
 	manifestPermissionData := GetManifestPermission()
 	log.Println(len(manifestPermissionData))
-
 
 	appSize, err := GetUnpackedAppSize(dirname)
 

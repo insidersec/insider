@@ -43,11 +43,7 @@ func ExtractLibsFromPodfile(file visitor.InputFile) (libraries []reports.Library
 }
 
 func isPodfile(filename string) bool {
-	if podfileFilter.MatchString(filename) {
-		return true
-	}
-
-	return false
+	return podfileFilter.MatchString(filename)
 }
 
 // ExtractLibsFromPodfiles selfexplained

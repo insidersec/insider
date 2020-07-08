@@ -9,7 +9,6 @@ import (
 	"strings"
 )
 
-var sampleTemplate string
 var scopeFinder *regexp.Regexp
 var newlineFinder *regexp.Regexp
 var scopeExtractor *regexp.Regexp

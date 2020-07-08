@@ -69,7 +69,7 @@ func reportResult(bReport []byte, ignoreWarnings bool) error {
 		return err
 	}
 
-	formattedContent, err := strconv.Unquote(strings.Replace(strconv.Quote(string(outputBuffer.Bytes())), ``, ``, -1))
+	formattedContent, err := strconv.Unquote(strings.Replace(strconv.Quote(outputBuffer.String()), ``, ``, -1))
 	if err != nil {
 		return fmt.Errorf("Problems writing the report to the JSON file: %w", err)
 	}

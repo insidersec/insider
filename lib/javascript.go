@@ -81,7 +81,7 @@ func AnalyzeJSDependencies(dirname, sastID string, report *reports.Report) error
 		libraries = append(libraries, libraryFound)
 	}
 
-	if len(libraries) <= 0 && existpackageJSON == true {
+	if len(libraries) <= 0 && existpackageJSON {
 		log.Println("Didn't found any library in package.json file, something should have gone wrong.")
 	}
 

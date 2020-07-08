@@ -254,11 +254,7 @@ func findFilesForDataExtraction(filename string) bool {
 func isUnique(records []string, record string) bool {
 	index := sort.SearchStrings(records, record)
 
-	if !(index < len(records) && records[index] == record) {
-		return true
-	}
-
-	return false
+	return !(index < len(records) && records[index] == record)
 }
 
 func extractURLs(records []string, content string) (result []string) {

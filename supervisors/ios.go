@@ -39,12 +39,10 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 		if err := analyzers.AnalyzeIOSSource(destinationFolder, codeInfo.SastID, &report, lang); err != nil {
 			return err
 		}
-		break
 	case "binary":
 		if err := analyzers.AnalyzeIOSBinary(destinationFolder, codeInfo.SastID, &report, lang); err != nil {
 			return err
 		}
-		break
 	}
 
 	log.Println("Finished code analysis")
