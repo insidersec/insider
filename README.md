@@ -10,6 +10,8 @@
   </p>
 </p>
 
+This document is available in versions: [`Portuguese`](https://github.com/insidersec/insider/blob/master/README_pt-br.md) - [`Original`](https://github.com/insidersec/insider).
+
 Insider is the [OSS](https://opensource.org/) CLI project from the [Insider Application Security](https://insidersec.io) Security Team for the community.
 
 This project have a simplified version of the proprietary Static Application Security Testing engine developed internally by us, this version of Insider is exclusively focused on covering the [OWASP Top 10](https://owasp.org/www-project-top-ten/), to make source code analysis to find vulnerabilities right in the source code, focused on a agile and easy to implement software inside your DevOps pipeline.
@@ -38,7 +40,7 @@ Have fun! :rocket:
 
 ### Usage
 
-OBS.: 
+OBS.:
 Do not put the insider in the same folder that contains the files to be analyzed.
 
 The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
