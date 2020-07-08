@@ -67,10 +67,10 @@ func main() {
 	}
 
 	if len(flagerr) >= 1 {
-		for i := range flagerr {
-			log.Println(flagerr[i])
+		for _, err := range flagerr {
+			log.Printf("Error: %v\n", err)
 		}
-		log.Fatalln("")
+		os.Exit(1)
 	}
 
 	componentID := ""
@@ -118,7 +118,8 @@ func main() {
 	}
 
 	if err != nil {
-		log.Println(err.Error())
+		log.Printf("Error: %v\n", err)
+		os.Exit(1)
 	}
 
 }
