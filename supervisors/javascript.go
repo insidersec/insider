@@ -19,17 +19,11 @@ func RunJSSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFo
 	report.Info.SHA1 = codeInfo.SHA1Hash
 	report.Info.SHA256 = codeInfo.SHA256Hash
 
-	err := analyzers.AnalyzeJSDependencies(destinationFolder, codeInfo.SastID, &report)
-
-	if err != nil {
-		log.Println(err.Error())
+	if err := analyzers.AnalyzeJSDependencies(destinationFolder, codeInfo.SastID, &report); err != nil {
 		return err
 	}
 
-	err = analyzers.AnalyzeNonAppSource(destinationFolder, codeInfo.SastID, "javascript", &report, lang)
-
-	if err != nil {
-		log.Println(err.Error())
+	if err := analyzers.AnalyzeNonAppSource(destinationFolder, codeInfo.SastID, "javascript", &report, lang); err != nil {
 		return err
 	}
 
@@ -41,16 +35,14 @@ func RunJSSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFo
 	}
 
 	bReport, err := json.Marshal(report)
-
 	if err != nil {
-		log.Println(err.Error())
 		return err
 	}
+
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(bReport, ignoreWarnings)
-		if err != nil {
+		if err := reportResult(bReport, ignoreWarnings); err != nil {
 			return err
 		}
 	}
@@ -59,7 +51,9 @@ func RunJSSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFo
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang, ignoreWarnings)
+		if err := export.ToHtml(r, lang, ignoreWarnings); err != nil {
+			return err
+		}
 	}
 
 	reports.ResumeReport(r)

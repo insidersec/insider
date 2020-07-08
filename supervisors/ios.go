@@ -22,7 +22,6 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 	report.IOSInfo.SHA256 = codeInfo.SHA256Hash
 
 	iosType, err := visitor.ClassifySample(destinationFolder)
-
 	if err != nil {
 		return err
 	}
@@ -31,38 +30,27 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 	case "source":
 		log.Println("Extracting libraries")
 		libraries, err := analyzers.ExtractLibrariesFromFiles(destinationFolder, codeInfo.SastID)
-
 		if err != nil {
-			log.Println(err.Error())
 			return err
 		}
 
 		report.Libraries = libraries
 
-		err = analyzers.AnalyzeIOSSource(destinationFolder, codeInfo.SastID, &report, lang)
-
-		if err != nil {
-			log.Println(err.Error())
+		if err := analyzers.AnalyzeIOSSource(destinationFolder, codeInfo.SastID, &report, lang); err != nil {
 			return err
 		}
-
 		break
 	case "binary":
-		err = analyzers.AnalyzeIOSBinary(destinationFolder, codeInfo.SastID, &report, lang)
-		if err != nil {
-			log.Println(err.Error())
+		if err := analyzers.AnalyzeIOSBinary(destinationFolder, codeInfo.SastID, &report, lang); err != nil {
 			return err
 		}
-
 		break
 	}
 
 	log.Println("Finished code analysis")
 
 	bReport, err := json.Marshal(report)
-
 	if err != nil {
-		log.Println(err.Error())
 		return err
 	}
 
@@ -74,8 +62,7 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(bReport, ignoreWarnings)
-		if err != nil {
+		if err := reportResult(bReport, ignoreWarnings); err != nil {
 			return err
 		}
 	}
@@ -83,10 +70,9 @@ func RunIOSCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinationFolder 
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang, ignoreWarnings)
-	}
-	if err != nil {
-		return err
+		if err := export.ToHtml(r, lang, ignoreWarnings); err != nil {
+			return err
+		}
 	}
 
 	log.Printf("Found %d warnings", len(report.Vulnerabilities))

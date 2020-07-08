@@ -20,10 +20,7 @@ func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinati
 	report.Info.SHA1 = codeInfo.SHA1Hash
 	report.Info.SHA256 = codeInfo.SHA256Hash
 
-	err := analyzers.AnalyzeNonAppSource(destinationFolder, codeInfo.SastID, "csharp", &report, lang)
-
-	if err != nil {
-		log.Println(err.Error())
+	if err := analyzers.AnalyzeNonAppSource(destinationFolder, codeInfo.SastID, "csharp", &report, lang); err != nil {
 		return err
 	}
 
@@ -31,7 +28,6 @@ func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinati
 
 	bReport, err := json.Marshal(report)
 	if err != nil {
-		log.Println(err.Error())
 		return err
 	}
 
@@ -41,8 +37,7 @@ func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinati
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(bReport, ignoreWarnings)
-		if err != nil {
+		if err := reportResult(bReport, ignoreWarnings); err != nil {
 			return err
 		}
 	}
@@ -50,10 +45,9 @@ func RunCSharpSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinati
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang, ignoreWarnings)
-	}
-	if err != nil {
-		return err
+		if err := export.ToHtml(r, lang, ignoreWarnings); err != nil {
+			return err
+		}
 	}
 
 	log.Printf("Found %d warnings", len(report.Vulnerabilities))
