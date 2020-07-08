@@ -24,7 +24,7 @@ var csharpExtensionFilter *regexp.Regexp
 var androidExtensionFilter *regexp.Regexp
 
 func init() {
-	ExtensionFilter = regexp.MustCompile(`(\w*\.[ot]tf)|(\w*\.bat)|(\w*\.sh)|(\w*\.png)|(\w*\.jpg)|(\w*\.jpeg)|(\w*\.pdf)|(\w*\.md)|(\w*\.markdown)|(\w*\.svg)|(\w*\.woff2)|(\w*\.woff)|(\w*\.ico)|(\w*LICENSE)|(\w*\.txt)|(\w*\.eot)|(\w*\.git)`)
+	ExtensionFilter = regexp.MustCompile(`(\w*\.[ot]tf)|(\w*\.bat)|(\w*\.sh)|(\w*\.png)|(\w*\.jpg)|(\w*\.jpeg)|(\w*\.pdf)|(\w*\.md)|(\w*\.markdown)|(\w*\.svg)|(\w*\.woff2)|(\w*\.woff)|(\w*\.ico)|(\w*LICENSE)|(\w*\.txt)|(\w*\.eot)|(\w*\.git\W)|(\w*\.gitignore)`)
 
 	androidExtensionFilter =
 		regexp.MustCompile(`(\s*gradle\/.+\.jar)|(\w+\/android\/\w+)|(.+\.aar)|(.+\.cpp)|(.+\.h)|(.+\.mk)|(.+\.c)|(.+\.dex)|(.+\.apk)`)
@@ -35,7 +35,7 @@ func init() {
 
 	csharpExtensionFilter = regexp.MustCompile(`(.+\.css)|(.+\.map)|(.+\.js)|(.+\.exe)|(.+\.dll)|(.+\.p12)|(.+\.xml)|(.+\.svcmap)|(.+\.svcinfo)|(.+\.disco)|(.+\.cache)`)
 
-	jsExtensionFilter = regexp.MustCompile(`(.+\.js)|(.+\.jsx)|(.+\.ts)|(.+\.tsx)|`)
+	jsExtensionFilter = regexp.MustCompile(`(.+\.js)|(.+\.jsx)|(.+\.ts)|(.+\.tsx)`)
 }
 
 func androidManifestFilter(filename string) bool {
