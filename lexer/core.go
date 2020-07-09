@@ -4,7 +4,7 @@ func CoreRules(lang string) []Rule {
 	var all []Rule
 
 	var obj Rule
-	obj.ExactMatch = "(password\\s*=\\s*['|\"]\\w+['|\"])|(pass\\s*=\\s*['|\"]\\w+['|\"]\\s)|(pwd\\s*=\\s*['|\"]\\w+['|\"]\\s)|(passwd\\s*=\\s*['|\"]\\w+['|\"]\\s)|(senha\\s*=\\s*['|\"]\\w+['|\"])"
+	obj.ExactMatch = `(password\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])|(pass\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(pwd\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(passwd\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(senha\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])`
 	obj.CWE = "CWE-312"
 	obj.AverageCVSS = 6.8
 	obj.Description_en = "The file contains sensitive information written directly in the code, such as usernames, passwords, keys, etc. An attacker could decompile the application and obtain the data for improper use."
