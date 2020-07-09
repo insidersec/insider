@@ -20,18 +20,14 @@ func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinat
 	report.AndroidInfo.SHA256 = codeInfo.SHA256Hash
 
 	log.Println("Starting Android Manifest analysis")
-	err := analyzers.AnalyzeAndroidManifest(destinationFolder, codeInfo.SastID, &report, lang)
-
-	if err != nil {
-		log.Printf("Error: %s", err.Error())
+	if err := analyzers.AnalyzeAndroidManifest(destinationFolder, codeInfo.SastID, &report, lang); err != nil {
 		return err
 	}
+
 	log.Println("Finished Android Manifest analysis")
 
 	log.Println("Starting Android Source Code Analysis")
-	err = analyzers.AnalyzeAndroidSource(destinationFolder, codeInfo.SastID, &report, lang)
-	if err != nil {
-		log.Printf("Error: %s", err.Error())
+	if err := analyzers.AnalyzeAndroidSource(destinationFolder, codeInfo.SastID, &report, lang); err != nil {
 		return err
 	}
 
@@ -40,13 +36,11 @@ func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinat
 	log.Println("Finished Android source Code analysis")
 
 	bReport, err := json.Marshal(report)
-	log.Println("Report Done")
-	//log.Println(string(bReport))
-
 	if err != nil {
-		log.Printf("Error: %s", err.Error())
 		return err
 	}
+
+	log.Println("Report Done")
 
 	r := reports.DoHtmlReport(report)
 
@@ -57,8 +51,7 @@ func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinat
 	if noJSON {
 		log.Println("No Json report")
 	} else {
-		err = reportResult(bReport, ignoreWarnings)
-		if err != nil {
+		if err := reportResult(bReport, ignoreWarnings); err != nil {
 			return err
 		}
 	}
@@ -66,11 +59,9 @@ func RunAndroidSourceCodeAnalysis(codeInfo SourceCodeInfo, lang string, destinat
 	if noHTML {
 		log.Println("No Html report")
 	} else {
-		export.ToHtml(r, lang, ignoreWarnings)
-	}
-	if err != nil {
-		log.Printf("Error: %s", err.Error())
-		return err
+		if err := export.ToHtml(r, lang, ignoreWarnings); err != nil {
+			return err
+		}
 	}
 	log.Printf("Found %d warnings", len(report.Vulnerabilities))
 

@@ -61,18 +61,26 @@ func NewInsiderConnector() (insider InsiderConnector) {
 func (insider *InsiderConnector) getAuthentication() error {
 	url := insider.host + insider.auth.path
 	data := "{\"email\": \"" + insider.auth.user + "\", \"password\": \"" + insider.auth.password + "\"}"
+
 	var jsonStr = []byte(data)
+
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		return err
+	}
+
 	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := insider.client.Do(req)
-
 	if err != nil {
 		return err
 	}
 
 	defer resp.Body.Close()
-	body, _ := ioutil.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return err
+	}
 
 	if !strings.Contains(string(body), "{") {
 		errorMessage := fmt.Sprintf("problem getting auth token from Axion. Message: %s", string(body))
@@ -81,15 +89,11 @@ func (insider *InsiderConnector) getAuthentication() error {
 
 	tokenJSON := make(map[string]interface{})
 
-	err = json.Unmarshal(body, &tokenJSON)
-
-	if err != nil {
-		log.Println("Error while getting auth token from Axion JSON.")
-		return err
+	if err := json.Unmarshal(body, &tokenJSON); err != nil {
+		return fmt.Errorf("Error while getting auth token from Axion JSON: %w", err)
 	}
 
 	token, ok := tokenJSON["token"].(string)
-
 	if !ok {
 		return errors.New("problems authenticating for report upload")
 	}
@@ -104,28 +108,30 @@ func (insider *InsiderConnector) UpdateSASTStatus(componentID, sastID, version, 
 		return nil
 	}
 
-	err := insider.getAuthentication()
-
-	if err != nil {
+	if err := insider.getAuthentication(); err != nil {
 		return err
 	}
 
 	url := fmt.Sprintf(sastUpdateURL, insider.host, insider.path, sastID, componentID)
 	data := `{"version":"` + version + `","log":"` + log + `","status":"` + status + `","resultSast": true}`
+
 	var jsonStr = []byte(data)
+
 	req, err := http.NewRequest("PUT", url, bytes.NewBuffer(jsonStr))
+	if err != nil {
+		return err
+	}
+
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", insider.auth.token)
 
 	resp, err := insider.client.Do(req)
-
 	if err != nil {
 		return err
 	}
 
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-
 	if err != nil {
 		return err
 	}
@@ -147,26 +153,25 @@ func (insider *InsiderConnector) ReportSASTResult(componentID, sastID, path stri
 		return nil
 	}
 
-	err := insider.getAuthentication()
-
-	if err != nil {
+	if err := insider.getAuthentication(); err != nil {
 		return err
 	}
 
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(findings))
+	if err != nil {
+		return err
+	}
 
 	req.Header.Set("Content-Type", "application/json")
 	req.Header.Set("Authorization", insider.auth.token)
 
 	resp, err := insider.client.Do(req)
-
 	if err != nil {
 		return err
 	}
 
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
-
 	if err != nil {
 		return err
 	}

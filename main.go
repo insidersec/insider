@@ -67,10 +67,10 @@ func main() {
 	}
 
 	if len(flagerr) >= 1 {
-		for i := range flagerr {
-			log.Println(flagerr[i])
+		for _, err := range flagerr {
+			log.Printf("Error: %v\n", err)
 		}
-		log.Fatalln("")
+		os.Exit(1)
 	}
 
 	componentID := ""
@@ -96,29 +96,25 @@ func main() {
 		log.Printf("Starting analysis for Android target %s", targetFolder)
 		err = supervisors.RunAndroidSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Printf("Finished analysis for Android app #%s", targetFolder)
-		break
 	case "csharp":
 		log.Printf("Starting analysis for C# app #%s", sastID)
 		err = supervisors.RunCSharpSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Printf("Finished analysis for C# application #%s", sastID)
-		break
 	case "javascript":
 		log.Printf("Starting analysis for JavaScript/TypeScript app #%s", sastID)
 		err = supervisors.RunJSSourceCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Println("Finished JavaScript/TypeScript analysis")
-		break
 	case "ios":
 		log.Printf("Starting analysis for iOS app #%s", sastID)
 		err = supervisors.RunIOSCodeAnalysis(codeInfo, lang, targetFolder, noJSON, noHTML, security, verbose, ignoreWarnings)
 		log.Printf("Finished analysis for iOS app #%s", sastID)
-		break
 	default:
 		log.Println("Could not analyze package...")
-		break
 	}
 
 	if err != nil {
-		log.Println(err.Error())
+		log.Printf("Error: %v\n", err)
+		os.Exit(1)
 	}
 
 }

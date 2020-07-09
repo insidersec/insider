@@ -82,16 +82,12 @@ func isOperator(content string) (bool, string) {
 	switch formattedContent {
 	case OnTokenType:
 		return true, formattedContent
-		break
 	case IfTokenType:
 		return true, formattedContent
-		break
 	case ThenTokenType:
 		return true, formattedContent
-		break
 	case GoTokenType:
 		return true, formattedContent
-		break
 	}
 
 	return false, ""

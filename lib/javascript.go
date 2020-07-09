@@ -69,7 +69,6 @@ func AnalyzeJSDependencies(dirname, sastID string, report *reports.Report) error
 	if err != nil {
 		log.Println("Package.json not found but the process goes on")
 		existpackageJSON = false
-		//return err
 	}
 
 	for dependency, version := range packageJSON.Dependencies {
@@ -82,7 +81,7 @@ func AnalyzeJSDependencies(dirname, sastID string, report *reports.Report) error
 		libraries = append(libraries, libraryFound)
 	}
 
-	if len(libraries) <= 0 && existpackageJSON == true {
+	if len(libraries) <= 0 && existpackageJSON {
 		log.Println("Didn't found any library in package.json file, something should have gone wrong.")
 	}
 
@@ -94,7 +93,6 @@ func AnalyzeJSDependencies(dirname, sastID string, report *reports.Report) error
 	auditResult, err := connectors.AuditLibraries(packageJSON)
 
 	if err != nil {
-		log.Println(err.Error())
 		return err
 	}
 

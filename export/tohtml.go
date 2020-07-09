@@ -10,43 +10,41 @@ import (
 	"time"
 )
 
-func createHTMLFile(file string, content string) {
+func createHTMLFile(file string, content string) error {
 	f, err := os.Create(file)
 	if err != nil {
-		log.Println(err)
-		return
+		return err
 	}
+
+	defer func() {
+		if err := f.Close(); err != nil {
+			log.Printf("Error on defer to close file: %v\n", err)
+		}
+	}()
+
 	l, err := f.WriteString(content)
 	if err != nil {
-		log.Println(err)
-		err := f.Close()
-		if err != nil {
-			log.Fatalln(err)
-			return
-		}
-		return
+		return err
 	}
-	pwd, _ := os.Getwd()
+	pwd, err := os.Getwd()
+	if err != nil {
+		return err
+	}
+
 	log.Printf("Html Report %s/%s", pwd, file)
 	log.Println("Html Report", util.ByteCountSI(int64(l)), "bytes written successfully")
-	err = f.Close()
-	if err != nil {
-		log.Println(err)
-		return
-	}
+
+	return nil
 }
 
-func ToHtml(report interface{}, lang string, ignoreWarnings bool) {
+func ToHtml(report interface{}, lang string, ignoreWarnings bool) error {
 	tmpl, err := template.New("report").Parse(GetTemplate(lang))
 	if err != nil {
-		log.Println(err)
-		return
+		return err
 	}
 	var tpl bytes.Buffer
-	err = tmpl.Execute(&tpl, report)
-	if err != nil {
-		log.Println(err)
-		return
+	if err := tmpl.Execute(&tpl, report); err != nil {
+		return err
 	}
 
 	var reportname string
@@ -57,6 +55,8 @@ func ToHtml(report interface{}, lang string, ignoreWarnings bool) {
 		reportname = "report.html"
 	}
 
-	createHTMLFile(reportname, tpl.String())
-	util.DownloadFile("style.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css")
+	if err := createHTMLFile(reportname, tpl.String()); err != nil {
+		return err
+	}
+	return util.DownloadFile("style.css", "https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css")
 }

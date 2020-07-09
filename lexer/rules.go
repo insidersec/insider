@@ -183,7 +183,6 @@ func LoadRules(techStack string, lang string) ([]Rule, error) {
 		}
 
 		requiredRules = append(requiredRules, androidRules...)
-		break
 	case "ios":
 		log.Println("loading IOS rules")
 		iosRules, err := getJSONRuleset("lexer/data/ios.json", lang)
@@ -193,7 +192,6 @@ func LoadRules(techStack string, lang string) ([]Rule, error) {
 		}
 
 		requiredRules = append(requiredRules, iosRules...)
-		break
 	case "csharp":
 		log.Println("loading csharp rules")
 		csharpRules, err := getJSONRuleset("lexer/data/csharp.json", lang)
@@ -203,7 +201,6 @@ func LoadRules(techStack string, lang string) ([]Rule, error) {
 		}
 
 		requiredRules = append(requiredRules, csharpRules...)
-		break
 	case "iosBinary":
 		iosBinaryRules, err := getJSONRuleset("lexer/data/ios_binary.json", lang)
 
@@ -212,7 +209,6 @@ func LoadRules(techStack string, lang string) ([]Rule, error) {
 		}
 
 		requiredRules = append(requiredRules, iosBinaryRules...)
-		break
 	case "javascript":
 		javaScriptRules, err := getJSONRuleset("lexer/data/javascript.json", lang)
 
@@ -221,7 +217,6 @@ func LoadRules(techStack string, lang string) ([]Rule, error) {
 		}
 
 		requiredRules = append(requiredRules, javaScriptRules...)
-		break
 	case "java":
 		javaRules, err := getJSONRuleset("lexer/data/java.json", lang)
 
@@ -230,7 +225,6 @@ func LoadRules(techStack string, lang string) ([]Rule, error) {
 		}
 
 		requiredRules = append(requiredRules, javaRules...)
-		break
 	case "core":
 		return requiredRules, nil
 	default:

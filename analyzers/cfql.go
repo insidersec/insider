@@ -61,16 +61,10 @@ func evalCondition(leftHand []string, rightHand string, operator string) (bool, 
 		switch operator {
 		case "==":
 			results = append(results, operand == rightHandOperand)
-			break
-
 		case "!=":
 			results = append(results, operand != rightHandOperand)
-			break
-
 		case "LIKE":
 			results = append(results, strings.Contains(operand, rightHandOperand))
-			break
-
 		case ">":
 			convertedLeftHand, err := strconv.Atoi(operand)
 
@@ -85,8 +79,6 @@ func evalCondition(leftHand []string, rightHand string, operator string) (bool, 
 			}
 
 			results = append(results, convertedLeftHand > convertedRightHand)
-			break
-
 		case "<":
 			convertedLeftHand, err := strconv.Atoi(operand)
 
@@ -101,8 +93,6 @@ func evalCondition(leftHand []string, rightHand string, operator string) (bool, 
 			}
 
 			results = append(results, convertedLeftHand < convertedRightHand)
-			break
-
 		case ">=":
 			convertedLeftHand, err := strconv.Atoi(operand)
 
@@ -117,8 +107,6 @@ func evalCondition(leftHand []string, rightHand string, operator string) (bool, 
 			}
 
 			results = append(results, convertedLeftHand >= convertedRightHand)
-			break
-
 		case "<=":
 			convertedLeftHand, err := strconv.Atoi(operand)
 
@@ -133,8 +121,6 @@ func evalCondition(leftHand []string, rightHand string, operator string) (bool, 
 			}
 
 			results = append(results, convertedLeftHand <= convertedRightHand)
-			break
-
 		default:
 			return false, ErrorInvalidOperator
 		}
