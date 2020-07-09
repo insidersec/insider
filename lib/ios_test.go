@@ -1,34 +1,21 @@
 package lib
 
 import (
-	"encoding/json"
 	"testing"
 
-	"inmetrics/eve/models/reports"
-	"inmetrics/eve/visitor"
+	"insider/models/reports"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAnalyzeIOSInternalApp(t *testing.T) {
-	sourceCodeFolder := visitor.SolvePathToTmpFolder("ios")
-
+	dirname := "testdata/IOSApp/"
 	report := reports.IOSReport{}
 
-	err := AnalyzeIOSSource(sourceCodeFolder, "42", &report)
+	err := AnalyzeIOSSource(dirname, "42", &report, "swift")
+	assert.Nil(t, err, "Unexpected error on AnalyzeIOSSource: %v", err)
 
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	if len(report.Vulnerabilities) <= 0 {
-		t.Fatal("AnalyzeSource should have found something in the internal app.")
-	}
-
-	data, err := json.Marshal(report)
-
-	if err != nil {
-		t.Fatal(err)
-	}
+	assert.False(t, len(report.Vulnerabilities) <= 0, "AnalyzeSource should have found something in the internal app.")
 
 	t.Logf("Found %d vulnerabilities.", len(report.Vulnerabilities))
-	t.Log(string(data))
 }

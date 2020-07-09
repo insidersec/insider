@@ -1,48 +1,31 @@
 package lib
 
 import (
-	"encoding/json"
 	"strings"
 	"testing"
 
-	"inmetrics/eve/models/reports"
-	"inmetrics/eve/visitor"
+	"insider/models/reports"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAnalyzeAndroidInternalApp(t *testing.T) {
-	sourceCodeFolder := visitor.SolvePathToTmpFolder("987123")
+	dirname := "testdata/kotlin/"
 	report := reports.AndroidReport{}
 
-	err := AnalyzeAndroidSource(sourceCodeFolder, "1", &report)
+	err := AnalyzeAndroidSource(dirname, "1", &report, "kotlin")
 
-	if err != nil {
-		t.Fatal(err.Error())
-	}
+	assert.Nil(t, err, "Unexpected error on AnalyzeAndroidSource: %v", err)
 
-	if len(report.Vulnerabilities) <= 0 {
-		t.Fatal("AnalyzeSource should have found something in the internal app.")
-	}
-
-	_, err = json.Marshal(report)
-
-	if err != nil {
-		t.Fatal(err)
-	}
+	assert.Falsef(t, len(report.Vulnerabilities) <= 0, "AnalyzeSource should have found something in the internal app")
 }
 
 func TestAnalyzeAndroidInternalAppWithProblemsInStringsXML(t *testing.T) {
-	sourceCodeFolder := visitor.SolvePathToTmpFolder("teste")
+	dirname := "testdata/kotlin/"
 	report := reports.AndroidReport{}
 
-	err := AnalyzeAndroidSource(sourceCodeFolder, "1", &report)
-
-	if err != nil {
-		t.Fatal(err.Error())
-	}
-
-	if len(report.Vulnerabilities) <= 0 {
-		t.Fatal("AnalyzeSource should have found something in the internal app.")
-	}
+	err := AnalyzeAndroidSource(dirname, "1", &report, "android")
+	assert.Nil(t, err, "Unexpected error on AnalyzeAndroidSource: %v", err)
 
 	found := false
 	for _, vulnerability := range report.Vulnerabilities {
@@ -54,13 +37,6 @@ func TestAnalyzeAndroidInternalAppWithProblemsInStringsXML(t *testing.T) {
 		}
 	}
 
-	if !found {
-		t.Fatal("Should have found problem in strings.xml file")
-	}
+	assert.True(t, found, "Should have found problem in strings.xml file")
 
-	_, err = json.Marshal(report)
-
-	if err != nil {
-		t.Fatal(err)
-	}
 }

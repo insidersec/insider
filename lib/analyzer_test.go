@@ -1,27 +1,23 @@
 package lib
 
 import (
+	"insider/models/reports"
 	"testing"
 
-	"inmetrics/eve/models/reports"
-	"inmetrics/eve/visitor"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestExtractHardcodedInfo(t *testing.T) {
-	dirname := visitor.SolvePathToTestFolder("exampleiOSApp")
+	dirname := "testdata/IOSApp/"
+	sasID := "42"
 
 	report := reports.Report{}
 
-	err := ExtractHardcodedInfo(dirname, &report)
+	err := ExtractHardcodedInfo(dirname, sasID, &report)
+	assert.Nil(t, err, "Unexpected error on ExtractHardcodedInfo: %v")
 
-	if err != nil {
-		t.Fatal(err)
-	}
+	assert.Equal(t, report.Info.SastID, sasID, "Different sasIDs")
 
-	if len(report.DRA.URLs) <= 0 {
-		t.Fatal("Should have found a URL")
-	}
+	assert.NotEqual(t, len(report.DRA), 0, "Should have found a DRA", dirname)
 
-	t.Log(report.DRA.URLs)
-	t.Log(report.DRA.Emails)
 }

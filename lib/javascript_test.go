@@ -3,23 +3,20 @@ package lib
 import (
 	"testing"
 
-	"inmetrics/eve/models/reports"
-	"inmetrics/eve/visitor"
+	"insider/models/reports"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAnalyzeJSDependencies(t *testing.T) {
 	report := reports.Report{}
 	sastID := "1"
 
-	dirname := visitor.SolvePathToTestFolder("")
+	dirname := "testdata/javascript/"
 
 	err := AnalyzeJSDependencies(dirname, sastID, &report)
 
-	if err != nil {
-		t.Fatal(err.Error())
-	}
+	assert.Nil(t, err, "Unexpected error from AnalyzeJSDependencies: %v", err)
+	assert.False(t, len(report.Libraries) <= 0, "Should have found any library")
 
-	if len(report.Libraries) <= 0 {
-		t.Fatal("Should have found any library")
-	}
 }

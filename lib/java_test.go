@@ -3,34 +3,20 @@ package lib
 import (
 	"testing"
 
-	"inmetrics/eve/models/reports"
-	"inmetrics/eve/visitor"
+	"insider/models/reports"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestAnalyzeProjectObjectModel(t *testing.T) {
 	report := reports.Report{}
 
-	dirname := visitor.SolvePathToTestFolder("")
+	dirname := "testdata/java/"
 
 	err := AnalyzeProjectObjectModel(dirname, "42", &report)
 
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	if report.Info.Name == "" {
-		t.Fatal("Should have found project name")
-	}
-
-	if report.Info.Version == "" {
-		t.Fatal("Should have found project version")
-	}
-
-	if report.Info.Name != "com.fasterxml.jackson.dataformat:jackson-dataformat-csv" {
-		t.Fatal("Found wrong name")
-	}
-
-	if len(report.Libraries) <= 0 {
-		t.Fatal("Should have found libraries")
-	}
+	assert.Nil(t, err, "Unexpected error on AnalyzeProjectObjectModel: %v", err)
+	assert.NotEqual(t, report.Info.Name, "", "Should have found project name")
+	assert.NotEqual(t, report.Info.Version, "", "Should have found project version")
+	assert.NotEqual(t, len(report.Libraries), 0, "Should have found libraries")
 }

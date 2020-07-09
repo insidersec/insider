@@ -28,14 +28,6 @@ func SolvePathToTmpFolder(path ...string) string {
 	return resolvePath(projectPrefix, path...)
 }
 
-// SolvePathToTestFolder resolves the path
-// to the physical path of the test/
-// inside the project
-func SolvePathToTestFolder(path ...string) string {
-	prefix := "src/inmetrics/insider/test"
-	return resolvePath(prefix, path...)
-}
-
 // ReceiveSample try to download the given file
 // from the configured S3 bucket, retrying two times
 // in 4 seconds.
