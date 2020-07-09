@@ -31,13 +31,11 @@ func CleanListFiles(tech string, files *[]string) error {
 	switch tech {
 	case "java":
 		flc.Tech = "java"
-		flc.Exclude.Dra.Folder = []string{""}
 		flc.Exclude.Dra.File = []string{"pow.xml"}
 
 	case "ios":
 		flc.Tech = "ios"
 		flc.Exclude.Dra.Folder = []string{"pods"}
-		flc.Exclude.Dra.File = []string{"", ""}
 
 	case "javascript":
 		flc.Tech = "javascript"
