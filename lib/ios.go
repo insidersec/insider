@@ -147,7 +147,10 @@ func AnalyzeIOSBinary(dirname, sastID string, report *reports.IOSReport, lang st
 		return err
 	}
 
-	fileForAnalyze := visitor.NewInputFile(dirname, symbolTableFilename, symbolTable)
+	fileForAnalyze, err := visitor.NewInputFile(dirname, symbolTableFilename, symbolTable)
+	if err != nil {
+		return err
+	}
 
 	fileSummary := analyzers.AnalyzeFile(fileForAnalyze, binaryRules)
 
@@ -211,7 +214,10 @@ func AnalyzeIOSSource(dirname, sastID string, report *reports.IOSReport, lang st
 			return err
 		}
 
-		fileForAnalyze := visitor.NewInputFile(dirname, file, fileContent)
+		fileForAnalyze, err := visitor.NewInputFile(dirname, file, fileContent)
+		if err != nil {
+			return err
+		}
 
 		// See analyzers/static.go:156
 		// fileForAnalyze.Libraries = report.Libraries
@@ -241,7 +247,10 @@ func AnalyzeIOSSource(dirname, sastID string, report *reports.IOSReport, lang st
 					return err
 				}
 
-				affectedInputFile := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+				affectedInputFile, err := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+				if err != nil {
+					return err
+				}
 
 				if affectedInputFile.Uses(fileForAnalyze.ImportReference) {
 					vulnerability.AffectedFiles = append(vulnerability.AffectedFiles, affectedInputFile.DisplayName)

@@ -59,7 +59,10 @@ func AnalyzeAndroidSource(dirname, sastID string, report *reports.AndroidReport,
 			return err
 		}
 
-		fileForAnalyze := visitor.NewInputFile(dirname, file, fileContent)
+		fileForAnalyze, err := visitor.NewInputFile(dirname, file, fileContent)
+		if err != nil {
+			return err
+		}
 
 		report.AndroidInfo.NumberOfLines = report.AndroidInfo.NumberOfLines + len(fileForAnalyze.NewlineIndexes)
 
@@ -86,7 +89,10 @@ func AnalyzeAndroidSource(dirname, sastID string, report *reports.AndroidReport,
 					return err
 				}
 
-				affectedInputFile := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+				affectedInputFile, err := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+				if err != nil {
+					return err
+				}
 
 				if affectedInputFile.Uses(fileForAnalyze.ImportReference) {
 					vulnerability.AffectedFiles = append(vulnerability.AffectedFiles, affectedInputFile.DisplayName)

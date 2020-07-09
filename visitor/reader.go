@@ -126,7 +126,10 @@ func FindFiles(dirname string, includeDirs bool, isFile FindFunc) ([]InputFile, 
 		if isFile(path) {
 			if info.IsDir() {
 				if includeDirs {
-					file := NewInputFile(dirname, path, []byte{})
+					file, err := NewInputFile(dirname, path, []byte{})
+					if err != nil {
+						return err
+					}
 
 					file.IsDir = true
 
@@ -143,7 +146,10 @@ func FindFiles(dirname string, includeDirs bool, isFile FindFunc) ([]InputFile, 
 				return err
 			}
 
-			file := NewInputFile(dirname, path, fileContent)
+			file, err := NewInputFile(dirname, path, fileContent)
+			if err != nil {
+				return err
+			}
 
 			files = append(files, file)
 			return nil

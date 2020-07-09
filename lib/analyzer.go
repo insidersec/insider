@@ -156,7 +156,10 @@ func AnalyzeNonAppSource(dirname, sastID, tech string, report *reports.Report, l
 			return err
 		}
 
-		fileForAnalyze := visitor.NewInputFile(dirname, file, fileContent)
+		fileForAnalyze, err := visitor.NewInputFile(dirname, file, fileContent)
+		if err != nil {
+			return err
+		}
 
 		report.Info.NumberOfLines = report.Info.NumberOfLines + len(fileForAnalyze.NewlineIndexes)
 
@@ -192,7 +195,10 @@ func AnalyzeNonAppSource(dirname, sastID, tech string, report *reports.Report, l
 					return err
 				}
 
-				affectedInputFile := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+				affectedInputFile, err := visitor.NewInputFile(dirname, affectedFile, affectedFileContent)
+				if err != nil {
+					return err
+				}
 
 				if affectedInputFile.Uses(fileForAnalyze.ImportReference) {
 					vulnerability.AffectedFiles = append(vulnerability.AffectedFiles, affectedInputFile.DisplayName)

@@ -199,7 +199,7 @@ func binarySearchAndFixIndexes(indexes []int, findingIndex int) (lineIndex, find
 
 // NewInputFile creates a new InputFile,
 // indexing all the '\n' to search, and also fills up some metadata
-func NewInputFile(dirname, filename string, content []byte) InputFile {
+func NewInputFile(dirname, filename string, content []byte) (InputFile, error) {
 	allNewlineIndexes := newlineFinder.FindAllIndex(content, -1)
 	allScopesIndexes := scopeFinder.FindAllIndex(content, -1)
 
@@ -221,8 +221,11 @@ func NewInputFile(dirname, filename string, content []byte) InputFile {
 		string(content),
 	)
 
-	formattedFileDisplayName := strings.Split(filename, dirname)
-	formattedFileName := strings.Split(filename, "/")
+	formattedFileDisplayName, err := filepath.Rel(dirname, filename)
+	if err != nil {
+		return InputFile{}, fmt.Errorf("Error to get relative path: %w", err)
+	}
+	formattedFileName := filepath.Base(filename)
 
 	return InputFile{
 		PhysicalPath:       filename,
@@ -234,9 +237,9 @@ func NewInputFile(dirname, filename string, content []byte) InputFile {
 		NewlineIndexes:     allNewlineIndexes,
 		NewlineLastIndexes: newlineLastIndexes,
 		// Gets only the file name and the extension.
-		DisplayName: formattedFileDisplayName[1],
-		Name:        formattedFileName[len(formattedFileName)-1],
-	}
+		DisplayName: formattedFileDisplayName,
+		Name:        formattedFileName,
+	}, nil
 }
 
 // Uses validates the given hazardous scope to see if this file
