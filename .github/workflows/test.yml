@@ -1,0 +1,29 @@
+name: test
+on:
+  pull_request:
+  push:
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        go-version:
+          - 1.13.x
+          - 1.14.x
+        os:
+          - ubuntu-latest
+          - macOS-latest
+          - windows-latest
+
+    steps:
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Test
+        run: go test -v -race ./...
