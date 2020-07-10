@@ -10,7 +10,7 @@
   </p>
 </p>
 
-This document is available in versions: [`Portuguese`](https://github.com/insidersec/insider/blob/master/README_pt-br.md) and [`English`](https://github.com/insidersec/insider).
+This document is also available in [`Portuguese`](https://github.com/insidersec/insider/blob/master/README_pt-br.md).
 
 Insider is the [OSS](https://opensource.org/) CLI project from the [Insider Application Security](https://insidersec.io) Security Team for the community.
 
