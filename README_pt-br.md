@@ -10,7 +10,7 @@
   </p>
 </p>
 
-Esse documento está disponível nas versões: [`Português`](https://github.com/insidersec/insider/blob/master/README_pt-br.md) e [`Inglês`](https://github.com/insidersec/insider).
+Este documento também está disponível em [`Inglês`](https://github.com/insidersec/insider).
 
 Insider é uma [Iniciativa Open Source](https://opensource.org/) executada através de uma Interface de Linha de Comandos (CLI) disponibilizada pelo time de segurança da [Insider Application Security](https://insidersec.io) para a comunidade.
 
