@@ -14,7 +14,7 @@ Este documento também está disponível em [`Inglês`](https://github.com/insid
 
 Insider é uma [Iniciativa Open Source](https://opensource.org/) executada através de uma Interface de Linha de Comandos (CLI) disponibilizada pelo time de segurança da [Insider Application Security](https://insidersec.io) para a comunidade.
 
-Esse projeto possui uma versão simples do Sistema de Testes para Aplicações Estáticas (Static Application Security Testing) desenvolvido internamente por nós. Essa versão do Insider têm como objetivos: garantir os padrões de segurança estabelecidos pela [Open Web Application Security Project&reg;](https://owasp.org/), cobrir os 10 principais riscos de segurança para aplicações web - [OWASP Top 10](https://owasp.org/www-project-top-ten/), analisar e encontrar vulnerabilidades no código-fonte, focando na facilidade da implementação junto ao pipeline de DevOps e em software ágil.
+O Insider têm como objetivos: garantir os padrões de segurança estabelecidos pela [Open Web Application Security Project&reg;](https://owasp.org/), cobrir os 10 principais riscos de segurança para aplicações web - [OWASP Top 10](https://owasp.org/www-project-top-ten/), analisar e encontrar vulnerabilidades no código-fonte, focando na facilidade da implementação junto ao pipeline de DevOps e em software ágil.
 
 Atualmente oferecemos suporte às seguintes tecnologias: Java (Maven ou Android), Kotlin (Android), Swift (iOS), .NET Full Framework, C# e Javascript (Node.js).
 
