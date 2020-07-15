@@ -18,6 +18,8 @@ Insider is focused on covering the [OWASP Top 10](https://owasp.org/www-project-
 
 We currently support the following technologies: Java (Maven and Android), Kotlin (Android), Swift (iOS), .NET Full Framework, C#, and Javascript (Node.js).
 
+There is a Github Action that permits you protect your repository with Insider, free, easy to integrate and frictionless. It is the most easy way to protect your code directly on your repository. [Take a look - Insider-Action](https://github.com/insidersec/insider-action)
+
 ---
 
 ### Installation
