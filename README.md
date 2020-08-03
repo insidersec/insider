@@ -89,6 +89,12 @@ $ ./insider-linux-amd64 --tech javascript  --target <projectfolder>
 
 ---
 
+### Demo
+
+![Gif](demo.gif)
+
+---
+
 ### Contribution
 
 - Your contributions and suggestions are heartily ♥ welcome. [See here the contribution guidelines.](/.github/CONTRIBUTING.md) Please, report bugs via [issues page.](https://github.com/insidersec/insider/issues) See here the [security policy](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕)
