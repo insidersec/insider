@@ -82,9 +82,11 @@ Example of use :
 
 ```bash
 # Check the correct release for your environment
-$ wget https://github.com/insidersec/insider/releases/download/2.0.0/insider-linux-amd64
-$ chmod +x insider-linux-amd64
-$ ./insider-linux-amd64 --tech javascript  --target <projectfolder>
+$ mkdir insider && cd insider
+$ wget https://github.com/insidersec/insider/releases/download/2.0.5/insider_2.0.5_linux_x86_64.tar.gz
+$ tar -xf insider_2.0.5_linux_x86_64.tar.gz 
+$ chmod +x insider
+$ ./insider --tech javascript  --target <projectfolder>
 ```
 
 ---
