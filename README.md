@@ -1,8 +1,8 @@
 <p align="center">
   <img src="https://insidersec.io/wp-content/uploads/2020/03/insider-novo-logo.png">
   <p align="center">
-    <a href="https://github.com/insidersec/insider/blob/master/LICENSE.md">
-      <img src="https://img.shields.io/badge/license-LGPL-blue.svg">
+    <a href="https://github.com/insidersec/insider/blob/master/LICENSE">
+      <img src="https://img.shields.io/badge/license-MIT-green.svg">
     </a>
     <a href="https://github.com/insidersec/insider/releases">
       <img src="https://img.shields.io/github/v/release/insidersec/insider">
@@ -105,4 +105,5 @@ $ ./insider --tech javascript  --target <projectfolder>
 
 ### License
 
-- This work is licensed under [LGPL-3.0.](/LICENSE.md)
+
+- This work is licensed under [MIT](/LICENSE).
