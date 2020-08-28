@@ -1,11 +1,11 @@
 <p align="center">
   <img src="https://insidersec.io/wp-content/uploads/2020/03/insider-novo-logo.png">
   <p align="center">
-    <a href="https://github.com/insidersec/insider/blob/master/LICENSE.md">
-      <img src="https://img.shields.io/badge/license-LGPL-blue.svg">
+    <a href="https://github.com/insidersec/insider/blob/master/LICENSE">
+      <img src="https://img.shields.io/badge/license-MIT-green.svg">
     </a>
     <a href="https://github.com/insidersec/insider/releases">
-      <img src="https://img.shields.io/badge/version-2.0.4-blue.svg">
+      <img src="https://img.shields.io/github/v/release/insidersec/insider">
     </a>
   </p>
 </p>
@@ -88,12 +88,18 @@ Exemplos de uso:
 ### Exemplo
 
 ```bash
-# Verificar a versão correta para o seu ambiente.
-
-$ wget https://github.com/insidersec/insider/releases/download/2.0.0/insider-linux-amd64
-$ chmod +x insider-linux-amd64
-$ ./insider-linux-amd64 --tech javascript  --target <projectfolder>
+# Check the correct release for your environment
+$ mkdir insider && cd insider
+$ wget https://github.com/insidersec/insider/releases/download/2.0.5/insider_2.0.5_linux_x86_64.tar.gz
+$ tar -xf insider_2.0.5_linux_x86_64.tar.gz 
+$ chmod +x insider
+$ ./insider --tech javascript  --target <projectfolder>
 ```
+---
+
+### Demo
+
+![Gif](demo.gif)
 
 ---
 
@@ -105,4 +111,4 @@ $ ./insider-linux-amd64 --tech javascript  --target <projectfolder>
 
 ### Licença
 
-- Esse projeto está sob a licença [LGPL-3.0.](/LICENSE.md)
+- Esse projeto está sob a licença [MIT](/LICENSE).
