@@ -24,16 +24,19 @@ There is a Github Action that permits you protect your repository with Insider, 
 
 ### Installation
 
+You can install Insider using precompiled binaries or from source.
+
+#### Precompiled binaries
+
 We have precompiled binaries for Linux, Windows and macOS operational systems that you can find [here.](https://github.com/insidersec/insider/releases)
 
-But if you are (g)old school or just want to compile it yourself, you'll need at least [Go version 1.13.3.](https://golang.org/dl/), and [GNU Make](https://www.gnu.org/software/make/) >= 4.2.1;
 
-After downloading / checking if your version is compatible, you just have to:
+#### Building from source
+
+To build Insider from source you'll need at least [Go version 1.13](https://golang.org/dl/) working.
 
 ```bash
 $ go get github.com/insidersec/insider
-$ cd $GOPATH/src/github.com/insidersec/insider
-$ make linux64 # We support: linux32, linux64, win32, win64, macos
 ```
 
 Have fun! :rocket:
