@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://insidersec.io/wp-content/uploads/2020/03/insider-novo-logo.png">
+  <img src="https://www.insidersec.io/wp-content/uploads/2020/11/cover-linkedin2.png">
   <p align="center">
     <a href="https://github.com/insidersec/insider/blob/master/LICENSE">
       <img src="https://img.shields.io/badge/license-MIT-green.svg">
@@ -29,15 +29,6 @@ You can install Insider using precompiled binaries or from source.
 #### Precompiled binaries
 
 We have precompiled binaries for Linux, Windows and macOS operational systems that you can find [here.](https://github.com/insidersec/insider/releases)
-
-
-#### Building from source
-
-To build Insider from source you'll need at least [Go version 1.13](https://golang.org/dl/) working.
-
-```bash
-$ go get github.com/insidersec/insider
-```
 
 Have fun! :rocket:
 
@@ -106,6 +97,14 @@ $ ./insider --tech javascript  --target <projectfolder>
 
 - Your contributions and suggestions are heartily ♥ welcome. [See here the contribution guidelines.](/.github/CONTRIBUTING.md) Please, report bugs via [issues page.](https://github.com/insidersec/insider/issues) See here the [security policy](/.github/SECURITY.md) for report security issues. (✿ ◕‿◕)
 
+---
+#### Building from source
+
+To build Insider from source you'll need at least [Go version 1.13](https://golang.org/dl/) working.
+
+```bash
+$ go get github.com/insidersec/insider
+```
 ---
 
 ### License
