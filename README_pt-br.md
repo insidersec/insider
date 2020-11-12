@@ -18,21 +18,17 @@ O Insider têm como objetivos: garantir os padrões de segurança estabelecidos 
 
 Atualmente oferecemos suporte às seguintes tecnologias: Java (Maven ou Android), Kotlin (Android), Swift (iOS), .NET Full Framework, C# e Javascript (Node.js).
 
+Existe um Github Action que permite proteger seu repositório com Insider, gratuito, fácil de integrar e sem atrito. É a maneira mais fácil de proteger seu código diretamente em seu repositório. [Insider-Action](https://github.com/insidersec/insider-action)
+
 ---
 
 ### Instalação
 
-Disponibilizamos os arquivos binários pré-compilados para os seguintes sistemas operacionais: Linux, Windows e macOS, que você pode encontrá-los [aqui](https://github.com/insidersec/insider/releases).
+Você pode instalar o Insider usando binários pré-compilados ou da fonte.
 
-Mas se você for um desenvolvedor <s>raíz</s> old school, ou simplismente deseja compilá-los, precisará de pelo menos da versão do [Go 1.13.3](https://golang.org/dl/) e uma versão maior ou igual a 4.2.1 do [GNU Make](https://www.gnu.org/software/make/).
+#### Binários pré-compilados
 
-Depois de baixar e chegar a compatibilidade das versões, você deve executar:
-
-```bash
-$ go get github.com/insidersec/insider
-$ cd $GOPATH/src/github.com/insidersec/insider
-$ make linux64 # Damos suporte para: linux32, linux64, win32, win64, macos
-```
+Temos binários pré-compilados para os sistemas operacionais Linux, Windows e macOS que você pode encontrar [aqui.] (Https://github.com/insidersec/insider/releases)
 
 Pronto, divirta-se! :rocket:
 
@@ -40,10 +36,10 @@ Pronto, divirta-se! :rocket:
 
 ### Utilização
 
-OBS.:
-Você deve colocar o Insider fora da pasta que contém os arquivos que serão analisados.
+OBS .:
+Não coloque o insider na mesma pasta que contém os arquivos a serem analisados.
 
-A pasta de destino deve conter todo o código-fonte que deve ser analisado. Planejamos liberar o suporte para binários compilados para iOS e APKs do Android futuramente.
+A pasta de destino deve conter todo o código-fonte que deve ser analisado, planejamos lançar suporte para binários compilados para iOS e APKs do Android.
 
 ```
 ./insider --help
@@ -108,7 +104,14 @@ $ ./insider --tech javascript  --target <projectfolder>
 - Suas contribuições e sugestões são muito bem-vindas ♥. [Veja aqui as diretrizes de contribuição.](/.github/CONTRIBUTING.md) Por favor, reporte os bugs na [página de bugs.](https://github.com/insidersec/insider/issues). Veja aqui a [política de segurança](/.github/SECURITY.md) para relatar problemas de segurança. (✿ ◕‿◕)
 
 ---
+#### Compilando manualmente
 
+Para compilar o Insider manualmente você vai precisar do [Go version 1.13](https://golang.org/dl/).
+
+```bash
+$ go get github.com/insidersec/insider
+```
+---
 ### Licença
 
 - Esse projeto está sob a licença [MIT](/LICENSE).
