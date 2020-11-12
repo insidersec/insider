@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://insidersec.io/wp-content/uploads/2020/03/insider-novo-logo.png">
+  <img src="https://www.insidersec.io/wp-content/uploads/2020/11/cover-linkedin2.png">
   <p align="center">
     <a href="https://github.com/insidersec/insider/blob/master/LICENSE">
       <img src="https://img.shields.io/badge/license-MIT-green.svg">
