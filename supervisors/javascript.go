@@ -2,10 +2,10 @@ package supervisors
 
 import (
 	"encoding/json"
-	"insider/export"
-	analyzers "insider/lib"
-	"insider/models/reports"
-	"insider/util"
+	"github.com/insidersec/insider/export"
+	analyzers "github.com/insidersec/insider/lib"
+	"github.com/insidersec/insider/models/reports"
+	"github.com/insidersec/insider/util"
 	"log"
 )
 

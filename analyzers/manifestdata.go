@@ -1,6 +1,6 @@
 package analyzers
 
-import "insider/models/reports"
+import "github.com/insidersec/insider/models/reports"
 
 func GetManifestPermission() []reports.ManifestPermission {
 	var all []reports.ManifestPermission

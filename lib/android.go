@@ -2,9 +2,9 @@ package lib
 
 import (
 	"fmt"
-	"insider/analyzers"
-	"insider/models/reports"
-	"insider/visitor"
+	"github.com/insidersec/insider/analyzers"
+	"github.com/insidersec/insider/models/reports"
+	"github.com/insidersec/insider/visitor"
 	"io/ioutil"
 	"log"
 	"strconv"

@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 
-	"insider/models"
+	"github.com/insidersec/insider/models"
 )
 
 const (

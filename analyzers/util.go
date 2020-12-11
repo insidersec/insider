@@ -4,7 +4,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"insider/models/reports"
+	"github.com/insidersec/insider/models/reports"
 )
 
 // IsLibraryUsed self-explained

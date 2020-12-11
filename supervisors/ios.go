@@ -2,13 +2,13 @@ package supervisors
 
 import (
 	"encoding/json"
-	"insider/export"
-	"insider/util"
-	"insider/visitor"
+	"github.com/insidersec/insider/export"
+	"github.com/insidersec/insider/util"
+	"github.com/insidersec/insider/visitor"
 	"log"
 
-	analyzers "insider/lib"
-	"insider/models/reports"
+	analyzers "github.com/insidersec/insider/lib"
+	"github.com/insidersec/insider/models/reports"
 )
 
 // RunIOSCodeAnalysis self-explained

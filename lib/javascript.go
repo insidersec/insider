@@ -5,10 +5,10 @@ import (
 	"log"
 	"regexp"
 
-	"insider/connectors"
-	"insider/models"
-	"insider/models/reports"
-	"insider/visitor"
+	"github.com/insidersec/insider/connectors"
+	"github.com/insidersec/insider/models"
+	"github.com/insidersec/insider/models/reports"
+	"github.com/insidersec/insider/visitor"
 )
 
 const (

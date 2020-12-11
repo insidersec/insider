@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"html/template"
-	"insider/util"
+	"github.com/insidersec/insider/util"
 	"log"
 	"os"
 	"time"

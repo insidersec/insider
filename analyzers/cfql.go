@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"insider/lexer"
+	"github.com/insidersec/insider/lexer"
 )
 
 /*

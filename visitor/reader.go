@@ -3,7 +3,7 @@ package visitor
 import (
 	"archive/zip"
 	"encoding/json"
-	"insider/config"
+	"github.com/insidersec/insider/config"
 	"io"
 	"io/ioutil"
 	"os"

@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"insider/models/reports"
+	"github.com/insidersec/insider/models/reports"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -3,8 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
-	"insider/supervisors"
-	"insider/util"
+	"github.com/insidersec/insider/supervisors"
+	"github.com/insidersec/insider/util"
 	"log"
 	"os"
 )

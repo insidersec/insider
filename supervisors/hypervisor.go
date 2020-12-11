@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"insider/util"
+	"github.com/insidersec/insider/util"
 	"log"
 	"os"
 	"strconv"

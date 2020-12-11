@@ -1,7 +1,7 @@
 package lexer
 
 import (
-	"insider/util"
+	"github.com/insidersec/insider/util"
 	"log"
 )
 

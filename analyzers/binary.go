@@ -8,8 +8,8 @@ import (
 	"regexp"
 	"strings"
 
-	"insider/models"
-	"insider/models/reports"
+	"github.com/insidersec/insider/models"
+	"github.com/insidersec/insider/models/reports"
 )
 
 var librariesExtractor *regexp.Regexp

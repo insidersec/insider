@@ -3,8 +3,8 @@ package analyzers
 import (
 	"regexp"
 
-	"insider/models/reports"
-	"insider/visitor"
+	"github.com/insidersec/insider/models/reports"
+	"github.com/insidersec/insider/visitor"
 )
 
 var extractLibraryFromCartfile *regexp.Regexp

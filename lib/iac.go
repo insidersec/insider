@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"strconv"
 
-	"insider/analyzers"
-	"insider/lexer"
-	"insider/models/reports"
-	"insider/visitor"
+	"github.com/insidersec/insider/analyzers"
+	"github.com/insidersec/insider/lexer"
+	"github.com/insidersec/insider/models/reports"
+	"github.com/insidersec/insider/visitor"
 )
 
 // AnalyzeIaCCode runs queries against the given folder of IaC code

@@ -1,4 +1,4 @@
-module insider
+module github.com/insidersec/insider
 
 go 1.14
 

@@ -6,9 +6,9 @@ import (
 	"log"
 	"regexp"
 
-	"insider/models"
-	"insider/models/reports"
-	"insider/visitor"
+	"github.com/insidersec/insider/models"
+	"github.com/insidersec/insider/models/reports"
+	"github.com/insidersec/insider/visitor"
 )
 
 var pomFinder *regexp.Regexp

@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"strings"
 
-	"insider/lexer"
-	"insider/visitor"
+	"github.com/insidersec/insider/lexer"
+	"github.com/insidersec/insider/visitor"
 )
 
 func evaluateNotANDClause(fileContent string, rule lexer.Rule) (shouldReportFinding bool) {

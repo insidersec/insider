@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"insider/connectors"
+	"github.com/insidersec/insider/connectors"
 )
 
 func resolvePath(prefix string, path ...string) string {

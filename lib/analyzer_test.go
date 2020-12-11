@@ -1,7 +1,7 @@
 package lib
 
 import (
-	"insider/models/reports"
+	"github.com/insidersec/insider/models/reports"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
