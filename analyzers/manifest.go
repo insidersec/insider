@@ -1,17 +1,11 @@
 package analyzers
 
 import (
-	"encoding/json"
 	"encoding/xml"
 	"fmt"
-	"io/ioutil"
 	"log"
-	"os"
-	"path/filepath"
-	"reflect"
 	"regexp"
 	"strconv"
-	"strings"
 
 	"github.com/insidersec/insider/models"
 	"github.com/insidersec/insider/models/reports"
@@ -59,34 +53,6 @@ func findGradleFiles(filename string) bool {
 
 func findManifests(filename string) bool {
 	return xmlFilesFilter.MatchString(filename)
-}
-
-func loadManifestData(lang string) (permissions []reports.ManifestPermission, err error) {
-	fullPath, _ := os.Getwd()
-	log.Println("fullpath", fullPath)
-	projectPrefix := ""
-
-	manifestData, err := ioutil.ReadFile(filepath.Join(fullPath, projectPrefix, "analyzers/manifest.json"))
-
-	if err != nil {
-		return permissions, err
-	}
-
-	err = json.Unmarshal(manifestData, &permissions)
-
-	if err != nil {
-		return permissions, err
-	}
-	lang = strings.ToLower(lang)
-	for i, v := range permissions {
-		r := reflect.ValueOf(v)
-		desc := reflect.Indirect(r).FieldByName("Description_" + lang)
-		info := reflect.Indirect(r).FieldByName("Info_" + lang)
-		permissions[i].Description = desc.String()
-		permissions[i].Info = info.String()
-	}
-
-	return permissions, nil
 }
 
 // AnalyzeAndroidManifest analyzes the given directory and builds the

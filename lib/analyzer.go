@@ -169,7 +169,7 @@ func AnalyzeNonAppSource(dirname, sastID, tech string, report *reports.Report, l
 		report.AddDRAURLs(urls, fileForAnalyze.PhysicalPath)
 		report.AddDRAEmails(emails, fileForAnalyze.PhysicalPath)
 		// cleaning DRA url
-		for item, _ := range report.DRA {
+		for item := range report.DRA {
 			newstring := strings.Split(report.DRA[item].FilePath, "/tmp/")
 			if len(newstring) > 1 {
 				tempstring := newstring[1]

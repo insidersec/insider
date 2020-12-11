@@ -97,10 +97,6 @@ func isCommentary(content string) bool {
 	return content == CommentaryTokenType
 }
 
-func isCommentaryToken(token Token) bool {
-	return token.Type == CommentaryTokenType
-}
-
 func isPrimitiveToken(token Token) bool {
 	return token.Type == PrimitiveTokenType
 }

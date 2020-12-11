@@ -2,8 +2,6 @@ package config
 
 import (
 	"log"
-	"os"
-	"path/filepath"
 	"strings"
 )
 
@@ -15,11 +13,6 @@ type FileListControl struct {
 			File   []string `json:"file"`
 		} `json:"dra"`
 	} `json:"exclude"`
-}
-
-func resolveToRuleDataFolder(filename string) string {
-	fullPath, _ := os.Getwd()
-	return filepath.Join(fullPath, filename)
 }
 
 // remove files from analize

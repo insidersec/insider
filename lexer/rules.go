@@ -1,9 +1,7 @@
 package lexer
 
 import (
-	"encoding/json"
 	"errors"
-	"io/ioutil"
 	"log"
 	"reflect"
 	"strings"
@@ -119,44 +117,6 @@ func getJSONRuleset(filename string, lang string) ([]Rule, error) {
 		rules[i].Recomendation = rec.String()
 	}
 	log.Println("Rules", len(rules))
-	return rules, nil
-}
-
-func getJSONRuleset_HC(filename string, lang string) ([]Rule, error) {
-
-	xi := AndroidRules(lang)
-
-	physicalPathToFile := resolveToRuleDataFolder(filename)
-
-	ruleset, err := ioutil.ReadFile(physicalPathToFile)
-
-	if err != nil {
-		return nil, err
-	}
-
-	var rules []Rule
-
-	err = json.Unmarshal(ruleset, &rules)
-
-	if err != nil {
-		return nil, err
-	}
-
-	//  setting the language of the rule.
-	for i, v := range rules {
-		r := reflect.ValueOf(v)
-		desc := reflect.Indirect(r).FieldByName("Description_" + lang)
-		rec := reflect.Indirect(r).FieldByName("Recomendation_" + lang)
-		rules[i].Description = desc.String()
-		rules[i].Recomendation = rec.String()
-	}
-
-	log.Println("Rule class", len(xi))
-	log.Println("Rule files", len(rules))
-	//for i, v := range rules {
-	//	log.Println(i, v)
-	//}
-
 	return rules, nil
 }
 
