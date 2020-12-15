@@ -20,3 +20,4 @@ results/
 # Report files
 report-*.html
 report-*.json
+*.css
