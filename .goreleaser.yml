@@ -11,6 +11,7 @@ builds:
     goarch:
       - 386
       - amd64
+    ldflags: -X main.Version={{.Version}} -X main.GitCommit={{.Commit}} -X main.BuildDate={{.Date}}
 
 archives:
   -

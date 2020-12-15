@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"runtime"
 	"time"
 
 	"github.com/insidersec/insider"
@@ -28,6 +29,7 @@ var (
 	flagNoJSON   = flag.Bool("no-json", false, "Skips the report generation in the JSON format - Optional")
 	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100")
 	flagVerbose  = flag.Bool("v", false, "Set true for verbose output")
+	flagVersion  = flag.Bool("version", false, "Show version and quit with exit code 0")
 )
 
 func usage() {
@@ -43,8 +45,15 @@ Example of use:
 }
 
 func main() {
+	prepareVersionInfo()
+
 	flag.Usage = usage
 	flag.Parse()
+
+	if *flagVersion {
+		fmt.Printf("Version: %s\nGit commit: %s\nBuild date: %s\nOS/Arch: %s/%s\n", Version, GitCommit, BuildDate, runtime.GOOS, runtime.GOARCH)
+		os.Exit(0)
+	}
 
 	if *flagTech == "" {
 		fmt.Fprintf(os.Stderr, "Should specify a tech to execute analysis\n")
