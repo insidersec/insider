@@ -19,8 +19,8 @@ func (l Language) rules() []Language {
 	switch l {
 	case Javascript:
 		rules = append(rules, Javascript)
-	case Android:
-		rules = append(rules, Android)
+	case Java, Android:
+		rules = append(rules, Java, Android)
 	case Csharp:
 		rules = append(rules, Csharp)
 	case Ios:
@@ -31,6 +31,7 @@ func (l Language) rules() []Language {
 
 const (
 	Javascript Language = "Javascript"
+	Java       Language = "Java"
 	Android    Language = "Android"
 	Csharp     Language = "C#"
 	Ios        Language = "Ios"
@@ -40,6 +41,8 @@ const (
 var languages = map[string]Language{
 	".js": Javascript,
 	".ts": Javascript,
+
+	".java": Java,
 
 	".kt": Android,
 

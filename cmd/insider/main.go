@@ -135,6 +135,8 @@ func techAnalyzer(tech string, logger *log.Logger) (insider.TechAnalyzer, error)
 		return insider.NewAndroidAnalyzer(logger), nil
 	case "csharp":
 		return insider.NewCsharpAnalyzer(), nil
+	case "java":
+		return insider.NewJavaAnalyzer(logger), nil
 	case "javascript":
 		npm := insider.NewNPMAdvisory(npmAdvisoryURL, npmUserAgent, 20*time.Second)
 		return insider.NewJavaScriptAnalyzer(npm, logger), nil

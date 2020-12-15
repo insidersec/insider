@@ -24,7 +24,7 @@ func (r RuleBuilder) Build(ctx context.Context, techs ...engine.Language) ([]eng
 			rules = append(rules, CsharpRules...)
 		case engine.Javascript:
 			rules = append(rules, JavascriptRules...)
-		case engine.Android:
+		case engine.Android, engine.Java:
 			rules = append(rules, AndroidRules...)
 		case engine.Ios:
 			rules = append(rules, IosRules...)
