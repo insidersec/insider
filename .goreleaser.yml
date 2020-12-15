@@ -1,6 +1,7 @@
 
 builds:
   -
+    main: ./cmd/insider/
     env:
       - CGO_ENABLED=0
     goos:

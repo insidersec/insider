@@ -1,0 +1,71 @@
+package report
+
+import "io"
+
+// IOSInfo holds information about iOS apps
+type IOSInfo struct {
+	BinaryID           string  `json:"binId,omitempty"`
+	BinaryType         string  `json:"binType,omitempty"`
+	AppName            string  `json:"binName,omitempty"`
+	TargetVersion      string  `json:"sdk,omitempty"`
+	MinimumOSVersion   string  `json:"min,omitempty"`
+	SupportedPlatforms string  `json:"pltfm,omitempty"`
+	Build              string  `json:"build,omitempty"`
+	AverageCVSS        float64 `json:"averageCvss,omitempty"`
+	SecurityScore      float64 `json:"securityScore,omitempty"`
+	Size               string  `json:"size,omitempty"`
+	MD5                string  `json:"md5,omitempty"`
+	SHA1               string  `json:"sha1,omitempty"`
+	SHA256             string  `json:"sha256,omitempty"`
+	NumberOfLines      int     `json:"numberOfLines,omitempty"`
+}
+
+// IOSPermission holds iOS permissions data
+type IOSPermission struct {
+	Name        string `json:"permission,omitempty"`
+	Reason      string `json:"reason,omitempty"`
+	Description string `json:"description,omitempty"`
+}
+
+type IOSReporter struct {
+	DRA             []DRA           `json:"dra"`
+	IOSInfo         IOSInfo         `json:"ios,omitempty"`
+	Libraries       []Library       `json:"libraries,omitempty"`
+	Permissions     []IOSPermission `json:"permissions,omitempty"`
+	Vulnerabilities []Vulnerability `json:"vulnerabilities,omitempty"`
+	High            int
+	Medium          int
+	Low             int
+	Total           int
+}
+
+// CleanDRA cleans up the DRA list
+func (report *IOSReporter) CleanDRA(dir string) error {
+	report.DRA = unique(report.DRA)
+	dra, err := cleanDRA(dir, report.DRA)
+	if err != nil {
+		return err
+	}
+	report.DRA = dra
+	return nil
+}
+
+func (r IOSReporter) Json(out io.Writer) error {
+	return reportJson(r, out)
+}
+
+func (r IOSReporter) Html(out io.Writer) error {
+	return reportHTML(r, out)
+}
+
+func (r IOSReporter) Resume(out io.Writer) {
+	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.High, r.Medium, r.Low, r.Total, out)
+}
+
+func (r IOSReporter) Console(out io.Writer) {
+	consoleReport(r.SecurityScore(), r.DRA, r.Libraries, r.Vulnerabilities, out)
+}
+
+func (r IOSReporter) SecurityScore() float64 {
+	return r.IOSInfo.SecurityScore
+}

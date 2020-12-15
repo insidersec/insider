@@ -1,0 +1,10 @@
+prod:
+    token: 1234567890
+
+
+dev:
+    token: 1234567890
+
+
+stage:
+    token: 1234567890

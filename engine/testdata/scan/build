@@ -1,0 +1,4 @@
+#/usr/bin/bash
+
+
+echo "publish to https://deploy.com.br"

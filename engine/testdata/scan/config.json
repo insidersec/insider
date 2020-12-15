@@ -1,0 +1,12 @@
+{
+    "prod": {
+        "token": "ABCD12345"
+    },
+    "dev": {
+        "token": "ABCD12345"
+    } ,
+    "stage": {
+        "token": "ABCD12345"
+    }
+
+}
