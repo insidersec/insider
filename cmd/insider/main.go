@@ -20,27 +20,41 @@ const (
 )
 
 var (
-	flagTech   = flag.String("tech", "", "Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)\n-tech javascript\n-tech csharp")
-	flagTarget = flag.String("target", "", "Specify where to look for files to run the specific ruleset.\n-target <folder>\n-target <myprojectfolder>")
+	flagTech   = flag.String("tech", "", "Specify which technology ruleset to load")
+	flagTarget = flag.String("target", "", "Specify where to look for files to run the specific ruleset")
 
 	flagJobs     = flag.Int("jobs", 4, "Number of analysis to execute in parallel")
-	flagForce    = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default - Optional")
-	flagNoHTML   = flag.Bool("no-html", false, "Skips the report generation in the HTML format - Optional")
-	flagNoJSON   = flag.Bool("no-json", false, "Skips the report generation in the JSON format - Optional")
-	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100")
-	flagVerbose  = flag.Bool("v", false, "Set true for verbose output")
+	flagForce    = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default (default false)")
+	flagNoHTML   = flag.Bool("no-html", false, "Skips the report generation in the HTML format (default false)")
+	flagNoJSON   = flag.Bool("no-json", false, "Skips the report generation in the JSON format (default false)")
+	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100 (default 0)")
+	flagVerbose  = flag.Bool("v", false, "Enable verbose output")
 	flagVersion  = flag.Bool("version", false, "Show version and quit with exit code 0")
 )
 
 func usage() {
-	fmt.Fprintf(os.Stderr, "Insider is the CLI project from the Insider Application Security Team for the community\n")
-	fmt.Fprintf(os.Stderr, "Usage:\n")
+	fmt.Fprintln(os.Stderr, "insider is the CLI project from the Insider Application Security Team for the community")
+	fmt.Fprintf(os.Stderr, "\nUsage:\n")
 	flag.PrintDefaults()
 	fmt.Fprintf(os.Stderr, `
+Supported technologies:
+	android
+	java
+	ios
+	javascript
+	csharp
+	`)
+	fmt.Fprintf(os.Stderr, `
 Example of use:
-	insider -tech javascript -target myprojectfolder
-	insider -tech=android -target=myandroidfolder
-	insider -tech android -target <myfolder> -no-html
+	# Run JavaScript analysis on specific directoty
+	insider -tech javascript -target <directory>
+
+	# Run Android analysis on specific directoty and ignore html and json report
+	insider -tech android -target <directory> -no-html -no-json
+
+	# Run Java analysis on specific directoty with a base security value to fail
+	insider -tech java -target <directory> -security 20
+
 `)
 }
 
@@ -56,12 +70,14 @@ func main() {
 	}
 
 	if *flagTech == "" {
-		fmt.Fprintf(os.Stderr, "Should specify a tech to execute analysis\n")
+		fmt.Fprintf(os.Stderr, "Error: Expected a technology type to analyze\n\n")
+		flag.Usage()
 		os.Exit(1)
 	}
 
 	if *flagTarget == "" {
-		fmt.Fprintf(os.Stderr, "Should specify a target folder\n-target <folder>\n-target <myprojectfolder>\n")
+		fmt.Fprintf(os.Stderr, "Error: Expected a target directory to analyze\n\n")
+		flag.Usage()
 		os.Exit(1)
 	}
 	logger := log.New(os.Stderr, "[insider] ", log.LstdFlags)
