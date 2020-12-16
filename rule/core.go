@@ -1,10 +1,14 @@
 package rule
 
-import "github.com/insidersec/insider/engine"
+import (
+	"regexp"
+
+	"github.com/insidersec/insider/engine"
+)
 
 var CoreRules []engine.Rule = []engine.Rule{
 	Rule{
-		ExactMatch:    `(password\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])|(pass\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(pwd\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(passwd\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(senha\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])`,
+		ExactMatch:    regexp.MustCompile(`(password\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])|(pass\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(pwd\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(passwd\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"]\s)|(senha\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])`),
 		CWE:           "CWE-312",
 		AverageCVSS:   6.8,
 		Description:   "The file contains sensitive information written directly in the code, such as usernames, passwords, keys, etc. An attacker could decompile the application and obtain the data for improper use.",
@@ -12,7 +16,7 @@ var CoreRules []engine.Rule = []engine.Rule{
 	},
 
 	Rule{
-		ExactMatch:    "\\d{2,3}\\.\\d{2,3}\\.\\d{2,3}\\.\\d{2,3}",
+		ExactMatch:    regexp.MustCompile(`\d{2,3}\.\d{2,3}\.\d{2,3}\.\d{2,3}`),
 		CWE:           "CWE-312",
 		AverageCVSS:   6.8,
 		Description:   "The file contains credentials stored in the code. An attacker could decompile the application and obtain it for internal / external use.",
@@ -20,21 +24,21 @@ var CoreRules []engine.Rule = []engine.Rule{
 	},
 
 	Rule{
-		ExactMatch:  "\\d{2,3}\\.\\d{2,3}\\.\\d{2,3}\\-\\d{1,2}",
+		ExactMatch:  regexp.MustCompile(`\d{2,3}\.\d{2,3}\.\d{2,3}\-\d{1,2}`),
 		CWE:         "CWE-359",
 		AverageCVSS: 5.1,
 		Description: "Possible personal document (CPF) written directly in the code. An attacker could decompile the application and obtain the document for misuse.",
 	},
 
 	Rule{
-		ExactMatch:  "(?mi)\\d{1,2}\\.\\d{2,3}\\.\\d{2,3}-[0-9|x]",
+		ExactMatch:  regexp.MustCompile(`(?mi)\d{1,2}\.\d{2,3}\.\d{2,3}-[0-9|x]`),
 		CWE:         "CWE-359",
 		AverageCVSS: 5.1,
 		Description: "Possible personal document (RG) written directly in the code. An attacker could decompile the application and obtain the document for misuse.",
 	},
 
 	Rule{
-		ExactMatch:    "(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}",
+		ExactMatch:    regexp.MustCompile("(A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}"),
 		CWE:           "CWE-312",
 		AverageCVSS:   6.8,
 		Description:   "The file contains sensitive information written directly in the code, such as usernames, passwords, keys, etc. An attacker could decompile the application and obtain the data for improper use.",
@@ -42,7 +46,7 @@ var CoreRules []engine.Rule = []engine.Rule{
 	},
 
 	Rule{
-		ExactMatch:    "(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z/+]{40}['\"]",
+		ExactMatch:    regexp.MustCompile("(?i)aws(.{0,20})?(?-i)['\"][0-9a-zA-Z/+]{40}['\"]"),
 		CWE:           "CWE-312",
 		AverageCVSS:   6.8,
 		Description:   "The file contains sensitive information written directly in the code, such as usernames, passwords, keys, etc. An attacker could decompile the application and obtain the data for improper use.",
@@ -50,7 +54,7 @@ var CoreRules []engine.Rule = []engine.Rule{
 	},
 
 	Rule{
-		ExactMatch:    "amzn\\.mws\\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+		ExactMatch:    regexp.MustCompile(`amzn\.mws\.[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}`),
 		CWE:           "CWE-312",
 		AverageCVSS:   6.8,
 		Description:   "The file contains sensitive information written directly in the code, such as usernames, passwords, keys, etc. An attacker could decompile the application and obtain the data for improper use.",
@@ -58,7 +62,7 @@ var CoreRules []engine.Rule = []engine.Rule{
 	},
 
 	Rule{
-		ExactMatch:    "(?i)api_key(.{0,20})?['\"][0-9a-zA-Z]{32,45}['\"]",
+		ExactMatch:    regexp.MustCompile(`(?i)api_key(.{0,20})?['"][0-9a-zA-Z]{32,45}['"]`),
 		CWE:           "CWE-312",
 		AverageCVSS:   6.8,
 		Description:   "Generic API key. The file contains sensitive information written directly in the code, such as usernames, passwords, keys, etc. An attacker could decompile the application and obtain the data for improper use.",

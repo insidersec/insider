@@ -1,6 +1,7 @@
 package rule_test
 
 import (
+	"regexp"
 	"testing"
 
 	"github.com/insidersec/insider/engine"
@@ -27,11 +28,14 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					AndExpressions: []string{
-						"setJavaScriptEnabled\\(true\\)",
-						".addJavascriptInterface\\(",
+					And: []*regexp.Regexp{
+						regexp.MustCompile(`setJavaScriptEnabled\(true\)`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
 					},
-					NotOr: []string{"execSQL\\(|rawQuery\\(", ".addJavascriptInterface\\("},
+					NotOr: []*regexp.Regexp{
+						regexp.MustCompile(`execSQL\(|rawQuery\(`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
+					},
 				},
 			},
 		},
@@ -46,11 +50,14 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					AndExpressions: []string{
-						"setJavaScriptEnabled\\(true\\)",
-						".addJavascriptInterface\\(",
+					And: []*regexp.Regexp{
+						regexp.MustCompile(`setJavaScriptEnabled\(true\)`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
 					},
-					NotAnd: []string{"execSQL\\(|rawQuery\\(", ".addJavascriptInterface\\("},
+					NotAnd: []*regexp.Regexp{
+						regexp.MustCompile(`execSQL\(|rawQuery\(`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
+					},
 				},
 			},
 		},
@@ -65,11 +72,11 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					AndExpressions: []string{
-						"setJavaScriptEnabled\\(true\\)",
-						".addJavascriptInterface\\(",
+					And: []*regexp.Regexp{
+						regexp.MustCompile(`setJavaScriptEnabled\(true\)`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
 					},
-					NotAnd: []string{".addJavascriptInterface\\("},
+					NotAnd: []*regexp.Regexp{regexp.MustCompile(`.addJavascriptInterface\(`)},
 				},
 			},
 		},
@@ -83,9 +90,9 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					AndExpressions: []string{
-						"setJavaScriptEnabled\\(true\\)",
-						".addJavascriptInterface\\(",
+					And: []*regexp.Regexp{
+						regexp.MustCompile(`setJavaScriptEnabled\(true\)`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
 					},
 				},
 			},
@@ -101,9 +108,9 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					AndExpressions: []string{
-						"setJavaScriptEnabled\\(true\\)",
-						".addJavascriptInterface\\(",
+					And: []*regexp.Regexp{
+						regexp.MustCompile(`setJavaScriptEnabled\(true\)`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
 					},
 				},
 			},
@@ -118,9 +125,9 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					OrExpressions: []string{
-						"setJavaScriptEnabled\\(true\\)",
-						".addJavascriptInterface\\(",
+					Or: []*regexp.Regexp{
+						regexp.MustCompile(`setJavaScriptEnabled\(true\)`),
+						regexp.MustCompile(`.addJavascriptInterface\(`),
 					},
 				},
 			},
@@ -135,7 +142,7 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					ExactMatch: `(password\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])`,
+					ExactMatch: regexp.MustCompile(`(password\s*=\s*['|"][\w\!\@\#\$\%\&\*\(\)\s]+['|"])`),
 				},
 			},
 		},
@@ -155,8 +162,8 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					ExactMatch: `new\s+PasswordValidator(?:\n*.*)*`,
-					NotAnd:     []string{"RequireDigit\\s+=\\s+true,"},
+					ExactMatch: regexp.MustCompile(`new\s+PasswordValidator(?:\n*.*)*`),
+					NotAnd:     []*regexp.Regexp{regexp.MustCompile(`RequireDigit\s+=\s+true,`)},
 				},
 			},
 		},
@@ -175,8 +182,8 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					ExactMatch: `new\s+PasswordValidator(?:\n*.*)*`,
-					NotAnd:     []string{"RequireDigit\\s+=\\s+true,"},
+					ExactMatch: regexp.MustCompile(`new\s+PasswordValidator(?:\n*.*)*`),
+					NotAnd:     []*regexp.Regexp{regexp.MustCompile(`RequireDigit\s+=\s+true,`)},
 				},
 			},
 		},
@@ -196,10 +203,10 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					ExactMatch: `new\s+PasswordValidator(?:\n*.*)*`,
-					NotOr: []string{
-						"RequireDigit\\s+=\\s+true,",
-						"RequireUppercase\\s+=\\s+true,",
+					ExactMatch: regexp.MustCompile(`new\s+PasswordValidator(?:\n*.*)*`),
+					NotOr: []*regexp.Regexp{
+						regexp.MustCompile(`RequireDigit\s+=\s+true,`),
+						regexp.MustCompile(`RequireUppercase\s+=\s+true,`),
 					},
 				},
 			},
@@ -220,8 +227,8 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					ExactMatch: `new\s+PasswordValidator(?:\n*.*)*`,
-					NotMatch:   "{}",
+					ExactMatch: regexp.MustCompile(`new\s+PasswordValidator(?:\n*.*)*`),
+					NotMatch:   regexp.MustCompile("{}"),
 				},
 			},
 		},
@@ -236,8 +243,8 @@ func TestRuleMatch(t *testing.T) {
 			},
 			rules: []engine.Rule{
 				rule.Rule{
-					ExactMatch: `new\s+PasswordValidator(?:\n*.*)*`,
-					NotMatch:   "{}",
+					ExactMatch: regexp.MustCompile(`new\s+PasswordValidator(?:\n*.*)*`),
+					NotMatch:   regexp.MustCompile("{}"),
 				},
 			},
 		},
@@ -263,7 +270,7 @@ func TestRegexIsNotMatch(t *testing.T) {
 		{
 			name: "Test IsNotMatch return true",
 			rule: rule.Rule{
-				NotMatch: "regex-1",
+				NotMatch: regexp.MustCompile("regex-1"),
 			},
 			result: true,
 		},
@@ -292,7 +299,7 @@ func TestRegexIsOrMatch(t *testing.T) {
 		{
 			name: "Test IsNotMatch return true",
 			rule: rule.Rule{
-				OrExpressions: []string{"regex-1", "regex-2"},
+				Or: []*regexp.Regexp{regexp.MustCompile("regex-1"), regexp.MustCompile("regex-2")},
 			},
 			result: true,
 		},
@@ -321,7 +328,7 @@ func TestRegexIsAndMatch(t *testing.T) {
 		{
 			name: "Test IsAndMatch return true",
 			rule: rule.Rule{
-				AndExpressions: []string{"regex-1", "regex-2"},
+				And: []*regexp.Regexp{regexp.MustCompile("regex-1"), regexp.MustCompile("regex-2")},
 			},
 			result: true,
 		},
@@ -350,7 +357,7 @@ func TestRegexHaveNotAndClause(t *testing.T) {
 		{
 			name: "Test HaveNotAndClause return true",
 			rule: rule.Rule{
-				NotAnd: []string{"regex-1", "regex-2"},
+				NotAnd: []*regexp.Regexp{regexp.MustCompile("regex-1"), regexp.MustCompile("regex-2")},
 			},
 			result: true,
 		},
@@ -379,7 +386,7 @@ func TestRegexHaveNotORClause(t *testing.T) {
 		{
 			name: "Test HaveNotORClause return true",
 			rule: rule.Rule{
-				NotOr: []string{"regex-1", "regex-2"},
+				NotOr: []*regexp.Regexp{regexp.MustCompile("regex-1"), regexp.MustCompile("regex-2")},
 			},
 			result: true,
 		},
