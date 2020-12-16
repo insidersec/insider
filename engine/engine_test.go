@@ -2,6 +2,7 @@ package engine_test
 
 import (
 	"context"
+	"regexp"
 	"testing"
 
 	"github.com/insidersec/insider/engine"
@@ -11,15 +12,44 @@ import (
 )
 
 func TestEngineScan(t *testing.T) {
-	e := engine.New(testutil.NewTestRuleBuilder(t), 4, testutil.NewTestLogger(t))
 
-	r, err := e.Scan(context.Background(), "testdata/scan")
-	require.Nil(t, err)
+	testcases := []struct {
+		name            string
+		engine          *engine.Engine
+		dra             int
+		lines           int
+		vulnerabilities int
+	}{
+		{
+			name:            "Test without ignore files",
+			engine:          engine.New(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{}, 4, testutil.NewTestLogger(t)),
+			dra:             4,
+			lines:           121,
+			vulnerabilities: 3,
+		},
+		{
+			name: "Test with ignore files",
+			engine: engine.New(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{
+				regexp.MustCompile("ios/*"),
+			}, 4, testutil.NewTestLogger(t)),
+			dra:             2,
+			lines:           73,
+			vulnerabilities: 3,
+		},
+	}
 
-	result, ok := r.(engine.Result)
-	require.True(t, ok)
+	for _, tt := range testcases {
+		t.Run(tt.name, func(t *testing.T) {
+			r, err := tt.engine.Scan(context.Background(), "testdata/scan")
+			require.Nil(t, err)
 
-	assert.Equal(t, 4, len(result.Dra), "Expected equal dras")
-	assert.Equal(t, 121, result.Lines, "Expected equal total lines")
-	assert.Equal(t, 3, len(result.Vulnerabilities), "Expected equal vulnerabilities")
+			result, ok := r.(engine.Result)
+			require.True(t, ok)
+
+			assert.Equal(t, tt.dra, len(result.Dra), "Expected equal dras")
+			assert.Equal(t, tt.lines, result.Lines, "Expected equal total lines")
+			assert.Equal(t, tt.vulnerabilities, len(result.Vulnerabilities), "Expected equal vulnerabilities")
+		})
+	}
+
 }

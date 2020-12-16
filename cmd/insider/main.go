@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"regexp"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/insidersec/insider"
@@ -19,6 +21,17 @@ const (
 	npmUserAgent   string = "npm-registry-fetch@5.0.1/node@v12.5.0+x64 (linux)"
 )
 
+type arrayFlag []string
+
+func (a arrayFlag) String() string {
+	return strings.Join(a, " ")
+}
+
+func (a *arrayFlag) Set(s string) error {
+	*a = append(*a, s)
+	return nil
+}
+
 var (
 	flagTech   = flag.String("tech", "", "Specify which technology ruleset to load")
 	flagTarget = flag.String("target", "", "Specify where to look for files to run the specific ruleset")
@@ -30,6 +43,7 @@ var (
 	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100 (default 0)")
 	flagVerbose  = flag.Bool("v", false, "Enable verbose output")
 	flagVersion  = flag.Bool("version", false, "Show version and quit with exit code 0")
+	flagExclude  arrayFlag
 )
 
 func usage() {
@@ -61,6 +75,8 @@ Example of use:
 func main() {
 	prepareVersionInfo()
 
+	flag.Var(&flagExclude, "exclude", "Patterns to exclude directory or files to analyze. Can be used multiple times")
+
 	flag.Usage = usage
 	flag.Parse()
 
@@ -88,7 +104,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	engine := engine.New(rule.NewRuleBuilder(), *flagJobs, logger)
+	exclude, err := buildExpressions(flagExclude)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+	}
+
+	engine := engine.New(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
 	analyzer := insider.NewAnalyzer(engine, techAnalyzer, logger)
 
 	report, err := analyzer.Analyze(context.Background(), *flagTarget)
@@ -143,6 +164,20 @@ func main() {
 		log.Fatalf("Score Security %v lower then %v", securityScore, *flagSecurity)
 	}
 
+}
+
+func buildExpressions(expressions []string) ([]*regexp.Regexp, error) {
+	regexps := make([]*regexp.Regexp, 0, len(expressions))
+
+	for _, expr := range expressions {
+		re, err := regexp.Compile(expr)
+		if err != nil {
+			return nil, fmt.Errorf("compile %s: %w", expr, err)
+		}
+		regexps = append(regexps, re)
+	}
+
+	return regexps, nil
 }
 
 func techAnalyzer(tech string, logger *log.Logger) (insider.TechAnalyzer, error) {

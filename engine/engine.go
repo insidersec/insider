@@ -3,6 +3,7 @@ package engine
 import (
 	"context"
 	"log"
+	"regexp"
 	"sync"
 
 	"github.com/insidersec/insider/report"
@@ -10,13 +11,15 @@ import (
 
 type Engine struct {
 	logger      *log.Logger
+	exclude     []*regexp.Regexp
 	ruleBuilder RuleBuilder
 	jobs        int
 }
 
-func New(ruleBuilder RuleBuilder, jobs int, logger *log.Logger) *Engine {
+func New(ruleBuilder RuleBuilder, exclude []*regexp.Regexp, jobs int, logger *log.Logger) *Engine {
 	return &Engine{
 		logger:      logger,
+		exclude:     exclude,
 		ruleBuilder: ruleBuilder,
 		jobs:        jobs,
 	}
@@ -35,6 +38,7 @@ func (e *Engine) Scan(ctx context.Context, dir string) (report.Result, error) {
 		ruleBuilder: e.ruleBuilder,
 		ruleSet:     NewRuleSet(),
 		dir:         dir,
+		exclude:     e.exclude,
 	}
 	return scanner.Process()
 }

@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strconv"
 	"sync"
 
@@ -60,12 +61,13 @@ type scanner struct {
 	logger      *log.Logger
 	mutext      *sync.Mutex
 	wg          *sync.WaitGroup
+	result      *Result
+	exclude     []*regexp.Regexp
+	ruleBuilder RuleBuilder
+	ruleSet     RuleSet
 	errors      []error
 	ch          chan bool
 	ctx         context.Context
-	result      *Result
-	ruleBuilder RuleBuilder
-	ruleSet     RuleSet
 	dir         string
 }
 
@@ -110,7 +112,7 @@ func (s *scanner) Walk(path string, info os.FileInfo, err error) error {
 }
 
 func (s *scanner) asyncWalk(path string, info os.FileInfo) error {
-	if info.IsDir() {
+	if info.IsDir() || s.ignore(path) {
 		return nil
 	}
 
@@ -187,6 +189,15 @@ func (s *scanner) language(file string) (Language, error) {
 	}
 
 	return Core, nil
+}
+
+func (s *scanner) ignore(path string) bool {
+	for _, re := range s.exclude {
+		if re.MatchString(path) {
+			return true
+		}
+	}
+	return false
 }
 
 func IssueToVulnerability(filename, displayName string, issue Issue) report.Vulnerability {
