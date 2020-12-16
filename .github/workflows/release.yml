@@ -17,8 +17,8 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.14
-      - name: Run GoReleaser
+          go-version: 1.15
+      - name: Release binaries
         uses: goreleaser/goreleaser-action@v2
         with:
           version: latest
