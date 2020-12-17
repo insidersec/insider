@@ -50,7 +50,7 @@ func (r IOSReporter) Json(out io.Writer) error {
 }
 
 func (r IOSReporter) Html(out io.Writer) error {
-	return reportHTML(r, out)
+	return reportHTML(iosTemplate(), r, out)
 }
 
 func (r IOSReporter) Resume(out io.Writer) {

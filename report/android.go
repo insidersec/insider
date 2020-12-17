@@ -31,7 +31,6 @@ type AndroidInfo struct {
 // entry in an AndroidManifest.xml file
 // for our report
 type BrowsableActivity struct {
-	SastID          string
 	Title           string   `json:"title,omitempty"`
 	Hosts           []string `json:"hosts,omitempty"`
 	MIMETypes       []string `json:"mimeTypes,omitempty"`
@@ -102,7 +101,7 @@ func (r AndroidReporter) Json(out io.Writer) error {
 }
 
 func (r AndroidReporter) Html(out io.Writer) error {
-	return reportHTML(r, out)
+	return reportHTML(androidTemplate(), r, out)
 }
 
 func (r AndroidReporter) Resume(out io.Writer) {

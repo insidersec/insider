@@ -40,21 +40,20 @@ type LibraryVulnerability struct {
 // Vulnerability is the default structure to represent a potentially
 // dangerous piece code inside the source analyzed.
 type Vulnerability struct {
-	CVSS            float64  `json:"cvss"`
-	CWE             string   `json:"cwe,omitempty"`
-	Rank            string   `json:"rank,omitempty"`
-	Line            int      `json:"line,omitempty"`
-	Class           string   `json:"class,omitempty"`
-	VulnerabilityID string   `json:"vul_id,omitempty"`
-	Method          string   `json:"method,omitempty"`
-	Column          int      `json:"column,omitempty"`
-	Category        string   `json:"category,omitempty"`
-	Priority        string   `json:"priority,omitempty"`
-	LongMessage     string   `json:"longMessage,omitempty"`
-	ClassMessage    string   `json:"classMessage,omitempty"`
-	ShortMessage    string   `json:"shortMessage,omitempty"`
-	MethodMessage   string   `json:"methodMessage,omitempty"`
-	AffectedFiles   []string `json:"affectedFiles,omitempty"`
+	CVSS            float64 `json:"cvss"`
+	CWE             string  `json:"cwe,omitempty"`
+	Severity        string  `json:"severity,omitempty"`
+	Line            int     `json:"line,omitempty"`
+	Class           string  `json:"class,omitempty"`
+	VulnerabilityID string  `json:"vul_id,omitempty"`
+	Method          string  `json:"method,omitempty"`
+	Column          int     `json:"column,omitempty"`
+	Category        string  `json:"category,omitempty"`
+	Priority        string  `json:"priority,omitempty"`
+	Description     string  `json:"description,omitempty"`
+	ClassMessage    string  `json:"classMessage,omitempty"`
+	Recomendation   string  `json:"recomendation,omitempty"`
+	MethodMessage   string  `json:"methodMessage,omitempty"`
 }
 
 // Library is the default representation of a library found inside
@@ -115,7 +114,7 @@ func (r Report) Json(out io.Writer) error {
 }
 
 func (r Report) Html(out io.Writer) error {
-	return reportHTML(r, out)
+	return reportHTML(defaultTemplate(), r, out)
 }
 
 func (r Report) Resume(out io.Writer) {

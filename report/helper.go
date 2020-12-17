@@ -3,9 +3,9 @@ package report
 import (
 	"encoding/json"
 	"fmt"
+	"html/template"
 	"io"
 	"path/filepath"
-	"text/template"
 )
 
 func cleanDRA(dir string, dra []DRA) ([]DRA, error) {
@@ -45,8 +45,8 @@ func reportJson(r interface{}, out io.Writer) error {
 	return nil
 }
 
-func reportHTML(r interface{}, out io.Writer) error {
-	tmpl, err := template.New("report").Parse(reportTemplate())
+func reportHTML(t string, r interface{}, out io.Writer) error {
+	tmpl, err := template.New("report").Parse(t)
 	if err != nil {
 		return err
 	}
@@ -100,12 +100,12 @@ func consoleReport(score float64, dra []DRA, libraries []Library, vulnerabilitie
 
 	for _, k := range vulnerabilities {
 		fmt.Fprintln(out, "CVSS", k.CVSS)
-		fmt.Fprintln(out, "Rank", k.Rank)
+		fmt.Fprintln(out, "Severity", k.Severity)
 		fmt.Fprintln(out, "Class", k.Class)
 		fmt.Fprintln(out, "VulnerabilityID", k.VulnerabilityID)
-		fmt.Fprintln(out, "LongMessage", k.LongMessage)
+		fmt.Fprintln(out, "Description", k.Description)
 		fmt.Fprintln(out, "ClassMessage", k.ClassMessage)
-		fmt.Fprintln(out, "ShortMessage", k.ShortMessage)
+		fmt.Fprintln(out, "Recomendation", k.Recomendation)
 		fmt.Fprintln(out, "")
 	}
 

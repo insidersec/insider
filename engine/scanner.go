@@ -213,9 +213,9 @@ func IssueToVulnerability(filename, displayName string, issue Issue) report.Vuln
 		CWE:             issue.Info.CWE,
 		CVSS:            issue.Info.CVSS,
 		ClassMessage:    classDisplay,
-		Rank:            issue.Info.Severity,
-		LongMessage:     issue.Info.Description,
-		ShortMessage:    issue.Info.Recomendation,
+		Severity:        issue.Info.Severity,
+		Description:     issue.Info.Description,
+		Recomendation:   issue.Info.Recomendation,
 	}
 }
 

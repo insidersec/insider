@@ -44,35 +44,101 @@ func TestReportResumeConsole(t *testing.T) {
 }
 
 func TestReportHtml(t *testing.T) {
-	r := report.Report{
-		Base: report.Base{
-			DRA: []report.DRA{{
-				Data:     "testing",
-				Type:     "email",
-				FilePath: "foo/bar",
-			}},
-			Vulnerabilities: []report.Vulnerability{
-				{
-					CWE:  "CWE-123",
-					CVSS: 5,
+	testcases := []struct {
+		name   string
+		report report.Reporter
+	}{
+		{
+			name: "Test default report",
+			report: report.Report{
+				Base: report.Base{
+					DRA: []report.DRA{{
+						Data:     "testing",
+						Type:     "email",
+						FilePath: "foo/bar",
+					}},
+					Vulnerabilities: []report.Vulnerability{
+						{
+							CWE:  "CWE-123",
+							CVSS: 5,
+						},
+					},
+
+					Total:  5,
+					High:   5,
+					Medium: 0,
+					Low:    0,
+				},
+				Info: report.SASTInfo{
+					SecurityScore: 5,
 				},
 			},
-
-			Total:  5,
-			High:   5,
-			Medium: 0,
-			Low:    0,
 		},
-		Info: report.SASTInfo{
-			SecurityScore: 5,
+		{
+			name: "Test Android report",
+			report: report.AndroidReporter{
+				Base: report.Base{
+					DRA: []report.DRA{{
+						Data:     "testing",
+						Type:     "email",
+						FilePath: "foo/bar",
+					}},
+					Vulnerabilities: []report.Vulnerability{
+						{
+							CWE:  "CWE-123",
+							CVSS: 5,
+						},
+					},
+
+					Total:  5,
+					High:   5,
+					Medium: 0,
+					Low:    0,
+				},
+				AndroidInfo: report.AndroidInfo{
+					SecurityScore: 5,
+				},
+			},
+		},
+		{
+			name: "Test Ios report",
+			report: report.IOSReporter{
+				Base: report.Base{
+					DRA: []report.DRA{{
+						Data:     "testing",
+						Type:     "email",
+						FilePath: "foo/bar",
+					}},
+					Vulnerabilities: []report.Vulnerability{
+						{
+							CWE:  "CWE-123",
+							CVSS: 5,
+						},
+					},
+
+					Total:  5,
+					High:   5,
+					Medium: 0,
+					Low:    0,
+				},
+				IOSInfo: report.IOSInfo{
+					SecurityScore: 5,
+				},
+			},
 		},
 	}
 
-	out := bytes.NewBufferString("")
+	for _, tt := range testcases {
+		t.Run(tt.name, func(t *testing.T) {
 
-	err := r.Html(out)
-	require.Nil(t, err)
-	require.True(t, len(out.Bytes()) != 0)
+			out := bytes.NewBufferString("")
+
+			err := tt.report.Html(out)
+			require.Nil(t, err, "Expected nil error, got %v", err)
+			require.True(t, len(out.Bytes()) != 0)
+
+		})
+	}
 
 }
 
