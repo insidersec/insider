@@ -78,9 +78,8 @@ Example of use :
 
 ```bash
 # Check the correct release for your environment
-$ mkdir insider && cd insider
-$ wget https://github.com/insidersec/insider/releases/download/2.0.5/insider_2.0.5_linux_x86_64.tar.gz
-$ tar -xf insider_2.0.5_linux_x86_64.tar.gz 
+$ wget https://github.com/insidersec/insider/releases/download/2.0.6/insider_2.0.6_linux_x86_64.tar.gz
+$ tar -xf insider_2.0.6_linux_x86_64.tar.gz 
 $ chmod +x insider
 $ ./insider --tech javascript  --target <projectfolder>
 ```
