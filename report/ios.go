@@ -54,7 +54,7 @@ func (r IOSReporter) Html(out io.Writer) error {
 }
 
 func (r IOSReporter) Resume(out io.Writer) {
-	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.High, r.Medium, r.Low, r.Total, out)
+	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
 }
 
 func (r IOSReporter) Console(out io.Writer) {

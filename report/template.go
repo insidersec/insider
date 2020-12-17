@@ -47,9 +47,11 @@ func reportTemplate() string {
 		<div class='col-12'>
 					 <h7>Resume of Vulnerabilities</h7>
 					<table>
-						<tr><td>High</td><td>&nbsp; {{ .High }}</td></tr>
-						<tr><td>Medium</td><td>&nbsp; {{ .Medium }}</td></tr>
+						<tr><td>None</td><td>&nbsp; {{ .None }}</td></tr>
 						<tr><td>Low</td><td>&nbsp; {{ .Low }}</td></tr>
+						<tr><td>Medium</td><td>&nbsp; {{ .Medium }}</td></tr>
+						<tr><td>High</td><td>&nbsp; {{ .High }}</td></tr>
+						<tr><td>Critical</td><td>&nbsp; {{ .Critical }}</td></tr>
 						<tr><td>Total</td><td>&nbsp; {{ .Total }}</td></tr>
 					</table>
 		</div>

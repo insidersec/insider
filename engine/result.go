@@ -29,16 +29,18 @@ func (r Result) ToReporter(dir string, base report.Reporter) (report.Reporter, e
 }
 
 func (result *Result) toDefaultReporter(dir string, r report.Report) (report.Reporter, error) {
-	high, medium, low, total := getHighMedionLow(result.Vulnerabilities)
+	none, low, medium, high, critical, total := cvssRatings(result.Vulnerabilities)
 	r.Info.AverageCVSS = result.AverageCVSS
 	r.Info.SecurityScore = result.SecurityScore
 	r.Info.NumberOfLines = result.Lines
 	r.Info.Size = fmt.Sprintf("%d Bytes", result.Size)
 	r.Vulnerabilities = result.Vulnerabilities
 	r.DRA = result.Dra
-	r.High = high
-	r.Medium = medium
+	r.None = none
 	r.Low = low
+	r.Medium = medium
+	r.High = high
+	r.Critical = critical
 	r.Total = total
 
 	if err := r.CleanDRA(dir); err != nil {
@@ -48,16 +50,18 @@ func (result *Result) toDefaultReporter(dir string, r report.Report) (report.Rep
 }
 
 func (result *Result) toAndroidReporter(dir string, r report.AndroidReporter) (report.Reporter, error) {
-	high, medium, low, total := getHighMedionLow(result.Vulnerabilities)
+	none, low, medium, high, critical, total := cvssRatings(result.Vulnerabilities)
 	r.AndroidInfo.AverageCVSS = result.AverageCVSS
 	r.AndroidInfo.SecurityScore = result.SecurityScore
 	r.AndroidInfo.NumberOfLines = result.Lines
 	r.AndroidInfo.Size = fmt.Sprintf("%d Bytes", result.Size)
 	r.Vulnerabilities = result.Vulnerabilities
 	r.DRA = result.Dra
-	r.High = high
-	r.Medium = medium
+	r.None = none
 	r.Low = low
+	r.Medium = medium
+	r.High = high
+	r.Critical = critical
 	r.Total = total
 
 	if err := r.CleanDRA(dir); err != nil {
@@ -67,16 +71,18 @@ func (result *Result) toAndroidReporter(dir string, r report.AndroidReporter) (r
 }
 
 func (result *Result) toIosReporter(dir string, r report.IOSReporter) (report.Reporter, error) {
-	high, medium, low, total := getHighMedionLow(result.Vulnerabilities)
+	none, low, medium, high, critical, total := cvssRatings(result.Vulnerabilities)
 	r.IOSInfo.AverageCVSS = result.AverageCVSS
 	r.IOSInfo.SecurityScore = result.SecurityScore
 	r.IOSInfo.NumberOfLines = result.Lines
 	r.IOSInfo.Size = fmt.Sprintf("%d Bytes", result.Size)
 	r.Vulnerabilities = result.Vulnerabilities
 	r.DRA = result.Dra
-	r.High = high
-	r.Medium = medium
+	r.None = none
 	r.Low = low
+	r.Medium = medium
+	r.High = high
+	r.Critical = critical
 	r.Total = total
 
 	if err := r.CleanDRA(dir); err != nil {
@@ -85,19 +91,23 @@ func (result *Result) toIosReporter(dir string, r report.IOSReporter) (report.Re
 	return r, nil
 }
 
-func getHighMedionLow(vulnerabilities []report.Vulnerability) (int, int, int, int) {
-	high, medium, low := 0, 0, 0
-
+func cvssRatings(vulnerabilities []report.Vulnerability) (none, low, medium, high, critical, total int) {
 	for _, v := range vulnerabilities {
-		if v.CVSS >= 0 && v.CVSS < 3.9 {
-			medium++
+		if v.CVSS == 0 {
+			none++
 		}
-		if v.CVSS > 4 && v.CVSS < 6.9 {
+		if v.CVSS > 0 && v.CVSS < 3.9 {
 			low++
 		}
-		if v.CVSS > 7 && v.CVSS < 10 {
+		if v.CVSS >= 4 && v.CVSS < 6.9 {
+			medium++
+		}
+		if v.CVSS >= 7 && v.CVSS <= 8.9 {
 			high++
 		}
+		if v.CVSS >= 9 && v.CVSS <= 10 {
+			critical++
+		}
 	}
-	return high, medium, low, high + medium + low
+	return none, low, medium, high, critical, (none + low + medium + high + critical)
 }

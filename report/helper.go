@@ -58,14 +58,16 @@ func reportHTML(r interface{}, out io.Writer) error {
 	return downloadCss()
 }
 
-func resumeReport(score float64, dra, vulnerabilities, high, medium, low, total int, out io.Writer) {
+func resumeReport(score float64, dra, vulnerabilities, none, low, medium, high, critical, total int, out io.Writer) {
 	fmt.Fprintf(out, "\n-----------------------------------------------\n")
 	fmt.Fprintf(out, "Score Security %v/100\n", score)
 	fmt.Fprintf(out, "Vulnerabilities\t%3v \n", vulnerabilities)
 	fmt.Fprintf(out, "DRA\t\t%3v \n", dra)
-	fmt.Fprintf(out, "High\t\t%3v \n", high)
-	fmt.Fprintf(out, "Medium\t\t%3v \n", medium)
+	fmt.Fprintf(out, "None\t\t%3v \n", none)
 	fmt.Fprintf(out, "Low\t\t%3v \n", low)
+	fmt.Fprintf(out, "Medium\t\t%3v \n", medium)
+	fmt.Fprintf(out, "High\t\t%3v \n", high)
+	fmt.Fprintf(out, "Critical\t%3v \n", critical)
 	fmt.Fprintf(out, "Total\t\t%3v \n", total)
 	fmt.Fprintln(out, "-----------------------------------------------------------------------------------------------------------------------")
 	fmt.Fprintln(out, "You are using the Insider open source version. If you like the product and want more features,")

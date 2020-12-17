@@ -48,9 +48,11 @@ func TestAnalyzer(t *testing.T) {
 			},
 			engine: fakeEngine{
 				result: &engine.Result{
-					Dra:             []report.DRA{{}},
-					Vulnerabilities: []report.Vulnerability{{}, {}},
-					Size:            10,
+					Dra: []report.DRA{{}},
+					Vulnerabilities: []report.Vulnerability{
+						{CVSS: 0}, {CVSS: 2.3}, {CVSS: 6.7},
+					},
+					Size: 10,
 				},
 			},
 			expectedReport: report.Report{
@@ -61,11 +63,12 @@ func TestAnalyzer(t *testing.T) {
 					DRA: []report.DRA{{
 						FilePath: ".",
 					}},
-					Vulnerabilities: []report.Vulnerability{{}, {}},
+					Vulnerabilities: []report.Vulnerability{{CVSS: 0}, {CVSS: 2.3}, {CVSS: 6.7}},
+					None:            1,
 					High:            0,
-					Medium:          2,
-					Low:             0,
-					Total:           2,
+					Medium:          1,
+					Low:             1,
+					Total:           3,
 				},
 				LibraryIssues: []report.LibraryVulnerability{{}, {}},
 			},
@@ -82,7 +85,7 @@ func TestAnalyzer(t *testing.T) {
 			engine: fakeEngine{
 				result: &engine.Result{
 					Dra:             []report.DRA{{}},
-					Vulnerabilities: []report.Vulnerability{{}, {}},
+					Vulnerabilities: []report.Vulnerability{{CVSS: 6.7}, {CVSS: 8.1}, {CVSS: 7.2}, {CVSS: 9.2}},
 					Size:            57,
 				},
 			},
@@ -94,11 +97,13 @@ func TestAnalyzer(t *testing.T) {
 				Base: report.Base{DRA: []report.DRA{{
 					FilePath: ".",
 				}},
-					Vulnerabilities: []report.Vulnerability{{}, {}},
-					High:            0,
-					Medium:          2,
+					Vulnerabilities: []report.Vulnerability{{CVSS: 6.7}, {CVSS: 8.1}, {CVSS: 7.2}, {CVSS: 9.2}},
+					None:            0,
 					Low:             0,
-					Total:           2,
+					Medium:          1,
+					High:            2,
+					Critical:        1,
+					Total:           4,
 				},
 			},
 		},
@@ -113,9 +118,11 @@ func TestAnalyzer(t *testing.T) {
 			},
 			engine: fakeEngine{
 				result: &engine.Result{
-					Dra:             []report.DRA{{}},
-					Vulnerabilities: []report.Vulnerability{{}, {}},
-					Size:            57,
+					Dra: []report.DRA{{}},
+					Vulnerabilities: []report.Vulnerability{
+						{CVSS: 3.9}, {CVSS: 4.0}, {CVSS: 6.9}, {CVSS: 7.0}, {CVSS: 8.9}, {CVSS: 9.8},
+					},
+					Size: 57,
 				},
 			},
 			expectedReport: report.IOSReporter{
@@ -126,11 +133,15 @@ func TestAnalyzer(t *testing.T) {
 				Base: report.Base{DRA: []report.DRA{{
 					FilePath: ".",
 				}},
-					Vulnerabilities: []report.Vulnerability{{}, {}},
-					High:            0,
-					Medium:          2,
-					Low:             0,
-					Total:           2,
+					Vulnerabilities: []report.Vulnerability{
+						{CVSS: 3.9}, {CVSS: 4.0}, {CVSS: 6.9}, {CVSS: 7.0}, {CVSS: 8.9}, {CVSS: 9.8},
+					},
+					None:     0,
+					Low:      0,
+					Medium:   1,
+					High:     2,
+					Critical: 1,
+					Total:    4,
 				},
 			},
 		},

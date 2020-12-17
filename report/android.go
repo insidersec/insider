@@ -106,7 +106,7 @@ func (r AndroidReporter) Html(out io.Writer) error {
 }
 
 func (r AndroidReporter) Resume(out io.Writer) {
-	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.High, r.Medium, r.Low, r.Total, out)
+	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
 }
 
 func (r AndroidReporter) Console(out io.Writer) {

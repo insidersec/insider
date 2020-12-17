@@ -84,9 +84,11 @@ type Base struct {
 	DRA             []DRA           `json:"dra"`
 	Libraries       []Library       `json:"libraries,omitempty"`
 	Vulnerabilities []Vulnerability `json:"vulnerabilities,omitempty"`
-	High            int             `json:"high"`
-	Medium          int             `json:"medium"`
+	None            int             `json:"none"`
 	Low             int             `json:"low"`
+	Medium          int             `json:"medium"`
+	High            int             `json:"high"`
+	Critical        int             `json:"critical"`
 	Total           int             `json:"total"`
 }
 
@@ -117,7 +119,7 @@ func (r Report) Html(out io.Writer) error {
 }
 
 func (r Report) Resume(out io.Writer) {
-	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.High, r.Medium, r.Low, r.Total, out)
+	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
 }
 
 func (r Report) Console(out io.Writer) {
