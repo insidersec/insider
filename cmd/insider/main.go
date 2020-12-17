@@ -107,6 +107,7 @@ func main() {
 	exclude, err := buildExpressions(flagExclude)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error: %v\n", err)
+		os.Exit(1)
 	}
 
 	engine := engine.New(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
