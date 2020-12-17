@@ -112,7 +112,7 @@ func (s *scanner) Walk(path string, info os.FileInfo, err error) error {
 }
 
 func (s *scanner) asyncWalk(path string, info os.FileInfo) error {
-	if info.IsDir() || s.ignore(path) {
+	if info.IsDir() || info.Mode()&os.ModeSymlink != 0 || s.ignore(path) {
 		return nil
 	}
 
