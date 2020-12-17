@@ -20,12 +20,12 @@ func TestRuleBuilder(t *testing.T) {
 		{
 			name:      "Test load multiple rules",
 			languages: []engine.Language{engine.Javascript, engine.Csharp, engine.Core, engine.Android, engine.Ios},
-			rules:     81,
+			rules:     155,
 		},
 		{
 			name:      "Test load single rule",
 			languages: []engine.Language{engine.Core},
-			rules:     8,
+			rules:     37,
 		},
 		{
 			name:      "Test load invalid rule",
