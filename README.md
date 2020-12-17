@@ -102,7 +102,7 @@ $ ./insider --tech javascript  --target <projectfolder>
 To build Insider from source you'll need at least [Go version 1.13](https://golang.org/dl/) working.
 
 ```bash
-$ go get github.com/insidersec/insider
+$ go get github.com/insidersec/insider/cmd/insider
 ```
 ---
 
