@@ -74,21 +74,16 @@ type ManifestPermission struct {
 	Info        string `json:"info,omitempty"`
 }
 
+// AndroidReporter report of Android analysis
 type AndroidReporter struct {
-	DRA                     []DRA                `json:"dra"`
+	Base
 	AndroidInfo             AndroidInfo          `json:"android,omitempty"`
 	Services                []Service            `json:"services,omitempty"`
 	ManifestVulnerabilities []ManifestEntry      `json:"manifest,omitempty"`
 	BroadcastReceivers      []BroadcastReceiver  `json:"receivers,omitempty"`
-	Libraries               []Library            `json:"libraries,omitempty"`
 	AvailableActivities     []Activity           `json:"activities,omitempty"`
 	ManifestPermissions     []ManifestPermission `json:"permissions,omitempty"`
-	Vulnerabilities         []Vulnerability      `json:"vulnerabilities,omitempty"`
 	BrowsableActivities     []BrowsableActivity  `json:"browsableActivities,omitempty"`
-	High                    int
-	Medium                  int
-	Low                     int
-	Total                   int
 }
 
 // CleanDRA cleans up the DRA list

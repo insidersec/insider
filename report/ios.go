@@ -27,16 +27,11 @@ type IOSPermission struct {
 	Description string `json:"description,omitempty"`
 }
 
+// IOSReporter report of Ios analysis
 type IOSReporter struct {
-	DRA             []DRA           `json:"dra"`
-	IOSInfo         IOSInfo         `json:"ios,omitempty"`
-	Libraries       []Library       `json:"libraries,omitempty"`
-	Permissions     []IOSPermission `json:"permissions,omitempty"`
-	Vulnerabilities []Vulnerability `json:"vulnerabilities,omitempty"`
-	High            int
-	Medium          int
-	Low             int
-	Total           int
+	Base
+	IOSInfo     IOSInfo         `json:"ios,omitempty"`
+	Permissions []IOSPermission `json:"permissions,omitempty"`
 }
 
 // CleanDRA cleans up the DRA list

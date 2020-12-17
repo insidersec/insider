@@ -11,19 +11,21 @@ import (
 
 func TestReportResumeConsole(t *testing.T) {
 	r := report.Report{
-		DRA: []report.DRA{{
-			Data:     "testing",
-			Type:     "email",
-			FilePath: "foo/bar",
-		}},
-		Vulnerabilities: []report.Vulnerability{
-			{
-				CWE:  "CWE-123",
-				CVSS: 5,
-			},
-			{
-				CWE:  "CWE-456",
-				CVSS: 7,
+		Base: report.Base{
+			DRA: []report.DRA{{
+				Data:     "testing",
+				Type:     "email",
+				FilePath: "foo/bar",
+			}},
+			Vulnerabilities: []report.Vulnerability{
+				{
+					CWE:  "CWE-123",
+					CVSS: 5,
+				},
+				{
+					CWE:  "CWE-456",
+					CVSS: 7,
+				},
 			},
 		},
 		Info: report.SASTInfo{
@@ -43,24 +45,27 @@ func TestReportResumeConsole(t *testing.T) {
 
 func TestReportHtml(t *testing.T) {
 	r := report.Report{
-		DRA: []report.DRA{{
-			Data:     "testing",
-			Type:     "email",
-			FilePath: "foo/bar",
-		}},
-		Vulnerabilities: []report.Vulnerability{
-			{
-				CWE:  "CWE-123",
-				CVSS: 5,
+		Base: report.Base{
+			DRA: []report.DRA{{
+				Data:     "testing",
+				Type:     "email",
+				FilePath: "foo/bar",
+			}},
+			Vulnerabilities: []report.Vulnerability{
+				{
+					CWE:  "CWE-123",
+					CVSS: 5,
+				},
 			},
+
+			Total:  5,
+			High:   5,
+			Medium: 0,
+			Low:    0,
 		},
 		Info: report.SASTInfo{
 			SecurityScore: 5,
 		},
-		Total:  5,
-		High:   5,
-		Medium: 0,
-		Low:    0,
 	}
 
 	out := bytes.NewBufferString("")
@@ -73,11 +78,13 @@ func TestReportHtml(t *testing.T) {
 
 func TestReportJson(t *testing.T) {
 	r := report.Report{
-		DRA: []report.DRA{{
-			Data:     "testing",
-			Type:     "email",
-			FilePath: "foo/bar",
-		}},
+		Base: report.Base{
+			DRA: []report.DRA{{
+				Data:     "testing",
+				Type:     "email",
+				FilePath: "foo/bar",
+			}},
+		},
 	}
 
 	out := bytes.NewBufferString("")
@@ -90,11 +97,13 @@ func TestReportJson(t *testing.T) {
 
 func TestReportCleanDRA(t *testing.T) {
 	r := report.Report{
-		DRA: []report.DRA{
-			{Data: "foobar@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/bla.go"},
-			{Data: "foobar@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/baz.go"},
-			{Data: "baz@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/x.go"},
-			{Data: "whatever@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/y.go"},
+		Base: report.Base{
+			DRA: []report.DRA{
+				{Data: "foobar@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/bla.go"},
+				{Data: "foobar@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/baz.go"},
+				{Data: "baz@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/x.go"},
+				{Data: "whatever@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/y.go"},
+			},
 		},
 	}
 

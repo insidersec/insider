@@ -57,15 +57,17 @@ func TestAnalyzer(t *testing.T) {
 				Info: report.SASTInfo{
 					Size: "10 Bytes",
 				},
-				DRA: []report.DRA{{
-					FilePath: ".",
-				}},
-				Vulnerabilities: []report.Vulnerability{{}, {}},
-				LibraryIssues:   []report.LibraryVulnerability{{}, {}},
-				High:            0,
-				Medium:          2,
-				Low:             0,
-				Total:           2,
+				Base: report.Base{
+					DRA: []report.DRA{{
+						FilePath: ".",
+					}},
+					Vulnerabilities: []report.Vulnerability{{}, {}},
+					High:            0,
+					Medium:          2,
+					Low:             0,
+					Total:           2,
+				},
+				LibraryIssues: []report.LibraryVulnerability{{}, {}},
 			},
 		},
 		{
@@ -89,14 +91,15 @@ func TestAnalyzer(t *testing.T) {
 					Title: "testing",
 					Size:  "57 Bytes",
 				},
-				DRA: []report.DRA{{
+				Base: report.Base{DRA: []report.DRA{{
 					FilePath: ".",
 				}},
-				Vulnerabilities: []report.Vulnerability{{}, {}},
-				High:            0,
-				Medium:          2,
-				Low:             0,
-				Total:           2,
+					Vulnerabilities: []report.Vulnerability{{}, {}},
+					High:            0,
+					Medium:          2,
+					Low:             0,
+					Total:           2,
+				},
 			},
 		},
 		{
@@ -120,14 +123,15 @@ func TestAnalyzer(t *testing.T) {
 					AppName: "testing",
 					Size:    "57 Bytes",
 				},
-				DRA: []report.DRA{{
+				Base: report.Base{DRA: []report.DRA{{
 					FilePath: ".",
 				}},
-				Vulnerabilities: []report.Vulnerability{{}, {}},
-				High:            0,
-				Medium:          2,
-				Low:             0,
-				Total:           2,
+					Vulnerabilities: []report.Vulnerability{{}, {}},
+					High:            0,
+					Medium:          2,
+					Low:             0,
+					Total:           2,
+				},
 			},
 		},
 	}

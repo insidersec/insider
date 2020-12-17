@@ -79,16 +79,22 @@ type SASTInfo struct {
 	NumberOfLines int     `json:"numberOfLines,omitempty"`
 }
 
+// Base base report fields to all types of reports
+type Base struct {
+	DRA             []DRA           `json:"dra"`
+	Libraries       []Library       `json:"libraries,omitempty"`
+	Vulnerabilities []Vulnerability `json:"vulnerabilities,omitempty"`
+	High            int             `json:"high"`
+	Medium          int             `json:"medium"`
+	Low             int             `json:"low"`
+	Total           int             `json:"total"`
+}
+
+// Report default report to all technologies excluding Ios and Android
 type Report struct {
-	DRA             []DRA                  `json:"dra"`
-	LibraryIssues   []LibraryVulnerability `json:"sca,omitempty"`
-	Info            SASTInfo               `json:"sast,omitempty"`
-	Libraries       []Library              `json:"libraries,omitempty"`
-	Vulnerabilities []Vulnerability        `json:"vulnerabilities,omitempty"`
-	High            int
-	Medium          int
-	Low             int
-	Total           int
+	Base
+	LibraryIssues []LibraryVulnerability `json:"sca,omitempty"`
+	Info          SASTInfo               `json:"sast,omitempty"`
 }
 
 // CleanDRA cleans up the DRA list
