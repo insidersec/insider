@@ -69,6 +69,9 @@ Example of use:
 	# Run Java analysis on specific directoty with a base security value to fail
 	insider -tech java -target <directory> -security 20
 
+	# Run JavaScript analysis on specific directoty and exclude node_modules and test files
+	insider -tech javascript -target <directory> -exclude tests/* -exclude node_modules/*
+
 `)
 }
 
