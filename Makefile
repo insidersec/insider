@@ -6,6 +6,10 @@ GO := GO111MODULE=on go
 test:
 	$(GO) test -v -race ./...
 
+coverage:
+	$(GO) test -v -race -coverprofile=cover.out ./...
+	$(GO) tool cover -html=cover.out
+
 build:
 	$(GO) build -o $(BIN) ./cmd/insider/
 
