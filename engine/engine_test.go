@@ -22,18 +22,25 @@ func TestEngineScan(t *testing.T) {
 	}{
 		{
 			name:            "Test without ignore files",
-			engine:          engine.New(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{}, 4, testutil.NewTestLogger(t)),
+			engine:          engine.NewWithDRA(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{}, 4, testutil.NewTestLogger(t)),
 			dra:             4,
 			lines:           121,
 			vulnerabilities: 3,
 		},
 		{
 			name: "Test with ignore files",
-			engine: engine.New(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{
+			engine: engine.NewWithDRA(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{
 				regexp.MustCompile("ios/*"),
 			}, 4, testutil.NewTestLogger(t)),
 			dra:             2,
 			lines:           73,
+			vulnerabilities: 3,
+		},
+		{
+			name:            "Test without dra analysis",
+			engine:          engine.New(testutil.NewTestRuleBuilder(t), []*regexp.Regexp{}, 4, testutil.NewTestLogger(t)),
+			dra:             0,
+			lines:           121,
 			vulnerabilities: 3,
 		},
 	}

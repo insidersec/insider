@@ -13,6 +13,8 @@ import (
 	"github.com/insidersec/insider/report"
 )
 
+type spawnFn func(file InputFile, rules []Rule) error
+
 type Language string
 
 func (l Language) rules() []Language {
@@ -69,6 +71,7 @@ type scanner struct {
 	ch          chan bool
 	ctx         context.Context
 	dir         string
+	dra         bool
 }
 
 func (s *scanner) Process() (Result, error) {
@@ -88,32 +91,13 @@ func (s *scanner) Walk(path string, info os.FileInfo, err error) error {
 	if err != nil {
 		return err
 	}
+	if info.IsDir() || info.Mode()&os.ModeSymlink != 0 || s.ignore(path) {
+		return nil
+	}
 
 	// Check if the context timeout has been exceeded or cancelled.
 	if err := s.ctx.Err(); err != nil {
 		return err
-	}
-
-	s.wg.Add(1)
-	s.ch <- true
-	go func() {
-		defer func() {
-			s.wg.Done()
-			<-s.ch
-		}()
-
-		if err := s.asyncWalk(path, info); err != nil {
-			s.mutext.Lock()
-			s.errors = append(s.errors, err)
-			s.mutext.Unlock()
-		}
-	}()
-	return nil
-}
-
-func (s *scanner) asyncWalk(path string, info os.FileInfo) error {
-	if info.IsDir() || info.Mode()&os.ModeSymlink != 0 || s.ignore(path) {
-		return nil
 	}
 
 	rules, err := s.loadRules(path)
@@ -125,6 +109,7 @@ func (s *scanner) asyncWalk(path string, info os.FileInfo) error {
 		s.logger.Printf("Ignoring file %s\n", path)
 		return nil
 	}
+	s.result.Size += info.Size()
 
 	inputFile, err := NewInputFile(s.dir, path)
 	if err != nil {
@@ -132,19 +117,50 @@ func (s *scanner) asyncWalk(path string, info os.FileInfo) error {
 	}
 	s.logger.Printf("Load %d rules to file %s\n", len(rules), inputFile.DisplayName)
 
-	dras := AnalyzeDRA(inputFile.PhysicalPath, inputFile.Content)
+	s.spawn(s.analyseFile, inputFile, rules)
+	if s.dra {
+		s.spawn(s.analyseDRA, inputFile, rules)
+	}
 
-	issues, err := AnalyzeFile(inputFile, rules)
+	return nil
+}
+
+func (s *scanner) spawn(fn spawnFn, file InputFile, rules []Rule) {
+	s.wg.Add(1)
+	s.ch <- true
+
+	go func() {
+		defer func() {
+			s.wg.Done()
+			<-s.ch
+		}()
+
+		if err := fn(file, rules); err != nil {
+			s.mutext.Lock()
+			s.errors = append(s.errors, err)
+			s.mutext.Unlock()
+		}
+	}()
+}
+
+func (s *scanner) analyseDRA(file InputFile, _ []Rule) error {
+	dras := AnalyzeDRA(file.PhysicalPath, file.Content)
+	s.mutext.Lock()
+	s.result.Dra = append(s.result.Dra, dras...)
+	s.mutext.Unlock()
+	return nil
+}
+
+func (s *scanner) analyseFile(file InputFile, rules []Rule) error {
+	issues, err := AnalyzeFile(file, rules)
 	if err != nil {
 		return err
 	}
 
 	s.mutext.Lock()
-	s.result.Dra = append(s.result.Dra, dras...)
-	s.result.Size += info.Size()
-	s.result.Lines += len(inputFile.NewlineIndexes)
+	s.result.Lines += len(file.NewlineIndexes)
 	for _, issue := range issues {
-		vulnerability := IssueToVulnerability(inputFile.Name, inputFile.DisplayName, issue)
+		vulnerability := issueToVulnerability(file.Name, file.DisplayName, issue)
 		if vulnerability.CVSS > s.result.AverageCVSS {
 			s.result.AverageCVSS = vulnerability.CVSS
 		}
@@ -200,7 +216,7 @@ func (s *scanner) ignore(path string) bool {
 	return false
 }
 
-func IssueToVulnerability(filename, displayName string, issue Issue) report.Vulnerability {
+func issueToVulnerability(filename, displayName string, issue Issue) report.Vulnerability {
 	classDisplay := formatClassInfo(displayName, issue.Line, issue.Column)
 	class := formatClassInfo(filename, issue.Line, issue.Column)
 

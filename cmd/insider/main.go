@@ -36,14 +36,19 @@ var (
 	flagTech   = flag.String("tech", "", "Specify which technology ruleset to load")
 	flagTarget = flag.String("target", "", "Specify where to look for files to run the specific ruleset")
 
-	flagJobs     = flag.Int("jobs", 4, "Number of analysis to execute in parallel")
-	flagForce    = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default (default false)")
-	flagNoHTML   = flag.Bool("no-html", false, "Skips the report generation in the HTML format (default false)")
-	flagNoJSON   = flag.Bool("no-json", false, "Skips the report generation in the JSON format (default false)")
+	flagJobs = flag.Int("jobs", 4, "Number of analysis to execute in parallel")
+
+	flagForce  = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default (default false)")
+	flagNoHTML = flag.Bool("no-html", false, "Skips the report generation in the HTML format (default false)")
+	flagNoJSON = flag.Bool("no-json", false, "Skips the report generation in the JSON format (default false)")
+	flagNoDRA  = flag.Bool("no-dra", false, "Disable DRA analysis")
+
 	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100 (default 0)")
-	flagVerbose  = flag.Bool("v", false, "Enable verbose output")
-	flagVersion  = flag.Bool("version", false, "Show version and quit with exit code 0")
-	flagExclude  arrayFlag
+
+	flagVerbose = flag.Bool("v", false, "Enable verbose output")
+	flagVersion = flag.Bool("version", false, "Show version and quit with exit code 0")
+
+	flagExclude arrayFlag
 )
 
 func usage() {
@@ -117,8 +122,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	engine := engine.New(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
-	analyzer := insider.NewAnalyzer(engine, techAnalyzer, logger)
+	var eg insider.Engine
+
+	if *flagNoDRA {
+		logger.Printf("DRA analysis disabled")
+		eg = engine.New(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
+	} else {
+		eg = engine.NewWithDRA(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
+	}
+	analyzer := insider.NewAnalyzer(eg, techAnalyzer, logger)
 
 	report, err := analyzer.Analyze(context.Background(), *flagTarget)
 	if err != nil {
