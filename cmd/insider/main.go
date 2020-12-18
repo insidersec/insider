@@ -76,6 +76,10 @@ func main() {
 	prepareVersionInfo()
 
 	flag.Var(&flagExclude, "exclude", "Patterns to exclude directory or files to analyze. Can be used multiple times")
+	if err := flag.Set("exclude", ".git"); err != nil {
+		fmt.Fprintf(os.Stderr, "Error exclude .git from analysis: %v\n", err)
+		os.Exit(1)
+	}
 
 	flag.Usage = usage
 	flag.Parse()
