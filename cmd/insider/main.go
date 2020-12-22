@@ -39,8 +39,8 @@ var (
 	flagJobs = flag.Int("jobs", 4, "Number of analysis to execute in parallel")
 
 	flagForce  = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default (default false)")
-	flagNoHTML = flag.Bool("no-html", false, "Skips the report generation in the HTML format (default false)")
-	flagNoJSON = flag.Bool("no-json", false, "Skips the report generation in the JSON format (default false)")
+	flagNoHTML = flag.Bool("no-html", false, "Skips the report generation in the HTML format")
+	flagNoJSON = flag.Bool("no-json", false, "Skips the report generation in the JSON format")
 	flagNoDRA  = flag.Bool("no-dra", false, "Disable DRA analysis")
 
 	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100 (default 0)")
