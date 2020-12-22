@@ -4,6 +4,8 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io"
+	"io/ioutil"
 	"log"
 	"os"
 	"regexp"
@@ -42,6 +44,7 @@ var (
 	flagNoHTML = flag.Bool("no-html", false, "Skips the report generation in the HTML format")
 	flagNoJSON = flag.Bool("no-json", false, "Skips the report generation in the JSON format")
 	flagNoDRA  = flag.Bool("no-dra", false, "Disable DRA analysis")
+	flagQuiet  = flag.Bool("quiet", false, "No output logs of execution")
 
 	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100 (default 0)")
 
@@ -108,7 +111,14 @@ func main() {
 		flag.Usage()
 		os.Exit(1)
 	}
-	logger := log.New(os.Stderr, "[insider] ", log.LstdFlags)
+	var out io.Writer
+	if *flagQuiet {
+		out = ioutil.Discard
+	} else {
+		out = os.Stderr
+	}
+
+	logger := log.New(out, "[insider] ", log.LstdFlags)
 
 	techAnalyzer, err := techAnalyzer(*flagTech, logger)
 	if err != nil {
