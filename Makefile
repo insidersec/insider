@@ -14,5 +14,4 @@ build:
 	$(GO) build -o $(BIN) ./cmd/insider/
 
 build-release:
-	$(GO) build -ldflags $(BUILDFLAGS) -o $(BIN) ./cmd/insider/
-
+	CGO_ENABLED=0 $(GO) build -ldflags $(BUILDFLAGS) -o $(BIN) ./cmd/insider/
