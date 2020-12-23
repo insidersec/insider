@@ -36,40 +36,54 @@ Have fun! :rocket:
 
 ### Usage
 
-OBS.:
-Do not put the insider in the same folder that contains the files to be analyzed.
-
-The target folder should contain all the source code that should be analyzed, we plan to release support for compiled binaries for iOS, and Android' APKs.
-
 ```
-./insider --help
-Insider is the CLI project from the Insider Application Security Team for the community
+insider is the CLI project from the Insider Application Security Team for the community
 
 Usage:
+  -exclude value
+        Patterns to exclude directory or files to analyze. Can be used multiple times
   -force
-        Overwrite the report file name. Insider does not overwrite the results directory by default - Optional
-  -no-banner
-        Skips the banner printing (Useful for CI/Docker environments) - Optional
+        Overwrite the report file name. Insider does not overwrite the results directory by default (default false)
+  -jobs int
+        Number of analysis to execute in parallel (default 4)
+  -no-dra
+        Disable DRA analysis
   -no-html
-        Skips the report generation in the HTML format - Optional
+        Skips the report generation in the HTML format
   -no-json
-        Skips the report generation in the JSON format - Optional
-  -security int
-        Set the Security level, values ​​between 0 and 100
+        Skips the report generation in the JSON format
+  -quiet
+        No output logs of execution
+  -security float
+        Set the Security level, values between 0 and 100 (default 0)
   -target string
-        Specify where to look for files to run the specific ruleset.
-        -target <folder>
-        -target <myprojectfolder>
+        Specify where to look for files to run the specific ruleset
   -tech string
-        Specify which technology ruleset to load. (Valid values are: android, ios, csharp, javascript)
-        -tech javascript
-        -tech csharp
-  -v    Set true for verbose output
+        Specify which technology ruleset to load
+  -v    Enable verbose output
+  -version
+        Show version and quit with exit code 0
 
-Example of use :
-        insider -tech javascript -target <myprojectfolder>
-        insider -tech=android -target=<myandroidfolder>
-        insider -tech android -target <myfolder> -no-html
+Supported technologies:
+        android
+        java
+        ios
+        javascript
+        csharp
+
+Example of use:
+        # Run JavaScript analysis on specific directoty
+        insider -tech javascript -target <directory>
+
+        # Run Android analysis on specific directoty and ignore html and json report
+        insider -tech android -target <directory> -no-html -no-json
+
+        # Run Java analysis on specific directoty with a base security value to fail
+        insider -tech java -target <directory> -security 20
+
+        # Run JavaScript analysis on specific directoty and exclude node_modules and test files
+        insider -tech javascript -target <directory> -exclude tests/* -exclude node_modules/*
+
 ```
 
 ---
@@ -78,8 +92,8 @@ Example of use :
 
 ```bash
 # Check the correct release for your environment
-$ wget https://github.com/insidersec/insider/releases/download/2.0.6/insider_2.0.6_linux_x86_64.tar.gz
-$ tar -xf insider_2.0.6_linux_x86_64.tar.gz 
+$ wget https://github.com/insidersec/insider/releases/download/2.1.0/insider_2.1.0_linux_x86_64.tar.gz
+$ tar -xf insider_2.1.0_linux_x86_64.tar.gz 
 $ chmod +x insider
 $ ./insider --tech javascript  --target <projectfolder>
 ```

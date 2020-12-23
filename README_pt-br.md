@@ -36,47 +36,53 @@ Pronto, divirta-se! :rocket:
 
 ### Utilização
 
-OBS .:
-Não coloque o insider na mesma pasta que contém os arquivos a serem analisados.
-
-A pasta de destino deve conter todo o código-fonte que deve ser analisado, planejamos lançar suporte para binários compilados para iOS e APKs do Android.
-
 ```
-./insider --help
-Insider é o projeto CLI do time de segurança da Insider Application Security para a comunidade
+insider is the CLI project from the Insider Application Security Team for the community
 
-Comandos:
+Usage:
+  -exclude value
+        Patterns to exclude directory or files to analyze. Can be used multiple times
   -force
-        Substitua o nome do arquivo de relatório. O Insider não substitui o diretório de resultados por padrão. - Opcional
-
-  -no-banner
-        Ignore a impressão do banner (Útil para ambientes CI / Docker). - Opcional
-
+        Overwrite the report file name. Insider does not overwrite the results directory by default (default false)
+  -jobs int
+        Number of analysis to execute in parallel (default 4)
+  -no-dra
+        Disable DRA analysis
   -no-html
-        Ignore a criação do relatório no formato HTML. - Opcional
-
+        Skips the report generation in the HTML format
   -no-json
-        Ignore a criação do relatório no formato JSON. - Opcional
-
-  -security int
-        Configure o nível de segurança. Insira um valor entre 0 e 100.
-
+        Skips the report generation in the JSON format
+  -quiet
+        No output logs of execution
+  -security float
+        Set the Security level, values between 0 and 100 (default 0)
   -target string
-        Especifique onde procurar os arquivos e executar um conjunto de regras específico.
-            -target <folder>
-            -target <myprojectfolder>
-
+        Specify where to look for files to run the specific ruleset
   -tech string
-        Especifique qual conjunto de regras de tecnologia deve ser carregado. Os valores válidos são: android, ios, csharp e javascript.
-            -tech javascript
-            -tech csharp
+        Specify which technology ruleset to load
+  -v    Enable verbose output
+  -version
+        Show version and quit with exit code 0
 
-  -v    Defina uma saída detalhada (verbosa).
+Supported technologies:
+        android
+        java
+        ios
+        javascript
+        csharp
 
-Exemplos de uso:
-        insider -tech javascript -target <myprojectfolder>
-        insider -tech=android -target=<myandroidfolder>
-        insider -tech android -target <myfolder> -no-html
+Example of use:
+        # Run JavaScript analysis on specific directoty
+        insider -tech javascript -target <directory>
+
+        # Run Android analysis on specific directoty and ignore html and json report
+        insider -tech android -target <directory> -no-html -no-json
+
+        # Run Java analysis on specific directoty with a base security value to fail
+        insider -tech java -target <directory> -security 20
+
+        # Run JavaScript analysis on specific directoty and exclude node_modules and test files
+        insider -tech javascript -target <directory> -exclude tests/* -exclude node_modules/*
 ```
 
 ---
@@ -85,9 +91,8 @@ Exemplos de uso:
 
 ```bash
 # Check the correct release for your environment
-$ mkdir insider && cd insider
-$ wget https://github.com/insidersec/insider/releases/download/2.0.5/insider_2.0.5_linux_x86_64.tar.gz
-$ tar -xf insider_2.0.5_linux_x86_64.tar.gz 
+$ wget https://github.com/insidersec/insider/releases/download/2.1.0/insider_2.1.0_linux_x86_64.tar.gz
+$ tar -xf insider_2.1.0_linux_x86_64.tar.gz 
 $ chmod +x insider
 $ ./insider --tech javascript  --target <projectfolder>
 ```
@@ -109,7 +114,7 @@ $ ./insider --tech javascript  --target <projectfolder>
 Para compilar o Insider manualmente você vai precisar do [Go version 1.13](https://golang.org/dl/).
 
 ```bash
-$ go get github.com/insidersec/insider
+$ go get github.com/insidersec/insider/cmd/insider
 ```
 ---
 ### Licença
