@@ -98,6 +98,20 @@ $ ./insider --tech javascript  --target <projectfolder>
 ```
 ---
 
+---
+
+### Docker
+
+Você também pode utilizar o `insider` dentro de um container. Você só precisar montar um volume com o diretorio que deseja realizar a analise:
+
+```bash
+$ docker run --rm -v $(pwd):/target-project insidersec/insider -tech <tech> -target /target-project
+
+```
+
+---
+
+
 ### Demo
 
 ![Gif](demo.gif)
