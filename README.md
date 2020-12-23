@@ -1,6 +1,9 @@
 <p align="center">
   <img src="https://www.insidersec.io/wp-content/uploads/2020/11/cover-linkedin2.png">
   <p align="center">
+    <a href="https://github.com/insidersec/insider/actions?query=workflow%3ACI">
+      <img src="https://github.com/insidersec/insider/workflows/CI/badge.svg">
+    </a>
     <a href="https://github.com/insidersec/insider/blob/master/LICENSE">
       <img src="https://img.shields.io/badge/license-MIT-green.svg">
     </a>
@@ -99,6 +102,7 @@ $ ./insider --tech javascript  --target <projectfolder>
 ```
 
 ---
+
 ### Docker
 
 You can also run `insider` in a container. You only need to mount the target into a volume:
