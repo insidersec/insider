@@ -45,8 +45,6 @@ insider is the CLI project from the Insider Application Security Team for the co
 Usage:
   -exclude value
         Patterns to exclude directory or files to analyze. Can be used multiple times
-  -force
-        Overwrite the report file name. Insider does not overwrite the results directory by default (default false)
   -jobs int
         Number of analysis to execute in parallel (default 4)
   -no-html

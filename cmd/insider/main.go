@@ -40,7 +40,6 @@ var (
 
 	flagJobs = flag.Int("jobs", 4, "Number of analysis to execute in parallel")
 
-	flagForce  = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default (default false)")
 	flagNoHTML = flag.Bool("no-html", false, "Skips the report generation in the HTML format")
 	flagNoJSON = flag.Bool("no-json", false, "Skips the report generation in the JSON format")
 	flagQuiet  = flag.Bool("quiet", false, "No output logs of execution")
@@ -141,12 +140,7 @@ func main() {
 	}
 
 	if !*flagNoJSON {
-		name := "report.json"
-		if !*flagForce {
-			currentTime := time.Now()
-			name = fmt.Sprintf("report-%v.json", currentTime.Format("20060102150405"))
-		}
-		out, err := os.Create(name)
+		out, err := os.Create("report.json")
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error to create json report: %v\n", err)
 			os.Exit(1)
@@ -159,12 +153,7 @@ func main() {
 	}
 
 	if !*flagNoHTML {
-		name := "report.html"
-		if !*flagForce {
-			currentTime := time.Now()
-			name = fmt.Sprintf("report-%v.html", currentTime.Format("20060102150405"))
-		}
-		out, err := os.Create(name)
+		out, err := os.Create("report.html")
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error to create html report: %v\n", err)
 			os.Exit(1)

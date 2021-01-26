@@ -17,6 +17,6 @@ results/
 
 
 # Report files
-report-*.html
-report-*.json
+report.html
+report.json
 *.css
