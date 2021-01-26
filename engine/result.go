@@ -9,7 +9,6 @@ import (
 type Result struct {
 	AverageCVSS     float64
 	SecurityScore   float64
-	Dra             []report.DRA
 	Lines           int
 	Size            int64
 	Vulnerabilities []report.Vulnerability
@@ -35,7 +34,6 @@ func (result *Result) toDefaultReporter(dir string, r report.Report) (report.Rep
 	r.Info.NumberOfLines = result.Lines
 	r.Info.Size = fmt.Sprintf("%d Bytes", result.Size)
 	r.Vulnerabilities = result.Vulnerabilities
-	r.DRA = result.Dra
 	r.None = none
 	r.Low = low
 	r.Medium = medium
@@ -43,9 +41,6 @@ func (result *Result) toDefaultReporter(dir string, r report.Report) (report.Rep
 	r.Critical = critical
 	r.Total = total
 
-	if err := r.CleanDRA(dir); err != nil {
-		return nil, err
-	}
 	return r, nil
 }
 
@@ -56,7 +51,6 @@ func (result *Result) toAndroidReporter(dir string, r report.AndroidReporter) (r
 	r.AndroidInfo.NumberOfLines = result.Lines
 	r.AndroidInfo.Size = fmt.Sprintf("%d Bytes", result.Size)
 	r.Vulnerabilities = result.Vulnerabilities
-	r.DRA = result.Dra
 	r.None = none
 	r.Low = low
 	r.Medium = medium
@@ -64,9 +58,6 @@ func (result *Result) toAndroidReporter(dir string, r report.AndroidReporter) (r
 	r.Critical = critical
 	r.Total = total
 
-	if err := r.CleanDRA(dir); err != nil {
-		return nil, err
-	}
 	return r, nil
 }
 
@@ -77,7 +68,6 @@ func (result *Result) toIosReporter(dir string, r report.IOSReporter) (report.Re
 	r.IOSInfo.NumberOfLines = result.Lines
 	r.IOSInfo.Size = fmt.Sprintf("%d Bytes", result.Size)
 	r.Vulnerabilities = result.Vulnerabilities
-	r.DRA = result.Dra
 	r.None = none
 	r.Low = low
 	r.Medium = medium
@@ -85,9 +75,6 @@ func (result *Result) toIosReporter(dir string, r report.IOSReporter) (report.Re
 	r.Critical = critical
 	r.Total = total
 
-	if err := r.CleanDRA(dir); err != nil {
-		return nil, err
-	}
 	return r, nil
 }
 

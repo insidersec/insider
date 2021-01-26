@@ -66,25 +66,6 @@ If you are a developer, then you can contribute to the improvement of the softwa
 	</div>
 	<hr>
     <div class='row'>
-        <div class='col-12'>
-            <h6>DRA - Data Risk Analytics</h6>
-            <div class='table-responsive'>
-                <table class='table table-sm'>
-                    <tbody>
-                    {{ range .DRA}}
-                        <tr>
-                            <td class='user-select-all'>
-                                <b>File: </b>{{ .FilePath}}<br>
-                                <b>Dra: </b>{{ .Data}}<br>
-                                <b>Type: </b>{{ .Type}}
-
-                            </td>
-                        </tr>
-                    {{end}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
     {{ if .Libraries }}
         <div class='row'>
@@ -248,25 +229,6 @@ If you are a developer, then you can contribute to the improvement of the softwa
 	</div>
 	<hr>
     <div class='row'>
-        <div class='col-12'>
-            <h6>DRA - Data Risk Analytics</h6>
-            <div class='table-responsive'>
-                <table class='table table-sm'>
-                    <tbody>
-                    {{ range .DRA}}
-                        <tr>
-                            <td class='user-select-all'>
-                                <b>File: </b>{{ .FilePath}}<br>
-                                <b>Dra: </b>{{ .Data}}<br>
-                                <b>Type: </b>{{ .Type}}
-
-                            </td>
-                        </tr>
-                    {{end}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
     {{ if .Libraries }}
         <div class='row'>
@@ -421,25 +383,6 @@ If you are a developer, then you can contribute to the improvement of the softwa
 	</div>
 	<hr>
     <div class='row'>
-        <div class='col-12'>
-            <h6>DRA - Data Risk Analytics</h6>
-            <div class='table-responsive'>
-                <table class='table table-sm'>
-                    <tbody>
-                    {{ range .DRA}}
-                        <tr>
-                            <td class='user-select-all'>
-                                <b>File: </b>{{ .FilePath}}<br>
-                                <b>Dra: </b>{{ .Data}}<br>
-                                <b>Type: </b>{{ .Type}}
-
-                            </td>
-                        </tr>
-                    {{end}}
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
     {{ if .Libraries }}
         <div class='row'>

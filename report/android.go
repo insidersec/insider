@@ -85,17 +85,6 @@ type AndroidReporter struct {
 	BrowsableActivities     []BrowsableActivity  `json:"browsableActivities,omitempty"`
 }
 
-// CleanDRA cleans up the DRA list
-func (report *AndroidReporter) CleanDRA(dir string) error {
-	report.DRA = unique(report.DRA)
-	dra, err := cleanDRA(dir, report.DRA)
-	if err != nil {
-		return err
-	}
-	report.DRA = dra
-	return nil
-}
-
 func (r AndroidReporter) Json(out io.Writer) error {
 	return reportJson(r, out)
 }
@@ -105,11 +94,11 @@ func (r AndroidReporter) Html(out io.Writer) error {
 }
 
 func (r AndroidReporter) Resume(out io.Writer) {
-	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
+	resumeReport(r.SecurityScore(), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
 }
 
 func (r AndroidReporter) Console(out io.Writer) {
-	consoleReport(r.SecurityScore(), r.DRA, r.Libraries, r.Vulnerabilities, out)
+	consoleReport(r.SecurityScore(), r.Libraries, r.Vulnerabilities, out)
 }
 
 func (r AndroidReporter) SecurityScore() float64 {

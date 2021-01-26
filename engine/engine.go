@@ -14,24 +14,14 @@ type Engine struct {
 	exclude     []*regexp.Regexp
 	ruleBuilder RuleBuilder
 	jobs        int
-	dra         bool
 }
 
 func New(ruleBuilder RuleBuilder, exclude []*regexp.Regexp, jobs int, logger *log.Logger) *Engine {
-	return newEngine(ruleBuilder, exclude, jobs, false, logger)
-}
-
-func NewWithDRA(ruleBuilder RuleBuilder, exclude []*regexp.Regexp, jobs int, logger *log.Logger) *Engine {
-	return newEngine(ruleBuilder, exclude, jobs, true, logger)
-}
-
-func newEngine(ruleBuilder RuleBuilder, exclude []*regexp.Regexp, jobs int, dra bool, logger *log.Logger) *Engine {
 	return &Engine{
 		logger:      logger,
 		exclude:     exclude,
 		ruleBuilder: ruleBuilder,
 		jobs:        jobs,
-		dra:         dra,
 	}
 }
 
@@ -49,7 +39,6 @@ func (e *Engine) Scan(ctx context.Context, dir string) (report.Result, error) {
 		ruleSet:     NewRuleSet(),
 		dir:         dir,
 		exclude:     e.exclude,
-		dra:         e.dra,
 	}
 	return scanner.Process()
 }

@@ -8,9 +8,6 @@ namespace vulnerable
         {
             let password = "Super secret";
             Console.WriteLine(password);
-
-            let dra = "user@gmail.com";
-            Console.WriteLine(dra);
         }
     }
 }

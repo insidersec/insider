@@ -5,18 +5,12 @@ import (
 	"testing"
 
 	"github.com/insidersec/insider/report"
-	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
 
 func TestReportResumeConsole(t *testing.T) {
 	r := report.Report{
 		Base: report.Base{
-			DRA: []report.DRA{{
-				Data:     "testing",
-				Type:     "email",
-				FilePath: "foo/bar",
-			}},
 			Vulnerabilities: []report.Vulnerability{
 				{
 					CWE:  "CWE-123",
@@ -52,11 +46,6 @@ func TestReportHtml(t *testing.T) {
 			name: "Test default report",
 			report: report.Report{
 				Base: report.Base{
-					DRA: []report.DRA{{
-						Data:     "testing",
-						Type:     "email",
-						FilePath: "foo/bar",
-					}},
 					Vulnerabilities: []report.Vulnerability{
 						{
 							CWE:  "CWE-123",
@@ -78,11 +67,6 @@ func TestReportHtml(t *testing.T) {
 			name: "Test Android report",
 			report: report.AndroidReporter{
 				Base: report.Base{
-					DRA: []report.DRA{{
-						Data:     "testing",
-						Type:     "email",
-						FilePath: "foo/bar",
-					}},
 					Vulnerabilities: []report.Vulnerability{
 						{
 							CWE:  "CWE-123",
@@ -104,11 +88,6 @@ func TestReportHtml(t *testing.T) {
 			name: "Test Ios report",
 			report: report.IOSReporter{
 				Base: report.Base{
-					DRA: []report.DRA{{
-						Data:     "testing",
-						Type:     "email",
-						FilePath: "foo/bar",
-					}},
 					Vulnerabilities: []report.Vulnerability{
 						{
 							CWE:  "CWE-123",
@@ -145,11 +124,10 @@ func TestReportHtml(t *testing.T) {
 func TestReportJson(t *testing.T) {
 	r := report.Report{
 		Base: report.Base{
-			DRA: []report.DRA{{
-				Data:     "testing",
-				Type:     "email",
-				FilePath: "foo/bar",
-			}},
+			None:   10,
+			Medium: 4,
+			Low:    2,
+			High:   7,
 		},
 	}
 
@@ -159,22 +137,4 @@ func TestReportJson(t *testing.T) {
 	require.Nil(t, err)
 	require.True(t, len(out.Bytes()) != 0)
 
-}
-
-func TestReportCleanDRA(t *testing.T) {
-	r := report.Report{
-		Base: report.Base{
-			DRA: []report.DRA{
-				{Data: "foobar@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/bla.go"},
-				{Data: "foobar@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/baz.go"},
-				{Data: "baz@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/x.go"},
-				{Data: "whatever@tmp.com.br", Type: "email", FilePath: "/tmp/foo/bar/y.go"},
-			},
-		},
-	}
-
-	err := r.CleanDRA("/tmp/foo")
-
-	assert.Nil(t, err, "Expected nil error to clean duplicated DRAS: %v", err)
-	assert.Equal(t, len(r.DRA), 3, "Expected report withou duplicated DRAs")
 }

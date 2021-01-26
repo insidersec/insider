@@ -43,7 +43,6 @@ var (
 	flagForce  = flag.Bool("force", false, "Overwrite the report file name. Insider does not overwrite the results directory by default (default false)")
 	flagNoHTML = flag.Bool("no-html", false, "Skips the report generation in the HTML format")
 	flagNoJSON = flag.Bool("no-json", false, "Skips the report generation in the JSON format")
-	flagNoDRA  = flag.Bool("no-dra", false, "Disable DRA analysis")
 	flagQuiet  = flag.Bool("quiet", false, "No output logs of execution")
 
 	flagSecurity = flag.Float64("security", 0, "Set the Security level, values between 0 and 100 (default 0)")
@@ -132,15 +131,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	var eg insider.Engine
-
-	if *flagNoDRA {
-		logger.Printf("DRA analysis disabled")
-		eg = engine.New(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
-	} else {
-		eg = engine.NewWithDRA(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
-	}
-	analyzer := insider.NewAnalyzer(eg, techAnalyzer, logger)
+	engine := engine.New(rule.NewRuleBuilder(), exclude, *flagJobs, logger)
+	analyzer := insider.NewAnalyzer(engine, techAnalyzer, logger)
 
 	report, err := analyzer.Analyze(context.Background(), *flagTarget)
 	if err != nil {

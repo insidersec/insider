@@ -71,7 +71,6 @@ type scanner struct {
 	ch          chan bool
 	ctx         context.Context
 	dir         string
-	dra         bool
 }
 
 func (s *scanner) Process() (Result, error) {
@@ -118,10 +117,6 @@ func (s *scanner) Walk(path string, info os.FileInfo, err error) error {
 	s.logger.Printf("Load %d rules to file %s\n", len(rules), inputFile.DisplayName)
 
 	s.spawn(s.analyseFile, inputFile, rules)
-	if s.dra {
-		s.spawn(s.analyseDRA, inputFile, rules)
-	}
-
 	return nil
 }
 
@@ -141,14 +136,6 @@ func (s *scanner) spawn(fn spawnFn, file InputFile, rules []Rule) {
 			s.mutext.Unlock()
 		}
 	}()
-}
-
-func (s *scanner) analyseDRA(file InputFile, _ []Rule) error {
-	dras := AnalyzeDRA(file.PhysicalPath, file.Content)
-	s.mutext.Lock()
-	s.result.Dra = append(s.result.Dra, dras...)
-	s.mutext.Unlock()
-	return nil
 }
 
 func (s *scanner) analyseFile(file InputFile, rules []Rule) error {

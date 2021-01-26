@@ -48,7 +48,6 @@ func TestAnalyzer(t *testing.T) {
 			},
 			engine: fakeEngine{
 				result: &engine.Result{
-					Dra: []report.DRA{{}},
 					Vulnerabilities: []report.Vulnerability{
 						{CVSS: 0}, {CVSS: 2.3}, {CVSS: 6.7},
 					},
@@ -60,9 +59,6 @@ func TestAnalyzer(t *testing.T) {
 					Size: "10 Bytes",
 				},
 				Base: report.Base{
-					DRA: []report.DRA{{
-						FilePath: ".",
-					}},
 					Vulnerabilities: []report.Vulnerability{{CVSS: 0}, {CVSS: 2.3}, {CVSS: 6.7}},
 					None:            1,
 					High:            0,
@@ -84,7 +80,6 @@ func TestAnalyzer(t *testing.T) {
 			},
 			engine: fakeEngine{
 				result: &engine.Result{
-					Dra:             []report.DRA{{}},
 					Vulnerabilities: []report.Vulnerability{{CVSS: 6.7}, {CVSS: 8.1}, {CVSS: 7.2}, {CVSS: 9.2}},
 					Size:            57,
 				},
@@ -94,9 +89,7 @@ func TestAnalyzer(t *testing.T) {
 					Title: "testing",
 					Size:  "57 Bytes",
 				},
-				Base: report.Base{DRA: []report.DRA{{
-					FilePath: ".",
-				}},
+				Base: report.Base{
 					Vulnerabilities: []report.Vulnerability{{CVSS: 6.7}, {CVSS: 8.1}, {CVSS: 7.2}, {CVSS: 9.2}},
 					None:            0,
 					Low:             0,
@@ -118,7 +111,6 @@ func TestAnalyzer(t *testing.T) {
 			},
 			engine: fakeEngine{
 				result: &engine.Result{
-					Dra: []report.DRA{{}},
 					Vulnerabilities: []report.Vulnerability{
 						{CVSS: 3.9}, {CVSS: 4.0}, {CVSS: 6.9}, {CVSS: 7.0}, {CVSS: 8.9}, {CVSS: 9.8},
 					},
@@ -130,9 +122,7 @@ func TestAnalyzer(t *testing.T) {
 					AppName: "testing",
 					Size:    "57 Bytes",
 				},
-				Base: report.Base{DRA: []report.DRA{{
-					FilePath: ".",
-				}},
+				Base: report.Base{
 					Vulnerabilities: []report.Vulnerability{
 						{CVSS: 3.9}, {CVSS: 4.0}, {CVSS: 6.9}, {CVSS: 7.0}, {CVSS: 8.9}, {CVSS: 9.8},
 					},

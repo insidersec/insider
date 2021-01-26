@@ -16,14 +16,6 @@ type Reporter interface {
 	SecurityScore() float64
 }
 
-// DRA stands for Digital Risks anaytics, a key part of analyzing
-// the overall data exposure about the application
-type DRA struct {
-	Data     string `json:"dra"`
-	Type     string `json:"type"`
-	FilePath string `json:"file"`
-}
-
 // LibraryVulnerability is a structure to hold data
 // about vulnerabilities found on libraries
 // to Insider`s Console
@@ -80,7 +72,6 @@ type SASTInfo struct {
 
 // Base base report fields to all types of reports
 type Base struct {
-	DRA             []DRA           `json:"dra"`
 	Libraries       []Library       `json:"libraries,omitempty"`
 	Vulnerabilities []Vulnerability `json:"vulnerabilities,omitempty"`
 	None            int             `json:"none"`
@@ -98,17 +89,6 @@ type Report struct {
 	Info          SASTInfo               `json:"sast,omitempty"`
 }
 
-// CleanDRA cleans up the DRA list
-func (report *Report) CleanDRA(dir string) error {
-	report.DRA = unique(report.DRA)
-	dra, err := cleanDRA(dir, report.DRA)
-	if err != nil {
-		return err
-	}
-	report.DRA = dra
-	return nil
-}
-
 func (r Report) Json(out io.Writer) error {
 	return reportJson(r, out)
 }
@@ -118,11 +98,11 @@ func (r Report) Html(out io.Writer) error {
 }
 
 func (r Report) Resume(out io.Writer) {
-	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
+	resumeReport(r.SecurityScore(), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
 }
 
 func (r Report) Console(out io.Writer) {
-	consoleReport(r.SecurityScore(), r.DRA, r.Libraries, r.Vulnerabilities, out)
+	consoleReport(r.SecurityScore(), r.Libraries, r.Vulnerabilities, out)
 }
 
 func (r Report) SecurityScore() float64 {

@@ -34,17 +34,6 @@ type IOSReporter struct {
 	Permissions []IOSPermission `json:"permissions,omitempty"`
 }
 
-// CleanDRA cleans up the DRA list
-func (report *IOSReporter) CleanDRA(dir string) error {
-	report.DRA = unique(report.DRA)
-	dra, err := cleanDRA(dir, report.DRA)
-	if err != nil {
-		return err
-	}
-	report.DRA = dra
-	return nil
-}
-
 func (r IOSReporter) Json(out io.Writer) error {
 	return reportJson(r, out)
 }
@@ -54,11 +43,11 @@ func (r IOSReporter) Html(out io.Writer) error {
 }
 
 func (r IOSReporter) Resume(out io.Writer) {
-	resumeReport(r.SecurityScore(), len(r.DRA), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
+	resumeReport(r.SecurityScore(), len(r.Vulnerabilities), r.None, r.Low, r.Medium, r.High, r.Critical, r.Total, out)
 }
 
 func (r IOSReporter) Console(out io.Writer) {
-	consoleReport(r.SecurityScore(), r.DRA, r.Libraries, r.Vulnerabilities, out)
+	consoleReport(r.SecurityScore(), r.Libraries, r.Vulnerabilities, out)
 }
 
 func (r IOSReporter) SecurityScore() float64 {

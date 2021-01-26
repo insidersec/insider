@@ -5,32 +5,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	"path/filepath"
 )
-
-func cleanDRA(dir string, dra []DRA) ([]DRA, error) {
-	for i := 0; i < len(dra); i++ {
-		d := &dra[i]
-		rel, err := filepath.Rel(dir, d.FilePath)
-		if err != nil {
-			return nil, err
-		}
-		d.FilePath = rel
-	}
-	return dra, nil
-}
-
-func unique(slice []DRA) []DRA {
-	keys := make(map[string]bool)
-	list := []DRA{}
-	for _, entry := range slice {
-		if _, value := keys[entry.Data]; !value {
-			keys[entry.Data] = true
-			list = append(list, entry)
-		}
-	}
-	return list
-}
 
 func reportJson(r interface{}, out io.Writer) error {
 	b, err := json.MarshalIndent(r, "", " ")
@@ -58,11 +33,10 @@ func reportHTML(t string, r interface{}, out io.Writer) error {
 	return downloadCss()
 }
 
-func resumeReport(score float64, dra, vulnerabilities, none, low, medium, high, critical, total int, out io.Writer) {
+func resumeReport(score float64, vulnerabilities, none, low, medium, high, critical, total int, out io.Writer) {
 	fmt.Fprintf(out, "\n-----------------------------------------------\n")
 	fmt.Fprintf(out, "Score Security %v/100\n", score)
 	fmt.Fprintf(out, "Vulnerabilities\t%3v \n", vulnerabilities)
-	fmt.Fprintf(out, "DRA\t\t%3v \n", dra)
 	fmt.Fprintf(out, "None\t\t%3v \n", none)
 	fmt.Fprintf(out, "Low\t\t%3v \n", low)
 	fmt.Fprintf(out, "Medium\t\t%3v \n", medium)
@@ -76,19 +50,9 @@ func resumeReport(score float64, dra, vulnerabilities, none, low, medium, high, 
 	fmt.Fprintln(out, "-----------------------------------------------------------------------------------------------------------------------")
 }
 
-func consoleReport(score float64, dra []DRA, libraries []Library, vulnerabilities []Vulnerability, out io.Writer) {
+func consoleReport(score float64, libraries []Library, vulnerabilities []Vulnerability, out io.Writer) {
 	fmt.Fprintf(out, "\n---------------------------------------------------------------------\n")
 	fmt.Fprintf(out, "Score Security %v\n\n", score)
-
-	for i, k := range dra {
-		if i == 0 {
-			fmt.Fprintf(out, "DRA - Data Risk Analytics\n")
-		}
-		fmt.Fprintf(out, "File %s\n", k.FilePath)
-		fmt.Fprintf(out, "Dra %s\n", k.Data)
-		fmt.Fprintf(out, "Type %s\n", k.Type)
-	}
-	fmt.Fprintln(out, " ")
 
 	for i, k := range libraries {
 		if i == 0 {

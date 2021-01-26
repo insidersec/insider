@@ -49,8 +49,6 @@ Usage:
         Overwrite the report file name. Insider does not overwrite the results directory by default (default false)
   -jobs int
         Number of analysis to execute in parallel (default 4)
-  -no-dra
-        Disable DRA analysis
   -no-html
         Skips the report generation in the HTML format
   -no-json
