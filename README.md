@@ -104,7 +104,7 @@ $ ./insider --tech javascript  --target <projectfolder>
 You can also run `insider` in a container. You only need to mount the target into a volume:
 
 ```bash
-$ docker run --rm -v $(pwd):/target-project insidersec/insider -tech <tech> -target /target-project
+$ docker run -v $(pwd):/target-project insidersec/insider -tech <tech> -target /target-project
 
 ```
 
